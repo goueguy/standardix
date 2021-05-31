@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,3 +20,6 @@ Route::get('/',[HomeController::class, 'index']
 
 Route::get('/nos-metiers',[HomeController::class, 'showPageNosMetiers']
 )->name('nos-metiers');
+
+Route::get('/connexion',[LoginController::class, 'index']
+)->name('connexion');
