@@ -2,7 +2,9 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\InscriptionController;
+use App\Http\Controllers\CandidatController;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -22,8 +24,14 @@ Route::get('/',[HomeController::class, 'index']
 Route::get('/nos-metiers',[HomeController::class, 'showPageNosMetiers']
 )->name('nos-metiers');
 
+Route::get('/nous-rejoindre',[HomeController::class, 'showPageNousRejoindre']
+)->name('nous-rejoindre');
+
 Route::get('/connexion',[LoginController::class, 'index']
 )->name('connexion');
 
-Route::get('/inscription',[InscriptionController::class, 'index']
+Route::get('/candidats/inscription',[InscriptionController::class, 'index']
 )->name('inscription');
+
+Route::get('/candidats/dashboard',[CandidatController::class, 'index']
+)->name('dashboard');
