@@ -3,6 +3,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\InscriptionController;
 use App\Http\Controllers\CandidatController;
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -35,3 +36,6 @@ Route::get('/candidats/inscription',[InscriptionController::class, 'index']
 
 Route::get('/candidats/dashboard',[CandidatController::class, 'index']
 )->name('dashboard');
+
+Route::get('/admin/dashboard',[AdminController::class, 'index']
+)->name('admin.dashboard');
