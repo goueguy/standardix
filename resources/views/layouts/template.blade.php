@@ -10,5 +10,6 @@
 
         @yield('content')
 
+        @stack("metier")
     </body>
     </html>
