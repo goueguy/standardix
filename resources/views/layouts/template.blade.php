@@ -6,7 +6,7 @@
         <title>@yield('title')</title>
         <link href="{{ asset('/assets/css/app.css') }}" rel="stylesheet">
     </head>
-    <body class="font-display">
+    <body class="font-display bodygray">
         @include("layouts.includes.header")
 
         <div class="">

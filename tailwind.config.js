@@ -19,7 +19,9 @@ module.exports = {
         },
         medium: {
          DEFAULT: '#2E3A59',
-        }
+        },
+        graystandardix:"#efefef",
+        bodygray:"#E5E5E5",
       },
       fontFamily: {
         'light': ['Gilroy-Light'],
