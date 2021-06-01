@@ -7,8 +7,13 @@
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     </head>
     <body class="font-display">
+        include("layouts.header")
 
-        @yield('content')
+        <div class="">
+            @yield('content')
+        </div>
 
+        @include("layouts.footer")
+        @stack("header-style")
     </body>
     </html>
