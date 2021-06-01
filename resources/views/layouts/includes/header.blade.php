@@ -14,7 +14,7 @@
             <a href="#" class="pr-12 font-bold"><span>NOUS REJOINDRE</span></a>
             <a href="#" class="pr-12 font-bold"><span>NOS MÉTIERS</span></a>
             <a href="#" class="pr-12 font-bold -12"><span>CONTACT</span></a>
-            <a href="#" class="font-bold "><span>CONNEXION</span></a>
+            <a href="{{route('connexion')}}" class="font-bold "><span>CONNEXION</span></a>
         </div>
     </div>
 </header>
