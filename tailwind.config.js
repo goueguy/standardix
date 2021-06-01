@@ -6,7 +6,35 @@ module.exports = {
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        primary: {
+          DEFAULT: '#03bfae',
+        },
+        yellow: {
+          DEFAULT: '#FFD70F',
+        },
+        gray: {
+          DEFAULT: '#E5E5E5',
+        },
+        medium: {
+         DEFAULT: '#2E3A59',
+        },
+        graystandardix:"#efefef",
+        bodygray:"#E5E5E5",
+      },
+      fontFamily: {
+        'light': ['Gilroy-Light'],
+        'display': ['Gilroy-ExtraBold', 'Gilroy-Light'],
+        'body': ['Gilroy-ExtraBold', 'Gilroy-Light']
+      },
+
+        colors: {
+            medium: {
+                DEFAULT: '#2E3A59'
+            }
+        }
+    },
   },
   variants: {
     extend: {},
