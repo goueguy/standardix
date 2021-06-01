@@ -1,7 +1,6 @@
 @extends("layouts.template")
 @section('title',"NOS MÉTIERS")
 @section('content')
-
 <div class="">
     <h1 class="text-center text-4xl font-bold py-10 text-green-700 ">POSTULER À UN MÉTIER</h1>
     <div class=" px-4 flex justify-center">
