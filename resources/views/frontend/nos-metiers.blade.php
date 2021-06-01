@@ -1,9 +1,6 @@
 @extends("layouts.template")
-@section('title',"NOS MÉTIERS")
+@section('title',"NOS-METIERS")
 @section('content')
 
-<p>NOS METIERS</p>
-
+<p>NOS-METIERS</p>
 @endsection
-
-

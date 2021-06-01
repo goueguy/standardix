@@ -12,8 +12,8 @@
         <div class="">
             @yield('content')
         </div>
-
         @include("layouts.includes.footer")
         @stack("header-style")
+        @stack("metier")
     </body>
     </html>

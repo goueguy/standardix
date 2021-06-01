@@ -27,7 +27,13 @@ module.exports = {
         'light': ['Gilroy-Light'],
         'display': ['Gilroy-ExtraBold', 'Gilroy-Light'],
         'body': ['Gilroy-ExtraBold', 'Gilroy-Light']
-      }
+      },
+
+        colors: {
+            medium: {
+                DEFAULT: '#2E3A59'
+            }
+        }
     },
   },
   variants: {

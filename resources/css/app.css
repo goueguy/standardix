@@ -2,3 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 @import url('http://fonts.cdnfonts.com/css/gilroy-bold');
+@layer utilities{
+    @variants responsive{
+        .btn_connect {
+            background-color: #ffd70f;
+        }
+    }
+}
+
