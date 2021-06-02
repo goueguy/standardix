@@ -1,5 +1,6 @@
 @extends("layouts.template")
 @section('title',"OFFRE:DEVELOPPEUR WEB & MOBILE")
+
 @section('content')
 
 <h1 class="py-10 text-4xl font-bold text-center text-green-700 ">NOS OFFRES</h1>
@@ -59,6 +60,7 @@
 
 </div>
 @endsection
+
 @push('metier')
 <style>
     body{
