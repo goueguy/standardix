@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Inscription;
 class CandidatController extends Controller
 {
     /**
@@ -13,7 +13,8 @@ class CandidatController extends Controller
      */
     public function index()
     {
-        return view("frontend.candidats.dashboard");
+        $data = ['LogIn'=>Inscription::where('id','=', session('LogIn'))->first()];
+        return view("frontend.candidats.dashboard", $data);
     }
 
     /**

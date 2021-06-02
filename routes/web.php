@@ -38,7 +38,17 @@ Route::get('/candidats/inscription',[InscriptionController::class, 'index']
 )->name('inscription');
 
 Route::get('/candidats/dashboard',[CandidatController::class, 'index']
-)->name('dashboard');
+)->name('candidats.dashboard');
 
 Route::get('/admin/dashboard',[AdminController::class, 'index']
 )->name('admin.dashboard');
+
+# AUTHENTIFICATION INSCRITS(CANDIDATS)
+
+Route::post('candidats/login',[LoginController::class,'login'])->name('check.login');
+
+Route::get('candidats/logout',[LoginController::class,'logout'])->name('logout');
+
+//Auth::routes();
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

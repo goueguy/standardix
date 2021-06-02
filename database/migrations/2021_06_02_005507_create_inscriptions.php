@@ -17,12 +17,14 @@ class CreateInscriptions extends Migration
             $table->id();
             $table->string('nom');
             $table->string('prenoms');
+            $table->string('password');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('contact');
             $table->string('lieu_habitation');
             $table->unsignedBigInteger('id_domaine');
             $table->foreign('id_domaine')->references('id')->on('domaine_emplois');
+            $table->rememberToken();
             $table->timestamps();
         });
     }

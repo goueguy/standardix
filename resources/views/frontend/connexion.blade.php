@@ -11,19 +11,26 @@
                     <img src="{{asset('/assets/images/google.svg')}}" class="w-6">
                     <span class="pl-4 font-bold">Connectez-vous avec Google</span>
                 </div>
-                <form action="#" method="POST">
+                <form action="{{route('check.login')}}" method="POST">
+
+                    @csrf
                     <div class="mb-4">
                         <p class="font-bold lg:mb-2 lg:mt-2">ou alors</p>
                         <p class="font-bold">E-mail</p>
                     </div>
                     <div class="flex flex-row items-center p-4 mb-4 bg-white border-transparent rounded-lg shadow w-90">
-                        <input type="email" class="border-0 focus:outline-none md:focus:placeholder-green-600" name="email" placeholder="votre@email.com"/>
+                        <input type="email" name="email" class="border-0 focus:outline-none md:focus:placeholder-green-600" name="email" placeholder="votre@email.com" value="{{old('email')}}"/>
                     </div>
                     <label class="font-bold lg:mt-12">Mot de passe</label>
                     <div class="flex flex-row items-center p-4 bg-white border border-transparent rounded-lg shadow w-90">
-                        <input type="password" class="border-0 focus:outline-none md:focus:placeholder-green-600" name="email" placeholder="*************************"/>
+                        <input type="password" name="password" class="border-0 focus:outline-none md:focus:placeholder-green-600" name="email" placeholder="*************************" value="{{old('password')}}"/>
                     </div>
-                    <button class="w-full p-3 font-bold bg-yellow-400 rounded-full shadow-lg lg:mt-8">Connecter</button>
+                    @if(Session::get('fail'))
+                        <div class="mt-4 text-red-500">
+                        {{ Session::get('fail') }}
+                        </div>
+                    @endif
+                    <button type="submit" class="w-full p-3 font-bold bg-yellow-400 rounded-full shadow-lg lg:mt-8">Connecter</button>
                 </form>
                 <div class="lg:mt-6">
                     <p class="font-bold"><a href="#">Vous n'avez pas de compte ?<a/> <a href="#">Créer compte ?<a/></p>

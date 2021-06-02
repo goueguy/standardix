@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Inscription;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 class LoginController extends Controller
 {
     /**
@@ -27,58 +31,40 @@ class LoginController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Check login.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function login(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            "email"=>"required|email",
+            "password"=>"required|string|min:8|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/"
+        ]);
+
+            $userInfo = Inscription::where("email","=",$request->email)->first();
+            if(!$userInfo){
+                return back()->with('fail','Adresse Email Introuvable ou est requis');
+            }else{
+                if(Hash::check($request->password,$userInfo->password)){
+                    $request->session()->put("LogIn",$userInfo->id);
+                    return redirect("candidats/dashboard");
+                }else{
+                    return back()->with('fail','Mot de passe Incorrecte');
+                }
+            }
+
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+    public function logout(Request $request){
+
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect("/");
+
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }
