@@ -4,8 +4,9 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\InscriptionController;
 use App\Http\Controllers\CandidatController;
 use App\Http\Controllers\AdminController;
+use App\Http\Middleware\isAdmin;
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,20 +38,27 @@ Route::get('/connexion',[LoginController::class, 'index']
 Route::get('/candidats/inscription',[InscriptionController::class, 'index']
 )->name('inscription');
 
-#ESPACE CANDIDAT
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+#------------------ESPACE CANDIDAT---------------------
 Route::middleware([isConnected::class])->group(function(){
     Route::get('/candidats/dashboard',[CandidatController::class, 'index'])->name('candidats.dashboard');
 });
 
-Route::get('/admin/dashboard',[AdminController::class, 'index']
-)->name('admin.dashboard');
+#------------------------ESPACE ADMIN--------------------
+Route::middleware([isAdmin::class])->group(function () {
+    Route::get('/admin/dashboard',[AdminController::class, 'dashboard'])->name('admin.dashboard');
+    Route::get('/admin/logout',[AdminController::class, 'logout'])->name('admin.logout');
+});
+Route::get('/admin/auth',[AdminController::class, 'login'])->name('admin.auth');
+Route::post('/admin/post-login',[AdminController::class,'postLogin'])->name('post.login');
 
-# AUTHENTIFICATION INSCRITS(CANDIDATS)
+
+#-------------------AUTHENTIFICATION INSCRITS(CANDIDATS)---------
 
 Route::post('candidats/login',[LoginController::class,'login'])->name('check.login');
 
 Route::get('candidats/logout',[LoginController::class,'logout'])->name('logout');
 
-//Auth::routes();
-
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Auth::routes();

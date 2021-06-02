@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 class AdminController extends Controller
 {
     /**
@@ -13,72 +16,49 @@ class AdminController extends Controller
      */
     public function index()
     {
-      return view('admin.index');
+        return view('admin.index');
     }
 
+    public function login(){
+        return view("admin.login");
+    }
+    public function dashboard(){
+        return view("admin.index");
+    }
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function postLogin(Request $request)
     {
-        //
+        // $validator = Validator::make($request->all(), [
+        //     "email"=>"required|email|unique:users",
+        //     "password"=>"required|string|min:8|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/"
+        // ]);
+        $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+        $credentials = $request->only("email","password");
+        if(!$request->email || !$request->password){
+            return back()->with('fail','Le Mot de passe ou Adresse Email est requis');
+        }else{
+            if(Auth::attempt($credentials)){
+                return redirect()->intended("/admin/dashboard");
+            }else{
+                return back()->with('fail','Mot de passe ou Adresse Email Invalide');
+            }
+        }
+
+
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+        public function logout(Request $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/admin/auth');
     }
 }

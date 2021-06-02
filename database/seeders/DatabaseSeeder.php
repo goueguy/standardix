@@ -16,14 +16,22 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
 
-        DB::table('inscriptions')->insert([
+        // DB::table('inscriptions')->insert([
+        //     'nom' => "goueguy",
+        //     'prenoms'=>'jean-louis',
+        //     'email' => 'jlagoueguy@gmail.com',
+        //     'contact'=>"09162396",
+        //     'lieu_habitation'=>'Cocody Blockhauss',
+        //     'password' => Hash::make('Jeanloouis@1234'),
+        //     'id_domaine'=>1
+        // ]);
+        DB::table('users')->insert([
             'nom' => "goueguy",
             'prenoms'=>'jean-louis',
             'email' => 'jlagoueguy@gmail.com',
-            'contact'=>"09162396",
-            'lieu_habitation'=>'Cocody Blockhauss',
-            'password' => Hash::make('Jeanloouis@1234'),
-            'id_domaine'=>1
+            'niveau_acces'=>1,
+            'password'=>Hash::make("Admin@0801"),
+
         ]);
     }
 }
