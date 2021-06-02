@@ -37,8 +37,10 @@ Route::get('/connexion',[LoginController::class, 'index']
 Route::get('/candidats/inscription',[InscriptionController::class, 'index']
 )->name('inscription');
 
-Route::get('/candidats/dashboard',[CandidatController::class, 'index']
-)->name('candidats.dashboard');
+#ESPACE CANDIDAT
+Route::middleware([isConnected::class])->group(function(){
+    Route::get('/candidats/dashboard',[CandidatController::class, 'index'])->name('candidats.dashboard');
+});
 
 Route::get('/admin/dashboard',[AdminController::class, 'index']
 )->name('admin.dashboard');
