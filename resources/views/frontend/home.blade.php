@@ -50,7 +50,7 @@
         <div class="p-3">
             <p class="font-light"><a href="#">Vous n'avez pas de compte ? Créer compte ?</a></p>
             <p class="mb-4 font-light"> <a href="#">Oops? J'ai oublié mon mot de passe</a></p>
-            <p><a href="{{route('nous-rejoindre')}}" class="w-1/2 px-4 py-2 mt-8 text-white bg-yellow-300 rounded cursor-pointer">Cliquer Ici </a></p>
+            <p><a href="{{route('candidature-spontanee')}}" class="w-1/2 px-4 py-2 mt-8 text-white bg-yellow-300 rounded cursor-pointer">Cliquer Ici </a></p>
         </div>
     </div>
 </div>

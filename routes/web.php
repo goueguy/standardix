@@ -1,6 +1,6 @@
 <?php
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\LoginController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\InscriptionController;
 use App\Http\Controllers\CandidatController;
 use App\Http\Controllers\AdminController;
@@ -29,11 +29,13 @@ Route::get('/detail-offre',[HomeController::class, 'showDetailOffre']
 Route::get('/nos-metiers',[HomeController::class, 'showPageNosMetiers']
 )->name('nos-metiers');
 
-Route::get('/nous-rejoindre',[HomeController::class, 'showPageNousRejoindre']
-)->name('nous-rejoindre');
+Route::get('/candidature-spontanee',[HomeController::class, 'showPageCandidatureSpontanee']
+)->name('candidature-spontanee');
 
-Route::get('/connexion',[LoginController::class, 'index']
-)->name('connexion');
+
+#====================INSCRIPTIONS CANDIDATS============================#
+Route::post('/inscriptions/store', [InscriptionController::class, 'store']
+)->name('inscription.store');
 
 Route::get('/candidats/inscription',[InscriptionController::class, 'index']
 )->name('inscription');

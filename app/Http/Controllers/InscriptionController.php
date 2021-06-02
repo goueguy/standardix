@@ -34,7 +34,43 @@ class InscriptionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|min:3',
+            'firstname' => 'required|string|min:3',
+            'email' => 'required|email|unique:inscriptions',
+            'metiers' => 'required|integer',
+            'cv' => 'required|mimes:pdf,PDF|max:2048',
+            'motivation' => 'required|string|min:10|max:255'
+        ],[
+            'name.required' => 'Le nom est requis',
+            'firstname.required' => 'Le prénom est requis',
+            'email.required' => 'Adresse email requise',
+            'metiers.required' => 'Le metier est requis',
+            'cv.file' => 'Le fichier doit être au format .pdf',
+            'cv.required' => 'Votre CV est requis',
+            'motivation.required' => 'Votre motivation est requise'
+        ]);
+
+
+        $nom = $request->name;
+        $firstname = $request->firstname;
+        $email = $request->email;
+        $metiers = $request->metiers;
+        $file_cv = $request->file('cv');
+        $motivation = $request->motivation;
+
+        if ($request->hasFile('cv')) {
+            $path = $request->cv->path();
+            $extension = $request->cv->extension();
+
+            $newFile= time()."_".$file_cv->getClientOriginalName();
+
+           $request->file('cv')->move('cv_uploads', $newFile);
+        }
+        
+
+
+        dd($newFile);
     }
 
     /**

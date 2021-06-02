@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Inscription;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
@@ -43,7 +43,7 @@ class LoginController extends Controller
             "password"=>"required|string|min:8|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/"
         ]);
 
-            $userInfo = Inscription::where("email","=",$request->email)->first();
+            $userInfo = User::where("email","=",$request->email)->first();
             if(!$userInfo){
                 return back()->with('fail','Adresse Email Introuvable ou est requis');
             }else{

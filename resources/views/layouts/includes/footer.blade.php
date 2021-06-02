@@ -8,11 +8,11 @@
                 et leurs clientèles. </p>
         </div>
         <div class="pt-12 pb-24 pl-8">
-            <a href="{{route('offres')}}" class="pr-12 text-gray-800 pl-14">HOME</a>
-            <a href="#" class="pr-10 text-gray-800">STANDARDIX</a>
-            <a href="{{route('nous-rejoindre')}}" class="pr-10 text-gray-800">NOUS REJOINDRE</a>
-            <a href="#" class="pr-10 text-gray-800">NOS MÉTIERS</a>
-            <a href="{{route('connexion')}}" class="pr-10 text-gray-800">CONNEXION</a>
+            <a href="{{route('offres')}}" class="pr-12 text-gray-800 pl-14 uppercase">Accueil</a>
+            <a href="#" class="pr-10 text-gray-800">Standardix</a>
+            <a href="{{route('candidature-spontanee')}}" class="pr-10 text-gray-800 uppercase">Candidature spontanée</a>
+            <a href="#" class="pr-10 text-gray-800 uppercase">Nos métiers</a>
+            <a href="{{route('login')}}" class="pr-10 text-gray-800 uppercase">Connexion</a>
         </div>
     </div>
     <div class="w-4/5 pt-3 mx-auto border-b-2 border-gray-200"></div>

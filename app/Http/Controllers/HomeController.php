@@ -15,8 +15,8 @@ class HomeController extends Controller
     {
         return view("frontend.nos-metiers");
     }
-    public function showPageNousRejoindre(){
-        return view("frontend.nous-rejoindre");
+    public function showPageCandidatureSpontanee(){
+        return view("frontend.candidature-spontanee");
     }
     public function showDetailOffre(){
         return view("frontend.detail_offre");

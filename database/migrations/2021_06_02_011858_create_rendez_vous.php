@@ -3,7 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
+use App\Models\User;
+use App\Models\Offre;
 class CreateRendezVous extends Migration
 {
     /**
@@ -15,12 +16,13 @@ class CreateRendezVous extends Migration
     {
         Schema::create('rendez_vous', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_inscrit');
-            $table->foreign('id_inscrit')->references('id')->on('inscriptions');
-            $table->unsignedBigInteger('id_offre');
-            $table->foreign('id_offre')->references('id')->on('offres');
-            $table->date('date_rendez_vous');
             $table->string('objet');
+            $table->string('label')->nullable();
+            $table->text('contenu')->nullable();
+            $table->foreignIdFor(User::class)->nullable();
+            $table->foreignIdFor(Offre::class)->nullable();
+            $table->string('slug')->nullable()->unique();
+            $table->date('date_rendez_vous')->nullable();
             $table->timestamps();
         });
     }

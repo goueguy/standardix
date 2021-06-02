@@ -21,7 +21,13 @@ class User extends Authenticatable
         'prenoms',
         'email',
         'password',
-        'niveau_acces'
+        'niveau_acces',
+        'contact',
+        'lieu_habitation',
+        'domaine_emploi_id',
+        'cv',
+        'motivation',
+        'metier_id'
     ];
 
     /**
