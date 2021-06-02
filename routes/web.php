@@ -20,7 +20,10 @@ use Illuminate\Support\Facades\Route;
 /*-------------FRONTEND------------*/
 
 Route::get('/',[HomeController::class, 'index']
-)->name('home');
+)->name('offres');
+
+Route::get('/detail-offre',[HomeController::class, 'showDetailOffre']
+)->name('details-offres');
 
 Route::get('/nos-metiers',[HomeController::class, 'showPageNosMetiers']
 )->name('nos-metiers');

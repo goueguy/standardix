@@ -18,6 +18,9 @@ class HomeController extends Controller
     public function showPageNousRejoindre(){
         return view("frontend.nous-rejoindre");
     }
+    public function showDetailOffre(){
+        return view("frontend.detail_offre");
+    }
 
 
 }
