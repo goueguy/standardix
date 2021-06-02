@@ -1,5 +1,5 @@
 @extends("layouts.template")
-@section('title',"ACCUEIL")
+@section('title',"OFFRE:DEVELOPPEUR WEB & MOBILE")
 @section('content')
 
 <h1 class="py-10 text-4xl font-bold text-center text-green-700 ">NOS OFFRES</h1>
@@ -9,7 +9,7 @@
         <!-- OFFRE 1 -->
         <div class="inline-flex px-8 py-6 mb-4 bg-white shadow-lg">
             <div>
-                <h2 class="text-gray-400 uppercase"><a href="{{route('details-offres')}}">Formateur Sénior billingue</a></h2>
+                <h2 class="text-gray-400 uppercase">Formateur Sénior billingue</h2>
                 <p class="font-light">
                     Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa commodi illo nam in itaque corrupti aliquam accusamus, saepe sint libero accusantium veniam voluptatibus delectus
                 </p>
@@ -50,7 +50,7 @@
         <div class="p-3">
             <p><a href="#">Vous n'avez pas de compte ? Créer compte ?</a></p>
             <p class="mb-4 font-thin"> <a href="#">Oops? J'ai oublié mon mot de passe</a></p>
-            <p><a href="{{route('nous-rejoindre')}}" class="w-1/2 px-4 py-2 mt-8 text-white bg-yellow-300 rounded cursor-pointer">Cliquer Ici </a></p>
+            <p><a href="#" class="w-1/2 px-4 py-2 mt-8 text-white bg-yellow-300 rounded cursor-pointer">Cliquer Ici </a></p>
         </div>
     </div>
 </div>
