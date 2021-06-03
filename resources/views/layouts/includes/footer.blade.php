@@ -1,6 +1,6 @@
 @section("footer")
 <footer class="static bottom-0 w-full h-auto bg-graystandardix">
-    <div class="flex flex-row justify-between pt-3 pl-28">
+    <div class="flex flex-row justify-between pt-3 pl-12">
         <div>
             <img src="{{asset("assets/images/logo.png")}}" class="h-24" alt="Standardix Logo"/>
             <p class="pt-2 text-sm">Standardix est une entreprise<br>
@@ -8,8 +8,8 @@
                 et leurs clientèles. </p>
         </div>
         <div class="pt-12 pb-24 pl-8">
-            <a href="{{route('offres')}}" class="pr-12 text-gray-800 pl-14 uppercase">Accueil</a>
-            <a href="#" class="pr-10 text-gray-800">Standardix</a>
+            <a href="{{route('offres')}}" class="pr-12 text-gray-800 uppercase pl-14">Accueil</a>
+            <a href="#" class="pr-10 text-gray-800 uppercase">Standardix</a>
             <a href="{{route('candidature-spontanee')}}" class="pr-10 text-gray-800 uppercase">Candidature spontanée</a>
             <a href="#" class="pr-10 text-gray-800 uppercase">Nos métiers</a>
             <a href="{{route('login')}}" class="pr-10 text-gray-800 uppercase">Connexion</a>
