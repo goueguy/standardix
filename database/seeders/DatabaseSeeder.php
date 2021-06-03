@@ -25,13 +25,34 @@ class DatabaseSeeder extends Seeder
         //     'password' => Hash::make('Jeanloouis@1234'),
         //     'id_domaine'=>1
         // ]);
-        DB::table('users')->insert([
-            'nom' => "yoboue",
-            'prenoms'=>'ruben',
-            'email' => 'rubenyoboue@gmail.com',
-            'niveau_acces'=>1,
-            'password'=>Hash::make("rubicod"),
+        // DB::table('users')->insert([
+        //     'nom' => "yoboue",
+        //     'prenoms'=>'ruben',
+        //     'email' => 'rubenyoboue@gmail.com',
+        //     'niveau_acces'=>1,
+        //     'password'=>Hash::make("rubicod"),
 
-        ]);
+        // ]);
+
+        // DB::table('categories_offres')->insert([
+        //     'id' => 1,
+        //     'nom'=>"CDI",
+        // ]);
+        // DB::table('categories_offres')->insert([
+        //     'id' => 2,
+        //     'nom'=>"CDD",
+        // ]);
+        // DB::table('categories_offres')->insert([
+        //     'id' => 3,
+        //     'nom'=>"FREELANCE",
+        // ]);
+        // DB::table('categories_offres')->insert([
+        //     'id' => 4,
+        //     'nom'=>"STAGE",
+        // ]);
+        // DB::table('categories_offres')->insert([
+        //     'id' => 5,
+        //     'nom'=>"ALTERNANCE",
+        // ]);
     }
 }

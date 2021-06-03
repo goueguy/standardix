@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\UsersController;
+use App\Http\Controllers\Admin\OffresController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\InscriptionController;
 use App\Http\Controllers\CandidatController;
@@ -46,6 +47,11 @@ Route::group(["as"=>"admin.","prefix"=>"admin"],function () {
         Route::get('/users/edit',[UsersController::class, 'edit'])->name('users.edit');
         Route::get('/users/view',[UsersController::class, 'view'])->name('users.view');
         Route::get('/users/add',[UsersController::class, 'add'])->name('users.add');
+          #===========================USERS==========================
+          Route::get('/offres',[OffresController::class, 'index'])->name('offres.list');
+          Route::get('/offres/edit',[OffresController::class, 'edit'])->name('offres.edit');
+          Route::get('/offres/view',[OffresController::class, 'view'])->name('offres.view');
+          Route::get('/offres/add',[OffresController::class, 'add'])->name('offres.add');
     });
     #=========================AUTH=================================
     Route::get('auth',[AdminController::class, 'login'])->name('auth');
