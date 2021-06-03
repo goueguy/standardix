@@ -32,43 +32,38 @@ Route::get('/nos-metiers',[HomeController::class, 'showPageNosMetiers']
 
 Route::get('/candidature-spontanee',[HomeController::class, 'showPageCandidatureSpontanee']
 )->name('candidature-spontanee');
-
-
-#====================INSCRIPTIONS CANDIDATS============================#
-Route::post('/inscriptions/store', [InscriptionController::class, 'store']
-)->name('inscription.store');
-
-Route::get('/candidats/inscription',[InscriptionController::class, 'index']
-)->name('inscription');
-
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-
-#======================ESPACE CANDIDAT=====================
-Route::middleware([isConnected::class])->group(function(){
-    Route::get('/candidats/dashboard',[CandidatController::class, 'index'])->name('candidats.dashboard');
-});
-
 #-===========================ESPACE ADMIN=====================
-Route::middleware([isAdmin::class])->group(function () {
-    Route::get('/admin/dashboard',[AdminController::class, 'dashboard'])->name('admin.dashboard');
-    Route::get('/admin/logout',[AdminController::class, 'logout'])->name('admin.logout');
+Route::group(["as"=>"admin.","prefix"=>"admin"],function () {
 
-    Route::get('/admin/users',[UsersController::class, 'index'])->name('users.list');
-    Route::get('/admin/users/edit',[UsersController::class, 'edit'])->name('users.edit');
-    Route::get('/admin/users/view',[UsersController::class, 'view'])->name('users.view');
-    Route::get('/admin/users/add',[UsersController::class, 'add'])->name('users.add');
-
+    Route::group(["middleware"=>"isAdmin"],function () {
+        #===========================DASHBOARD======================
+        Route::get('/dashboard',[AdminController::class, 'dashboard'])->name('dashboard');
+        Route::get('/logout',[AdminController::class, 'logout'])->name('logout');
+        #===========================USERS==========================
+        Route::get('/users',[UsersController::class, 'index'])->name('users.list');
+        Route::get('/users/edit',[UsersController::class, 'edit'])->name('users.edit');
+        Route::get('/users/view',[UsersController::class, 'view'])->name('users.view');
+        Route::get('/users/add',[UsersController::class, 'add'])->name('users.add');
+    });
+    #=========================AUTH=================================
+    Route::get('auth',[AdminController::class, 'login'])->name('auth');
+    Route::post('/post-login',[AdminController::class,'postLogin'])->name('login');
 
 });
-Route::get('/admin/auth',[AdminController::class, 'login'])->name('admin.auth');
-Route::post('/admin/post-login',[AdminController::class,'postLogin'])->name('post.login');
 
+#=================MODULE CANDIDATS============
+Route::group(["prefix"=>"candidats","as"=>"candidats."],function () {
+    Route::group(["middleware"=>"isConnected"],function () {
+        Route::get('/dashboard',[CandidatController::class, 'index'])->name('dashboard');
+    });
 
-#=================AUTHENTIFICATION INSCRITS(CANDIDATS)============
+    Route::post('login',[LoginController::class,'login'])->name('login');
+    Route::get('logout',[LoginController::class,'logout'])->name('logout');
+    Route::post('/store', [InscriptionController::class, 'store'])->name('store');
+    Route::get('/',[InscriptionController::class, 'index'])->name('index');
 
-Route::post('candidats/login',[LoginController::class,'login'])->name('check.login');
-
-Route::get('candidats/logout',[LoginController::class,'logout'])->name('logout');
+});
 
 Auth::routes();

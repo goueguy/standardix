@@ -6,7 +6,7 @@
     <h1 class="py-10 text-4xl font-bold text-center text-green-700 ">POSTULER À UN MÉTIER</h1>
     <div class="flex justify-center px-4 ">
             <div class="">
-                <form action="{{route('inscription.store')}}" enctype="multipart/form-data" method="POST">
+                <form action="{{route('candidats.store')}}" enctype="multipart/form-data" method="POST">
                     @csrf
                     <div class="mb-5">
                         <input type="text" name="name" placeholder="Votre nom" class="w-1/2 px-10 py-3 text-lg text-left text-gray-700 placeholder-gray-500 shadow-md rounded-2xl focus:outline-none">
@@ -27,7 +27,7 @@
                         <div class="text-red-500">{{ $errors->first('email') }}</div>
                     @endif
                     <div class="flex items-center justify-start mb-5">
-                        <select name="metiers" class="w-1/2  px-10 py-3 text-lg text-left text-gray-500 shadow-md appearance-none rounded-2xl focus:outline-none">
+                        <select name="metiers" class="w-1/2 px-10 py-3 text-lg text-left text-gray-500 shadow-md appearance-none rounded-2xl focus:outline-none">
                             <option value="" class="capitalize">Le metier souhaité</option>
                             <option value="1" class="capitalize">Teleconseiller</option>
                             <option value="2">Assistante particulière</option>

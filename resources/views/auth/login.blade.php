@@ -11,7 +11,7 @@
                     <img src="{{asset('/assets/images/google.svg')}}" class="w-6">
                     <span class="pl-4 font-bold">Connectez-vous avec Google</span>
                 </div>
-                <form action="{{route('check.login')}}" method="POST">
+                <form action="{{route('login')}}" method="POST">
 
                     @csrf
                     <div class="mb-4">

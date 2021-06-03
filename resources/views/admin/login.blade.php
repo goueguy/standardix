@@ -19,7 +19,7 @@
 <div class="rounded shadow card-body login-card-body">
     <p class="login-box-msg">Démarrez votre session</p>
 
-    <form action="{{route('post.login')}}" method="post">
+    <form action="{{route('login')}}" method="post">
     @csrf
     <div class="mb-3 input-group">
         <input type="email" class="form-control" name="email" placeholder="Email">
