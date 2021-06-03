@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\InscriptionController;
 use App\Http\Controllers\CandidatController;
@@ -52,6 +53,13 @@ Route::middleware([isConnected::class])->group(function(){
 Route::middleware([isAdmin::class])->group(function () {
     Route::get('/admin/dashboard',[AdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::get('/admin/logout',[AdminController::class, 'logout'])->name('admin.logout');
+
+    Route::get('/admin/users',[UsersController::class, 'index'])->name('users.list');
+    Route::get('/admin/users/edit',[UsersController::class, 'edit'])->name('users.edit');
+    Route::get('/admin/users/view',[UsersController::class, 'view'])->name('users.view');
+    Route::get('/admin/users/add',[UsersController::class, 'add'])->name('users.add');
+
+
 });
 Route::get('/admin/auth',[AdminController::class, 'login'])->name('admin.auth');
 Route::post('/admin/post-login',[AdminController::class,'postLogin'])->name('post.login');

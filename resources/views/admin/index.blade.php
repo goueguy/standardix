@@ -1,7 +1,8 @@
 @extends('layouts.admin')
+@section('title', 'Dashboard')
 
 @section('content')
-    <div class="content-wrapper">
+    <div class="content-header">
     <section class="content">
         <div class="container-fluid">
         <div class="row">

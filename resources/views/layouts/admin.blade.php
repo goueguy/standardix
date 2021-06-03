@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> Dashboard</title>
+  <title> @yield('title')</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link href="http://fonts.cdnfonts.com/css/gilroy-bold" rel="stylesheet">
@@ -29,12 +29,15 @@
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 
- <div class="wrapper">
-    @include('layouts.includes._loader')
-    @include('layouts.includes._nav')
-    @include('layouts.includes._aside')
-    @yield('content')
- </div>
+    <div class="wrapper">
+        @include('layouts.includes._loader')
+        @include('layouts.includes._nav')
+        @include('layouts.includes._aside')
+        <div class="content-wrapper">
+            @yield('content')
+        </div>
+    </div>
+
 
     @include('layouts.includes._scripts')
 </body>
