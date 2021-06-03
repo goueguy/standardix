@@ -22,7 +22,7 @@
                         <input type="email" name="email" class="border-0 focus:outline-none md:focus:placeholder-green-600" name="email" placeholder="votre@email.com" value="{{old('email')}}"/>
                         @error('email')
                         <span class="text-red-600" title="{{$message}}">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                               </svg>
                         </span>
@@ -30,22 +30,19 @@
                     </div>
                     <label class="font-bold lg:mt-12">Mot de passe</label>
                     <div class="flex flex-row justify-between p-4 bg-white @error('email') border border-red-600 @enderror rounded-lg shadow w-90">
-                        <input type="password" name="password" class="border-0 focus:outline-none  md:focus:placeholder-green-600" name="email" placeholder="*************************" value="{{old('password')}}"/>
+                        <input type="password" name="password" class="border-0 focus:outline-none md:focus:placeholder-green-600" name="email" placeholder="*************************" value="{{old('password')}}"/>
                         @error('password')
                             <span class="text-red-600" title="{{$message}}">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                  </svg>
+                                </svg>
                             </span>
                         @enderror
                     </div>
-
-
-
                     <button type="submit" class="w-full p-3 font-bold bg-yellow-400 rounded-full shadow-lg lg:mt-8">Connecter</button>
                 </form>
                 <div class="lg:mt-6">
-                    <p class="font-bold"><a href="#">Vous n'avez pas de compte ?</a> <a href="#">Créer compte ?</a></p>
+                    <p class="font-bold"><a href="#">Vous n'avez pas de compte ?</a> <a href="{{route('register')}}">Créer compte ?</a></p>
                     <p class="font-bold"><a href="#">Oops? J'ai oublié mon mot de passe</a> </p>
                 </div>
             </div>

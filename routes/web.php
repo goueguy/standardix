@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Auth;
 | contains the "web" middleware group. Now create something great!
 |
 */
-/*-------------FRONTEND------------*/
+#=====================FRONTEND==============================
 
 Route::get('/',[HomeController::class, 'index']
 )->name('offres');
@@ -43,12 +43,12 @@ Route::get('/candidats/inscription',[InscriptionController::class, 'index']
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-#------------------ESPACE CANDIDAT---------------------
+#======================ESPACE CANDIDAT=====================
 Route::middleware([isConnected::class])->group(function(){
     Route::get('/candidats/dashboard',[CandidatController::class, 'index'])->name('candidats.dashboard');
 });
 
-#------------------------ESPACE ADMIN--------------------
+#-===========================ESPACE ADMIN=====================
 Route::middleware([isAdmin::class])->group(function () {
     Route::get('/admin/dashboard',[AdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::get('/admin/logout',[AdminController::class, 'logout'])->name('admin.logout');
@@ -57,7 +57,7 @@ Route::get('/admin/auth',[AdminController::class, 'login'])->name('admin.auth');
 Route::post('/admin/post-login',[AdminController::class,'postLogin'])->name('post.login');
 
 
-#-------------------AUTHENTIFICATION INSCRITS(CANDIDATS)---------
+#=================AUTHENTIFICATION INSCRITS(CANDIDATS)============
 
 Route::post('candidats/login',[LoginController::class,'login'])->name('check.login');
 
