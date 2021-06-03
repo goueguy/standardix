@@ -20,48 +20,63 @@
             </div> --}}
         </div>
         <!-- Details Content -->
-        <div class="inline-flex justify-between px-8 py-6 mb-4 bg-white border rounded-lg shadow-lg">
-            <div class="flex flex-col w-3/5">
-                <h3>À propos de l’offre d’emploi</h3>
-                <div class="font-light">
-                    <p>Dans le cadre d’un programme stratégique de développement de nos activités, nous recrutons un développeur web et mobile.
-                    </p>
-                </div>
-            </div>
-            <div class="flex flex-col w-2/5">
-                {{-- <h3 class="pb-2">Descriptif du poste</h3>
-                <p class="font-light">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dicta nostrum mollitia expedita tenetur accusamus ad? Reiciendis et porro laudantium laborum, esse est illum. In expedita atque ab repellat ipsum sapiente.</p> --}}
-                <h3 class="py-2">Type d’emploi: <span class="font-light">STAGE</span></h3>
-            </div>
-        </div>
-        <div>
-
-        </div>
-        <!-- See More Content -->
-        <div class="inline-flex justify-between hidden px-8 py-6 mb-4 bg-white border rounded-lg shadow-lg">
-            <div class="flex flex-col w-3/5">
-                <h3>À propos de l’offre d’emploi</h3>
-                <div class="font-light">
-                    <p>Dans le cadre d’un programme stratégique de développement de nos activités, nous recrutons un développeur web et mobile.
-                    </p>
-                    <p>Profil du poste</p>
-                    <ul>
-                        <li>* Avoir un Bac+3 au moins</li>
-                        <li>* Avoir mis en ligne un site web ou une application mobile</li>
-                        <li>* Maitrisé le Framework Flutter est un atout</li>
-                    </ul>
-                    <div>
-                        <p>Délai: 15 Mai 2021</p>
-                        <p>* Dossier de candidature</p>
-                        <p>* Veuillez faire parvenir votre CV à l’adresse e-mail suivante : contact@iatecole.com.</p>
+        <div class="relative detailDefault">
+            <div class="inline-flex justify-between px-8 py-6 bg-white border rounded-lg">
+                <div class="flex flex-col w-3/5">
+                    <h3>À propos de l’offre d’emploi</h3>
+                    <div class="font-light">
+                        <p>Dans le cadre d’un programme stratégique de développement de nos activités, nous recrutons un développeur web et mobile.
+                        </p>
                     </div>
                 </div>
+                <div class="flex flex-col w-2/5">
+                    {{-- <h3 class="pb-2">Descriptif du poste</h3>
+                    <p class="font-light">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dicta nostrum mollitia expedita tenetur accusamus ad? Reiciendis et porro laudantium laborum, esse est illum. In expedita atque ab repellat ipsum sapiente.</p> --}}
+                    <h3 class="py-2">Type d’emploi: <span class="font-light">STAGE</span></h3>
+                </div>
             </div>
-            <div class="flex flex-col w-2/5">
-                {{-- <h3 class="pb-2">Descriptif du poste</h3>
-                <p class="font-light">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dicta nostrum mollitia expedita tenetur accusamus ad? Reiciendis et porro laudantium laborum, esse est illum. In expedita atque ab repellat ipsum sapiente.</p> --}}
-                <h3 class="py-2">Type d’emploi: <span class="font-light">STAGE</span></h3>
+            <div class="flex flex-row items-center justify-center w-full bg-white border rounded">
+                <div class="flex items-center text-blue-400">
+                    <button type="button" id="seemore" class="font-bold pointer-cursor">Voir Plus</button><svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <!-- See More Content -->
+        <div class="hidden hiddenDetail">
+            <div class="inline-flex justify-between px-8 py-6 bg-white border rounded-lg">
+                <div class="flex flex-col w-3/5">
+                    <h3>À propos de l’offre d’emploi</h3>
+                    <div class="font-light">
+                        <p>Dans le cadre d’un programme stratégique de développement de nos activités, nous recrutons un développeur web et mobile.
+                        </p>
+                        <p>Profil du poste</p>
+                        <ul>
+                            <li>* Avoir un Bac+3 au moins</li>
+                            <li>* Avoir mis en ligne un site web ou une application mobile</li>
+                            <li>* Maitrisé le Framework Flutter est un atout</li>
+                        </ul>
+                        <div>
+                            <p>Délai: 15 Mai 2021</p>
+                            <p>* Dossier de candidature</p>
+                            <p>* Veuillez faire parvenir votre CV à l’adresse e-mail suivante : contact@iatecole.com.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col w-2/5">
+                    {{-- <h3 class="pb-2">Descriptif du poste</h3>
+                    <p class="font-light">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dicta nostrum mollitia expedita tenetur accusamus ad? Reiciendis et porro laudantium laborum, esse est illum. In expedita atque ab repellat ipsum sapiente.</p> --}}
+                    <h3 class="py-2">Type d’emploi: <span class="font-light">STAGE</span></h3>
 
+                </div>
+            </div>
+            <div class="flex flex-row items-center justify-center w-full bg-white border rounded">
+                <div class="flex items-center text-blue-400">
+                    <button type="button" id="seeless" class="font-bold text-blue-400 pointer-cursor">Voir Moins</button><svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+                    </svg>
+                </div>
             </div>
         </div>
     </div>
@@ -86,6 +101,23 @@
     body{
         background-color: #f3f4f6;
     }
+
 </style>
+<script>
+    let btnSeeMore = document.querySelector("#seemore");
+    let btnSeeLess = document.querySelector("#seeless");
+    let defaultDetail = document.querySelector(".detailDefault");
+    let hiddenDetail = document.querySelector(".hiddenDetail");
+    let seeMoreDetails = document.querySelector(".see-more");
+
+    dropdown(btnSeeMore,"hidden",defaultDetail,hiddenDetail);
+    dropdown(btnSeeLess,"hidden",hiddenDetail,defaultDetail);
+    function dropdown(btn,className,block1,block2){
+            btn.addEventListener("click",()=>{
+            block1.classList.add(className);
+            block2.classList.remove(className);
+        });
+    }
+</script>
 @endpush
 

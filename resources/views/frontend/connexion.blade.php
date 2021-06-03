@@ -40,7 +40,6 @@
     </div>
 </div>
 @endsection
-
 @push('header-style')
 <style>
     body{
