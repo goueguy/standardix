@@ -13,9 +13,7 @@
                 <p>Total des offres</p>
                 </div>
                 <div class="icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="text-sm" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-                      </svg>
+                    <i class="ion ion-speakerphone"></i>
                 </div>
                 <a href="#" class="small-box-footer">Voir plus <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -30,7 +28,7 @@
                 <p>Nouvelles offres </p>
                 </div>
                 <div class="icon">
-                <i class="ion ion-stats-bars"></i>
+                <i class="ion ion-ios-albums"></i>
                 </div>
                 <a href="#" class="small-box-footer">Voir plus <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -60,7 +58,7 @@
                 <p>Rendez-vous</p>
                 </div>
                 <div class="icon">
-                <i class="ion ion-pie-graph"></i>
+                <i class="ion ion-ios-calendar"></i>
                 </div>
                 <a href="#" class="small-box-footer">Voir plus <i class="fas fa-arrow-circle-right"></i></a>
             </div>

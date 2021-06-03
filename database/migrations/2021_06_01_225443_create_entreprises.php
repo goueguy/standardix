@@ -3,8 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Models\User;
-class CreateCategoriesOffres extends Migration
+
+class CreateEntreprises extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateCategoriesOffres extends Migration
      */
     public function up()
     {
-        Schema::create('categories_offres', function (Blueprint $table) {
+        Schema::create('entreprises', function (Blueprint $table) {
             $table->id();
             $table->string('nom');
-            $table->string('description_categorie')->nullable();
-            $table->foreignIdFor(User::class)->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ class CreateCategoriesOffres extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categories_offres');
+        Schema::dropIfExists('entreprises');
     }
 }
