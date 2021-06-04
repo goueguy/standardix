@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', "Offres d'Emploi")
+@section('title', "Candidatures")
 @section('content')
 
 <div class="container">
@@ -8,7 +8,7 @@
     <div class="mt-2 col-12">
         <div class="card">
         <div class="card-header ">
-            <h3 class="card-title">Liste</h3>
+            <h3 class="card-title">Liste </h3>
             <div class="card-tools">
             <div class="input-group input-group-sm" style="width: 150px;">
                 <input type="text" name="table_search" class="float-right form-control" placeholder="Search">
@@ -37,8 +37,8 @@
                     <th>Description</th>
                     <th>Lieu</th>
                     <th>Date Limite</th>
-                    <th>Durée Contrat</th>
                     <th>Mission</th>
+                    <th>Total Candidatures</th>
                     <th>Action</th>
                 </tr>
                 </thead>
@@ -49,8 +49,8 @@
                     <td>FullStack Dev PHP</td>
                     <td>Abidjan</td>
                     <td>04-06-2021</td>
-                    <td>6 mois</td>
                     <td>Créer des Appli Web Pro</td>
+                    <td>5</td>
                     <td>
                         <a href="{{route('admin.offres.view')}}"><i class="fas fa-eye"></i></a>
                         <a href="#"><i class="fas fa-trash"></i></a>
@@ -64,12 +64,12 @@
                     <td>FullStack Dev PHP</td>
                     <td>Abidjan</td>
                     <td>04-06-2021</td>
-                    <td>6 mois</td>
                     <td>Créer des Appli Web Pro</td>
+                    <td>7</td>
                     <td>
-                        <a href="{{route('admin.users.view')}}"><i class="fas fa-eye"></i></a>
+                        <a href="{{route('admin.offres.view')}}"><i class="fas fa-eye"></i></a>
                         <a href="#"><i class="fas fa-trash"></i></a>
-                        <a href="{{route('admin.users.edit')}}"><i class="fas fa-edit"></i></a>
+                        <a href="{{route('admin.offres.edit')}}"><i class="fas fa-edit"></i></a>
                     </td>
                 </tr>
 
@@ -79,12 +79,12 @@
                     <td>FullStack Dev PHP</td>
                     <td>Abidjan</td>
                     <td>04-06-2021</td>
-                    <td>6 mois</td>
                     <td>Créer des Appli Web Pro</td>
+                    <td>10</td>
                     <td>
-                        <a href="{{route('admin.users.view')}}"><i class="fas fa-eye"></i></a>
+                        <a href="{{route('admin.offres.view')}}"><i class="fas fa-eye"></i></a>
                         <a href="#"><i class="fas fa-trash"></i></a>
-                        <a href="{{route('admin.users.edit')}}"><i class="fas fa-edit"></i></a>
+                        <a href="{{route('admin.offres.edit')}}"><i class="fas fa-edit"></i></a>
                     </td>
                 </tr>
 

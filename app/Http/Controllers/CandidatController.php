@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Inscription;
+
 class CandidatController extends Controller
 {
     /**
@@ -13,9 +13,9 @@ class CandidatController extends Controller
      */
     public function index()
     {
-        $data = ['LogIn'=>Inscription::where('id','=', session('LogIn'))->first()];
-        return view("frontend.candidats.dashboard", $data);
+        return view("frontend.candidats.dashboard");
     }
+
 
     /**
      * Show the form for creating a new resource.

@@ -12,7 +12,6 @@
                     <span class="pl-4 font-bold">Connectez-vous avec Google</span>
                 </div>
                 <form action="{{route('check.login')}}" method="POST">
-
                     @csrf
                     <div class="mb-4">
                         <p class="font-bold lg:mb-2 lg:mt-2">ou alors</p>

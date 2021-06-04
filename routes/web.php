@@ -47,11 +47,14 @@ Route::group(["as"=>"admin.","prefix"=>"admin"],function () {
         Route::get('/users/edit',[UsersController::class, 'edit'])->name('users.edit');
         Route::get('/users/view',[UsersController::class, 'view'])->name('users.view');
         Route::get('/users/add',[UsersController::class, 'add'])->name('users.add');
-          #===========================USERS==========================
-          Route::get('/offres',[OffresController::class, 'index'])->name('offres.list');
-          Route::get('/offres/edit',[OffresController::class, 'edit'])->name('offres.edit');
-          Route::get('/offres/view',[OffresController::class, 'view'])->name('offres.view');
-          Route::get('/offres/add',[OffresController::class, 'add'])->name('offres.add');
+        #===========================OFFRES==========================
+        Route::get('/offres',[OffresController::class, 'index'])->name('offres.list');
+        Route::get('/offres/lancees',[OffresController::class, 'lancees'])->name('offres.lancees');
+        Route::get('/offres/edit',[OffresController::class, 'edit'])->name('offres.edit');
+        Route::get('/offres/view',[OffresController::class, 'view'])->name('offres.view');
+        Route::get('/offres/add',[OffresController::class, 'add'])->name('offres.add');
+        #===========================CANDIDATURES==========================
+        Route::get('/candidatures',[UsersController::class, 'list'])->name('candidatures.list');
     });
     #=========================AUTH=================================
     Route::get('auth',[AdminController::class, 'login'])->name('auth');

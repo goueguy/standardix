@@ -8,7 +8,7 @@
     <div class="mt-2 col-12">
         <div class="card">
         <div class="card-header ">
-            <h3 class="card-title">Liste</h3>
+            <h3 class="card-title">Liste Offres Lancées</h3>
             <div class="card-tools">
             <div class="input-group input-group-sm" style="width: 150px;">
                 <input type="text" name="table_search" class="float-right form-control" placeholder="Search">
@@ -67,9 +67,9 @@
                     <td>6 mois</td>
                     <td>Créer des Appli Web Pro</td>
                     <td>
-                        <a href="{{route('admin.users.view')}}"><i class="fas fa-eye"></i></a>
+                        <a href="{{route('admin.offres.view')}}"><i class="fas fa-eye"></i></a>
                         <a href="#"><i class="fas fa-trash"></i></a>
-                        <a href="{{route('admin.users.edit')}}"><i class="fas fa-edit"></i></a>
+                        <a href="{{route('admin.offres.edit')}}"><i class="fas fa-edit"></i></a>
                     </td>
                 </tr>
 
@@ -82,9 +82,9 @@
                     <td>6 mois</td>
                     <td>Créer des Appli Web Pro</td>
                     <td>
-                        <a href="{{route('admin.users.view')}}"><i class="fas fa-eye"></i></a>
+                        <a href="{{route('admin.offres.view')}}"><i class="fas fa-eye"></i></a>
                         <a href="#"><i class="fas fa-trash"></i></a>
-                        <a href="{{route('admin.users.edit')}}"><i class="fas fa-edit"></i></a>
+                        <a href="{{route('admin.offres.edit')}}"><i class="fas fa-edit"></i></a>
                     </td>
                 </tr>
 

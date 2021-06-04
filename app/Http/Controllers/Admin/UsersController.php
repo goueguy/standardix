@@ -35,5 +35,8 @@ class UsersController extends Controller
         return view('admin.users.view-users');
     }
 
-
+    public function list()
+    {
+        return view("admin.candidatures.list");
+    }
 }

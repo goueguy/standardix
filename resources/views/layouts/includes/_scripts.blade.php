@@ -32,3 +32,4 @@
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{asset('/assets/dist/js/pages/dashboard.js')}}"></script>
 <script src="https://unpkg.com/ionicons@5.5.1/dist/ionicons.js"></script>
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
