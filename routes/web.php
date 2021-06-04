@@ -4,12 +4,10 @@ use App\Http\Controllers\Admin\CategorieController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\OffresController;
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\InscriptionController;
+use App\Http\Controllers\PostulateController;
 use App\Http\Controllers\CandidatController;
 use App\Http\Controllers\AdminController;
 use App\Http\Middleware\isAdmin;
-use App\Models\CategorieOffre;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -79,7 +77,7 @@ Route::group(["as"=>"admin.","prefix"=>"admin"],function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/candidats/dashboard',[CandidatController::class, 'index'])->name('candidats.dashboard');
-    // Route::post('/candidats/store', [InscriptionController::class, 'store'])->name('candidats.store');
-    // Route::get('/candidats',[InscriptionController::class, 'index'])->name('candidats.index');
+    Route::post('/candidats/{slug}/postulate', [PostulateController::class, 'store'])->name('candidats.postulate.store');
+    Route::get('/candidats/{slug}/postulate',[PostulateController::class, 'index'])->name('candidats.postulate.index');
 });
 Auth::routes();

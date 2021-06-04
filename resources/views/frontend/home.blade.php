@@ -7,47 +7,22 @@
 <div class="inline-flex space-x-4 px-14 py-14">
     <div class="flex flex-col w-3/4">
         <!-- OFFRE 1 -->
-        <div class="inline-flex px-8 py-6 mb-4 bg-white border rounded-lg shadow-lg">
-            <div>
-                <h2 class="text-gray-400 uppercase"><a href="{{route('details-offres')}}">Formateur Sénior billingue</a></h2>
-                <p class="font-light">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa commodi illo nam in itaque corrupti aliquam accusamus, saepe sint libero accusantium veniam voluptatibus delectus
-                </p>
-                <p class="pt-3 text-sm"><a href="{{route('details-offres')}}">Voir plus</a> | Publié le 12-01-2021 | Date limite: le 16-05-2021</p>
-            </div>
-            <div class="flex flex-col space-y-4 item-center">
-                <span class="p-2 text-center text-white bg-green-500 rounded-full"><a href="#">Stage</a></span>
-                <span class="p-2 text-center text-white bg-red-500 rounded-full"><a href="#">Postuler</a></span>
-            </div>
+      @foreach ($offres as $offre)
+      <div class="inline-flex px-8 py-6 mb-4 bg-white border rounded-lg shadow-lg">
+        <div>
+            <h2 class="text-gray-400 uppercase"><a href="{{route('details-offres', $offre->slug)}}">{{$offre->titre}}</a></h2>
+            <p class="font-light">
+                {{$offre->description_offres}}
+            </p>
+            <p class="pt-3 text-sm"><a href="{{route('details-offres', $offre->slug)}}">Voir plus</a> | Publié le {{$offre->date_edition}} | Date limite: le {{$offre->date_limite}}</p>
         </div>
-        <!-- OFFRE 2 -->
-        <div class="inline-flex px-8 py-6 mb-4 bg-white border rounded-lg shadow-lg">
-            <div>
-                <h2 class="text-gray-400 uppercase"><a href="{{route('details-offres')}}">Développeur Web & Mobile</a></h2>
-                <p class="font-light">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa commodi illo nam in itaque corrupti aliquam accusamus, saepe sint libero accusantium veniam voluptatibus delectus
-                </p>
-                <p class="pt-3 text-sm"><a href="{{route('details-offres')}}">Voir plus</a> | Publié le 12-01-2021 | Date limite: le 16-05-2021</p>
-            </div>
-            <div class="flex flex-col space-y-4 item-center">
-                <span class="p-2 text-center text-white bg-green-500 rounded-full"><a href="#">CDD</a></span>
-                <span class="p-2 text-center text-white bg-red-500 rounded-full"><a href="#">Postuler</a></span>
-            </div>
+        <div class="flex flex-col space-y-4 item-center">
+            <span class="p-2 text-center text-white bg-green-500 rounded-full"><a href="#">{{$offre->categorie_offre_id}}</a></span>
+            <span class="p-2 text-center text-white bg-red-500 rounded-full"><a href="{{route('candidats.postulate.index', $offre->slug)}}">Postuler</a></span>
         </div>
-        <!-- OFFRE 3 -->
-        <div class="inline-flex px-8 py-6 mb-4 bg-white border rounded-lg shadow-lg">
-            <div>
-                <h2 class="text-gray-400 uppercase"><a href="{{route('details-offres')}}">Référent Digital & Community Manager</a></h2>
-                <p class="font-light">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa commodi illo nam in itaque corrupti aliquam accusamus, saepe sint libero accusantium veniam voluptatibus delectus
-                </p>
-                <p class="pt-3 text-sm"><a href="{{route('details-offres')}}">Voir plus</a> | Publié le 12-01-2021 | Date limite: le 16-05-2021</p>
-            </div>
-            <div class="flex flex-col space-y-4 item-center">
-                <span class="p-2 text-center text-white bg-green-500 rounded-full"><a href="#">Freelance</a></span>
-                <span class="p-2 text-center text-white bg-red-500 rounded-full"><a href="#">Postuler</a></span>
-            </div>
-        </div>
+    </div>
+      @endforeach
+
     </div>
     <div class="flex flex-col w-1/4 h-40 text-center bg-white border rounded-lg shadow-lg">
         <div class="p-3">

@@ -17,17 +17,15 @@ class CreateOffres extends Migration
         Schema::create('offres', function (Blueprint $table) {
             $table->id();
             $table->string('titre');
-            $table->string('description');
             $table->dateTime('date_edition');
             $table->dateTime('date_limite');
             $table->string('lieu')->nullable();
             $table->foreignIdFor(CategorieOffre::class)->nullable();
             $table->string('duree_contrat')->nullable();
-            $table->string('mission');
             $table->string('profil');
-            $table->string('avantages');
+            $table->text('avantages');
             $table->string('dossier_candidature');
-            $table->string('description_offres')->nullable();
+            $table->text('description_offres');
             $table->foreignIdFor(User::class)->nullable();
             $table->string('slug')->nullable()->unique();
             $table->timestamps();

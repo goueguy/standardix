@@ -3,7 +3,7 @@
         <!-- LOGO -->
         <div class="flex flex-row justify-between w-full">
             <div class="ml-12">
-                <img src="{{asset("assets/images/logo.png")}}" class="h-24 pt-4" alt="Standardix Logo"/>
+                <a href="{{url("/")}}"><img src="{{asset("assets/images/logo.png")}}" class="h-24 pt-4" alt="Standardix Logo"/></a>
             </div>
             <button class="p-3 lg:hidden">
                 ICON

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Offre;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -9,7 +10,8 @@ class HomeController extends Controller
 
     public function index()
     {
-        return view("frontend.home");
+        $offres=Offre::all();
+        return view("frontend.home", compact('offres'));
     }
     public function showPageNosMetiers()
     {

@@ -77,6 +77,36 @@ class DatabaseSeeder extends Seeder
             'nom'=>"SUPERADMIN",
             'description'=>"Super Admin"
         ]);
+        DB::table('offres')->insert([
+        'titre' => 'Formateur Sénior billingue',
+        'date_edition' => date('Y-m-d H:i:s'),
+        'date_limite' => date('Y-m-d H:i:s'),
+        'lieu' => 'Abidjan',
+        'categorie_offre_id' => 1,
+        'duree_contrat' => 6,
+        'description_offres' => "
+
+        Dans le cadre d’un programme stratégique de développement de nos activités, nous recrutons un développeur web et mobile.
+
+        Profil du poste
+
+            * Avoir un Bac+3 au moins
+            * Avoir mis en ligne un site web ou une application mobile
+            * Maitrisé le Framework Flutter est un atout
+
+        Délai: 15 Mai 2021
+
+        * Dossier de candidature
+
+        * Veuillez faire parvenir votre CV à l’adresse e-mail suivante : contact@iatecole.com.
+        ",
+        'profil' => 'Bac + 2',
+        'avantages' => 'Déclaration cnps',
+        'dossier_candidature' => 'cv, lettre de motivation',
+        'user_id' => 4,
+        'slug' => Str::slug("Formateur Sénior billingue")
+
+        ]);
 
     }
 }
