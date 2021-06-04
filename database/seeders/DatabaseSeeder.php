@@ -16,6 +16,9 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
 
+        DB::table('domaine_emplois')->insert([
+            'nom' => "CDI",
+        ]);
         DB::table('inscriptions')->insert([
             'nom' => "goueguy",
             'prenoms'=>'jean-louis',
