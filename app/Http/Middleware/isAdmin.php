@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 class isAdmin
 {
     /**
@@ -16,11 +17,12 @@ class isAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::id() && Auth::user()->niveau_acces==1 || Auth::user()->niveau_acces==2){
-            return $next($request);
+        if(Auth::check()){
+            if(Auth::user()->niveau_acces==1 || Auth::user()->niveau_acces==2){
+                return $next($request);
+            }
         }else{
-            return redirect()->route("candidats.dashboard");
+            return redirect()->route('admin.auth');
         }
-
     }
 }
