@@ -16,47 +16,47 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
 
-        // DB::table('inscriptions')->insert([
-        //     'nom' => "goueguy",
-        //     'prenoms'=>'jean-louis',
-        //     'email' => 'jlagoueguy@gmail.com',
-        //     'contact'=>"09162396",
-        //     'lieu_habitation'=>'Cocody Blockhauss',
-        //     'password' => Hash::make('Jeanloouis@1234'),
-        //     'id_domaine'=>1
-        // ]);
-        // DB::table('users')->insert([
-        //     'nom' => "marc",
-        //     'prenoms'=>'louis',
-        //     'email' => 'marc@gmail.com',
-        //     'niveau_acces'=>0,
-        //     'password'=>Hash::make("marc0000"),
+        DB::table('inscriptions')->insert([
+            'nom' => "goueguy",
+            'prenoms'=>'jean-louis',
+            'email' => 'jlagoueguy@gmail.com',
+            'contact'=>"09162396",
+            'lieu_habitation'=>'Cocody Blockhauss',
+            'password' => Hash::make('Jeanloouis@1234'),
+            'id_domaine'=>1
+        ]);
+        DB::table('users')->insert([
+            'nom' => "marc",
+            'prenoms'=>'louis',
+            'email' => 'marc@gmail.com',
+            'niveau_acces'=>0,
+            'password'=>Hash::make("marc0000"),
 
-        // ]);
-        // DB::table('users')->insert([
-        //     'nom' => "Super Admin",
-        //     'prenoms'=>'Super Admin',
-        //     'email' => 'superadmin@gmail.com',
-        //     'niveau_acces'=>2,
-        //     'password'=>Hash::make("superadmin0802"),
+        ]);
+        DB::table('users')->insert([
+            'nom' => "Super Admin",
+            'prenoms'=>'Super Admin',
+            'email' => 'superadmin@gmail.com',
+            'niveau_acces'=>2,
+            'password'=>Hash::make("superadmin0802"),
 
-        // ]);
-        // DB::table('users')->insert([
-        //     'nom' => "Admin",
-        //     'prenoms'=>'Admin',
-        //     'email' => 'admin@gmail.com',
-        //     'niveau_acces'=>1,
-        //     'password'=>Hash::make("admin0802"),
+        ]);
+        DB::table('users')->insert([
+            'nom' => "Admin",
+            'prenoms'=>'Admin',
+            'email' => 'admin@gmail.com',
+            'niveau_acces'=>1,
+            'password'=>Hash::make("admin0802"),
 
-        // ]);
-        // DB::table('users')->insert([
-        //     'nom' => "Admin",
-        //     'prenoms'=>'Admin',
-        //     'email' => 'superadmin@gmail.com',
-        //     'niveau_acces'=>2,
-        //     'password'=>Hash::make("superadmin0802"),
+        ]);
+        DB::table('users')->insert([
+            'nom' => "Admin",
+            'prenoms'=>'Admin',
+            'email' => 'superadmin@gmail.com',
+            'niveau_acces'=>2,
+            'password'=>Hash::make("superadmin0802"),
 
-        // ]);
+        ]);
 
         // DB::table('categories_offres')->insert([
         //     'id' => 1,
