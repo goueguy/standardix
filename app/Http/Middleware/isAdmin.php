@@ -20,6 +20,8 @@ class isAdmin
         if(Auth::check()){
             if(Auth::user()->niveau_acces==1 || Auth::user()->niveau_acces==2){
                 return $next($request);
+            }else{
+                return redirect()->route('admin.auth');
             }
         }else{
             return redirect()->route('admin.auth');
