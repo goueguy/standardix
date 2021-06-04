@@ -19,15 +19,7 @@ class DatabaseSeeder extends Seeder
         DB::table('domaine_emplois')->insert([
             'nom' => "CDI",
         ]);
-        DB::table('inscriptions')->insert([
-            'nom' => "goueguy",
-            'prenoms'=>'jean-louis',
-            'email' => 'jlagoueguy@gmail.com',
-            'contact'=>"09162396",
-            'lieu_habitation'=>'Cocody Blockhauss',
-            'password' => Hash::make('Jeanloouis@1234'),
-            'id_domaine'=>1
-        ]);
+
         DB::table('users')->insert([
             'nom' => "marc",
             'prenoms'=>'louis',
