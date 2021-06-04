@@ -14,12 +14,7 @@ class PostulateController extends Controller
      */
     public function index($slug)
     {
-        $offre= Offre::findOrFail($slug);
-        dd($offre);
-        // if (!$offre || $offre->date_limite<=date('Y-m-d H:i:s')){
-        //     return redirect()->back()->with('expired', 'Offre expiré');
-        // }
-
+        $offre= Offre::where('slug', $slug)->first();
         return view('frontend.candidats.postulate', compact('offre'));
 
     }

@@ -6,7 +6,7 @@
     <h1 class="py-10 text-4xl font-bold text-center text-green-700 ">POSTULER À L'OFFRE {{$offre->titre}}</h1>
     <div class="flex justify-center px-4 ">
             <div class="">
-                <form action="{{route('candidats.postulate.store')}}" enctype="multipart/form-data" method="POST">
+                <form action="{{route('candidats.postulate.store', $offre->slug)}}" enctype="multipart/form-data" method="POST">
                     @csrf
                     <div class="mb-5">
                         <input type="text" name="nom" placeholder="Votre nom" class="w-1/2 px-10 py-3 text-lg text-left text-gray-700 placeholder-gray-500 shadow-md rounded-2xl focus:outline-none" readonly value="{{Auth::user()->nom}}">
@@ -45,7 +45,7 @@
                     </div>
 
                     <textarea name="motivation" id="" placeholder="Votre motivation" class="w-full p-5 mb-5 placeholder-gray-500 shadow-md resize-none h-60 rounded-2xl focus:outline-none"></textarea>
-                    
+
                     <div class="px-32 mb-10">
                         <button type="submit" name="valider" class="py-3 mt-5 font-bold text-center transition duration-500 bg-yellow-300 rounded-full shadow-md text-md px-28 focus:outline-none">Soumettre</button>
                     </div>
