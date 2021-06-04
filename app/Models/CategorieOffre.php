@@ -15,4 +15,8 @@ class CategorieOffre extends Model
         'user_id',
         'categorie_offre_slug'
     ];
+
+    public function offres(){
+        return $this->hasMany(Offre::class);
+    }
 }

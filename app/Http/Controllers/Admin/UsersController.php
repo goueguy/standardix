@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Role;
 use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class UsersController extends Controller
 {
@@ -14,7 +17,12 @@ class UsersController extends Controller
      */
     public function index()
     {
-        return view('admin.users.list-users');
+        // $query = DB::table('users')->where('niveau_acces');
+        $users = User::all();
+        // foreach ($users->roles as $user) {
+        //     dd($user->roles);
+        // }
+        return view('admin.users.list-users', compact('users'));
     }
 
     /**
@@ -24,7 +32,8 @@ class UsersController extends Controller
      */
     public function add()
     {
-        return view('admin.users.create-users');
+        $users = User::all();
+        return view('admin.users.create-users',compact("users"));
     }
     public function edit()
     {

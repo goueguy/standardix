@@ -18,7 +18,7 @@ class isAdmin
     public function handle(Request $request, Closure $next)
     {
         if(Auth::check()){
-            if(Auth::user()->niveau_acces==1 || Auth::user()->niveau_acces==2){
+            if(Auth::user()->role_id==3 || Auth::user()->role_id==2){
                 return $next($request);
             }else{
                 return redirect()->route('candidats.dashboard')->with('danger','Attention vous n\'avez pas accès à ce menu');

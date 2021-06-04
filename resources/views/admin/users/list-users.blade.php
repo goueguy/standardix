@@ -43,49 +43,22 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>keita</td>
-                    <td>karim</td>
-                    <td>keita@gmail.com</td>
-                    <td>0709909290</td>
-                    <td>Admin</td>
-                    <td>keita_cv.pdf</td>
+                 @foreach ($users as $user)
+                 <tr>
+                    <td>{{$user->id}}</td>
+                    <td>{{$user->nom}}</td>
+                    <td>{{$user->prenoms}}</td>
+                    <td>{{$user->email}}</td>
+                    <td>{{$user->contact}}</td>
+                    <td>{{$user->roles->first()->nom}}</td>
+                    <td>{{$user->cv}}</td>
                     <td>
                         <a href="{{route('admin.users.view')}}"><i class="fas fa-eye"></i></a>
                         <a href="#"><i class="fas fa-trash"></i></a>
                         <a href="{{route('admin.users.edit')}}"><i class="fas fa-edit"></i></a>
                     </td>
                   </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>keita</td>
-                    <td>karim</td>
-                    <td>keita@gmail.com</td>
-                    <td>0709909290</td>
-                    <td>Admin</td>
-                    <td>keita_cv.pdf</td>
-                    <td>
-                        <a href="#"><i class="fas fa-eye"></i></a>
-                        <a href="#"><i class="fas fa-trash"></i></a>
-                        <a href="#"><i class="fas fa-edit"></i></a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>keita</td>
-                    <td>karim</td>
-                    <td>keita@gmail.com</td>
-                    <td>0709909290</td>
-                    <td>Admin</td>
-                    <td>keita_cv.pdf</td>
-                    <td>
-                        <a href="#"><i class="fas fa-eye"></i></a>
-                        <a href="#"><i class="fas fa-trash"></i></a>
-                        <a href="#"><i class="fas fa-edit"></i></a>
-                    </td>
-                  </tr>
-
+                 @endforeach
                 </tbody>
               </table>
             </div>

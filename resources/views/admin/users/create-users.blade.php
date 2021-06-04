@@ -32,9 +32,10 @@
                                 <div class="form-group">
                                     <label for="password">Niveau d'accès</label>
                                     <select name="niveau_acces" class="form-control">
-                                        <option value="0">Utilisateur</option>
-                                        <option value="1">Admin</option>
-                                        <option value="2">Super Admin</option>
+                                        <option value="">Sélectionner Niveau</option>
+                                        @foreach ($users as $user)
+                                            <option value="{{$user->niveau_acces}}">{{$user->niveau_acces}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>

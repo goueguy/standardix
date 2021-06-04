@@ -24,4 +24,8 @@ class Offre extends Model
         'user_id',
         'slug'
     ];
+
+    public function categorie(){
+        return $this->belongsTo(CategorieOffre::class);
+    }
 }

@@ -52,6 +52,27 @@
                         <p  class="text-sm white">Ajout Utilisateur</p>
                     </a>
                     </li>
+                     <!-- categories Offres-->
+                     <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <svg class="text-sm text-white nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                            <p class="text-sm white">
+                            Categories Utilisateurs
+                            <i class="fas fa-angle-left right"></i>
+                            {{-- <span class="badge badge-info right">6</span> --}}
+                            </p>
+                        </a>
+                        <ul class="ml-3 nav nav-treeview">
+                            <li class="nav-item">
+                            <a href="{{route('admin.roles.create')}}" class="nav-link">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="text-sm text-white nav-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+                                    </svg>
+                                <p class="text-sm white">Rôles Disponibles</p>
+                            </a>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
 
             </li>

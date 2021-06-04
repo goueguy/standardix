@@ -24,7 +24,7 @@
                                 <label for="categorie_offre">Categorie de l'Offre</label>
                                 <select name="categorie_offre" class="form-control">
                                     @foreach ($categories as $categorie)
-                                    <option value="{{$categorie->id}}">{{$categorie->nom}}</option>
+                                    <option value="{{$categorie->id}}">{{$categorie->categorie_offre_title}}</option>
                                     @endforeach
                                 </select>
                             </div>

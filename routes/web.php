@@ -49,6 +49,8 @@ Route::group(["as"=>"admin.","prefix"=>"admin"],function () {
         Route::get('/users/edit',[UsersController::class, 'edit'])->name('users.edit');
         Route::get('/users/view',[UsersController::class, 'view'])->name('users.view');
         Route::get('/users/add',[UsersController::class, 'add'])->name('users.add');
+        Route::get('/users/roles',[CategorieController::class,'createRole'])->name('roles.create');
+        Route::post('/users/roles/add',[CategorieController::class,'storeRole'])->name('roles.store');
         #===========================OFFRES==========================
         Route::get('/offres',[OffresController::class, 'index'])->name('offres.list');
         Route::get('/offres/lancees',[OffresController::class, 'lancees'])->name('offres.lancees');

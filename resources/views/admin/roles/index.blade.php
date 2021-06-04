@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Catégories-Offres')
+@section('title', 'Roles')
 
 @section('content')
 <section class="content">
@@ -14,20 +14,20 @@
                     <h3 class="card-title"><span class="float-left">Ajouter</span></h3>
                     <span class="float-right"><a href="{{route('admin.users.list')}}">Retour</a></span>
                   </div>
-                  <form action="{{route('admin.categorie.store')}}" method="POST">
+                  <form action="{{route('admin.roles.store')}}" method="POST">
                     @csrf
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="categorie_offre_title">Titre</label>
-                                    <input type="text" name="categorie_offre_title" class="form-control @error('categorie_offre_title') is-invalid @enderror"  placeholder="Nouvelle Catégorie">
+                                    <label for="nom">Titre</label>
+                                    <input type="text" name="nom" class="form-control @error('nom') is-invalid @enderror"  placeholder="Nouveau Role">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="categorie_offre_desc">Description</label>
-                                    <input type="text" name="categorie_offre_desc" class="form-control" placeholder="Description de la Categorie">
+                                    <label for="description">Description</label>
+                                    <input type="text" name="description" class="form-control" placeholder="Description du Role">
                                   </div>
                             </div>
                         </div>
@@ -50,7 +50,7 @@
                  </div>
                  <!-- /.card-header -->
                  <div class="p-2 card-body table-responsive">
-                   <table class="table table-hover text-nowrap table-bordered" id="categorie_offres">
+                   <table class="table table-hover text-nowrap table-bordered" id="categorie_roles">
                      <thead>
                        <tr>
                          <th>ID</th>
@@ -59,10 +59,10 @@
                        </tr>
                      </thead>
                      <tbody>
-                      @foreach ($categories_offres as $cat)
+                      @foreach ($categories_users as $cat)
                         <tr>
                             <td>{{$cat->id}}</td>
-                            <td>{{$cat->categorie_offre_title}}</td>
+                            <td>{{$cat->nom}}</td>
                             <td>
                                 <a href="#"><i class="fas fa-eye"></i></a>
                                 <a href="#"><i class="fas fa-trash"></i></a>
@@ -86,7 +86,7 @@
 <script>
     $(function () {
 
-      $('#categorie_offres').DataTable({
+      $('#categorie_roles').DataTable({
         "paging": true,
         "lengthChange": false,
         "searching": true,

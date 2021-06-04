@@ -7,6 +7,7 @@ use App\Models\CategorieOffre;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use App\Models\Role;
 class CategorieController extends Controller
 {
     /**
@@ -52,6 +53,26 @@ class CategorieController extends Controller
         $new_categorie_offre->categorie_offre_slug = Str::slug($request->categorie_offre_title);
         $new_categorie_offre->save();
         return redirect()->back()->with("success","Catégorie Ajoutée!");
+    }
+    public function createRole()
+    {
+        $categories_users = Role::all();
+       // dd($categories_users);
+        return view("admin.roles.index",compact("categories_users"));
+    }
+    public function storeRole(Request $request)
+    {
+        $request->validate(["nom"=>"required|string"]
+        ,[
+            'nom.required' => 'Champ requis',
+            'nom.string' => 'Chaine de caractère uniquement',
+        ]
+        );
+        $new_role = new Role;
+        $new_role->nom= $request->nom;
+        $new_role->description= $request->description;
+        $new_role->save();
+        return redirect()->back()->with("success","Role Ajouté!");
     }
 
     /**
