@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\CategorieOffre;
-use App\Models\User;
 use Illuminate\Http\Request;
-
-class OffresController extends Controller
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
+class CategorieController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,30 +16,8 @@ class OffresController extends Controller
      */
     public function index()
     {
-        return view('admin.offres.list-offres');
-    }
-    /**
-     * View offers details
-     *
-     * @return void
-     */
-    public function view()
-    {
-        $categories = CategorieOffre::all();
-        $users = User::all();
-        return view('admin.offres.view-offres',compact("categories","users"));
-    }
-    public function lancees()
-    {
-        $categories = CategorieOffre::all();
-        $users = User::all();
-        return view('admin.offres.list-offres-lancees',compact("categories","users"));
-    }
-    public function edit()
-    {
-        $categories = CategorieOffre::all();
-        $users = User::all();
-        return view('admin.offres.edit-offres',compact("categories","users"));
+        $categories_offres = CategorieOffre::all();
+        return view("admin.offres.categorie_offres.index",compact("categories_offres"));
     }
 
     /**
@@ -47,11 +25,9 @@ class OffresController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function add()
+    public function create()
     {
-        $categories = CategorieOffre::all();
-        $users = User::all();
-        return view('admin.offres.create-offres',compact("categories","users"));
+        return view("admin.offres.categorie_offres.index");
     }
 
     /**
@@ -62,7 +38,20 @@ class OffresController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(["categorie_offre_title"=>"required|string"]
+        ,[
+            'categorie_offre_title.required' => 'Champ requis',
+            'categorie_offre_title.string' => 'Chaine de caractère uniquement',
+        ]
+        );
+
+        $new_categorie_offre = new CategorieOffre;
+        $new_categorie_offre->categorie_offre_title = $request->categorie_offre_title;
+        $new_categorie_offre->categorie_offre_desc = $request->categorie_offre_desc;
+        $new_categorie_offre->user_id = Auth::id();
+        $new_categorie_offre->categorie_offre_slug = Str::slug($request->categorie_offre_title);
+        $new_categorie_offre->save();
+        return redirect()->back()->with("success","Catégorie Ajoutée!");
     }
 
     /**
@@ -82,7 +71,10 @@ class OffresController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    
+    public function edit($id)
+    {
+        //
+    }
 
     /**
      * Update the specified resource in storage.

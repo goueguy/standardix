@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Dashboard')
+@section('title', 'Tableau de bord')
 
 @section('content')
     <div class="content-header">

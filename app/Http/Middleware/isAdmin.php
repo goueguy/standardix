@@ -21,10 +21,10 @@ class isAdmin
             if(Auth::user()->niveau_acces==1 || Auth::user()->niveau_acces==2){
                 return $next($request);
             }else{
-                return redirect()->route('admin.auth');
+                return redirect()->route('candidats.dashboard')->with('danger','Attention vous n\'avez pas accès à ce menu');
             }
         }else{
-            return redirect()->route('admin.auth');
+            return redirect("/")->with('danger','Attention vous n\'avez pas accès à ce menu');
         }
     }
 }

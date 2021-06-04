@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\Admin\CategorieController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\OffresController;
@@ -7,6 +9,7 @@ use App\Http\Controllers\InscriptionController;
 use App\Http\Controllers\CandidatController;
 use App\Http\Controllers\AdminController;
 use App\Http\Middleware\isAdmin;
+use App\Models\CategorieOffre;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -41,7 +44,6 @@ Route::group(["as"=>"admin.","prefix"=>"admin"],function () {
     Route::group(["middleware"=>"isAdmin"],function () {
         #===========================DASHBOARD======================
         Route::get('/dashboard',[AdminController::class, 'dashboard'])->name('dashboard');
-        Route::get('/logout',[AdminController::class, 'logout'])->name('logout');
         #===========================USERS==========================
         Route::get('/users',[UsersController::class, 'index'])->name('users.list');
         Route::get('/users/edit',[UsersController::class, 'edit'])->name('users.edit');
@@ -55,24 +57,27 @@ Route::group(["as"=>"admin.","prefix"=>"admin"],function () {
         Route::get('/offres/add',[OffresController::class, 'add'])->name('offres.add');
         #===========================CANDIDATURES==========================
         Route::get('/candidatures',[UsersController::class, 'list'])->name('candidatures.list');
+        Route::get('/candidatures/view',[UsersController::class, 'view'])->name('candidatures.view');
+        Route::get('/offres/categories/add',[CategorieController::class,'index'])->name('categorie.create');
+        Route::post('/offres/categories/add',[CategorieController::class,'store'])->name('categorie.store');
+
     });
     #=========================AUTH=================================
-    Route::get('auth',[AdminController::class, 'login'])->name('auth');
+    // Route::get('auth',[AdminController::class, 'login'])->name('auth');
     Route::post('/post-login',[AdminController::class,'postLogin'])->name('login');
 
 });
 
 #=================MODULE CANDIDATS============
-Route::group(["prefix"=>"candidats","as"=>"candidats."],function () {
-    Route::group(["middleware"=>"isCandidate"],function () {
-        Route::get('/dashboard',[CandidatController::class, 'index'])->name('dashboard');
-    });
+// Route::group(["prefix"=>"candidats","as"=>"candidats."],function () {
+//     Route::get('/dashboard',[CandidatController::class, 'index'])->name('dashboard');
+//     Route::post('/store', [InscriptionController::class, 'store'])->name('store');
+//     Route::get('/',[InscriptionController::class, 'index'])->name('index');
+// })->middleware(["isAdmin"]);
 
-    Route::post('login',[LoginController::class,'login'])->name('login');
-    Route::get('logout',[LoginController::class,'logout'])->name('logout');
-    Route::post('/store', [InscriptionController::class, 'store'])->name('store');
-    Route::get('/',[InscriptionController::class, 'index'])->name('index');
-
+Route::middleware(['auth'])->group(function () {
+    Route::get('/candidats/dashboard',[CandidatController::class, 'index'])->name('candidats.dashboard');
+    // Route::post('/candidats/store', [InscriptionController::class, 'store'])->name('candidats.store');
+    // Route::get('/candidats',[InscriptionController::class, 'index'])->name('candidats.index');
 });
-
 Auth::routes();

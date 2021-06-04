@@ -8,7 +8,8 @@
             <div class="col-md-12">
                 <div class="card card-default mt-2">
                   <div class="card-header">
-                    <h3 class="card-title">Modifier</h3>
+                    <h3 class="card-title"><span class="float-left">Modifier</span></h3>
+                    <span class="float-right"><a href="{{route('admin.users.list')}}">Retour</a></span>
                   </div>
                   <form action="#" method="POST">
                     <div class="card-body">

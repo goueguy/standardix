@@ -8,8 +8,9 @@
             <div class="col-md-12">
                 <div class="card card-default mt-2">
                   <div class="card-header">
-                    <h3 class="card-title">Details Utilisateurs de keita</h3>
-                  </div>
+                    <h3 class="card-title"><span class="float-left"> Utilisateurs de keita</span></h3>
+                    <span class="float-right"><a href="{{route('admin.users.list')}}">Retour</a></span>
+                </div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6">

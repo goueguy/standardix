@@ -19,14 +19,12 @@ class DatabaseSeeder extends Seeder
         DB::table('domaine_emplois')->insert([
             'nom' => "CDI",
         ]);
-
         DB::table('users')->insert([
             'nom' => "marc",
             'prenoms'=>'louis',
             'email' => 'marc@gmail.com',
             'niveau_acces'=>0,
             'password'=>Hash::make("marc0000"),
-
         ]);
         DB::table('users')->insert([
             'nom' => "Super Admin",
@@ -34,7 +32,6 @@ class DatabaseSeeder extends Seeder
             'email' => 'superadmin@gmail.com',
             'niveau_acces'=>2,
             'password'=>Hash::make("superadmin0802"),
-
         ]);
         DB::table('users')->insert([
             'nom' => "Admin",
@@ -42,7 +39,6 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'niveau_acces'=>1,
             'password'=>Hash::make("admin0802"),
-
         ]);
         DB::table('users')->insert([
             'nom' => "User",
@@ -50,28 +46,22 @@ class DatabaseSeeder extends Seeder
             'email' => 'user@gmail.com',
             'niveau_acces'=>2,
             'password'=>Hash::make("useradmin0802"),
-
         ]);
-
         DB::table('categories_offres')->insert([
             'id' => 1,
-            'nom'=>"CDI",
+            'categorie_offre_title'=>"CDI",
+            'user_id'=>1
         ]);
         DB::table('categories_offres')->insert([
             'id' => 2,
-            'nom'=>"CDD",
+            'categorie_offre_title'=>"FREELANCE",
+            'user_id'=>1
         ]);
         DB::table('categories_offres')->insert([
             'id' => 3,
-            'nom'=>"FREELANCE",
+            'categorie_offre_title'=>"CDD",
+            'user_id'=>2
         ]);
-        DB::table('categories_offres')->insert([
-            'id' => 4,
-            'nom'=>"STAGE",
-        ]);
-        DB::table('categories_offres')->insert([
-            'id' => 5,
-            'nom'=>"ALTERNANCE",
-        ]);
+
     }
 }

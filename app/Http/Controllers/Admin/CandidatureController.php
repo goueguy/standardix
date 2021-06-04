@@ -3,11 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\CategorieOffre;
-use App\Models\User;
 use Illuminate\Http\Request;
 
-class OffresController extends Controller
+class CandidatureController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,30 +14,7 @@ class OffresController extends Controller
      */
     public function index()
     {
-        return view('admin.offres.list-offres');
-    }
-    /**
-     * View offers details
-     *
-     * @return void
-     */
-    public function view()
-    {
-        $categories = CategorieOffre::all();
-        $users = User::all();
-        return view('admin.offres.view-offres',compact("categories","users"));
-    }
-    public function lancees()
-    {
-        $categories = CategorieOffre::all();
-        $users = User::all();
-        return view('admin.offres.list-offres-lancees',compact("categories","users"));
-    }
-    public function edit()
-    {
-        $categories = CategorieOffre::all();
-        $users = User::all();
-        return view('admin.offres.edit-offres',compact("categories","users"));
+        //
     }
 
     /**
@@ -47,11 +22,9 @@ class OffresController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function add()
+    public function create()
     {
-        $categories = CategorieOffre::all();
-        $users = User::all();
-        return view('admin.offres.create-offres',compact("categories","users"));
+        //
     }
 
     /**
@@ -82,7 +55,10 @@ class OffresController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    
+    public function edit($id)
+    {
+        //
+    }
 
     /**
      * Update the specified resource in storage.

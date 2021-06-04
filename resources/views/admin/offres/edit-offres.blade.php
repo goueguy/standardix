@@ -21,24 +21,6 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="lieu">Lieu</label>
-                                <input type="text" name="lieu" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="mission">Mission</label>
-                                <div  id="mission"  style="height:200px"></div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="date_limite">Date Limite</label>
-                                <input type="date" name="date_limite" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
                                 <label for="categorie_offre">Categorie de l'Offre</label>
                                 <select name="categorie_offre" class="form-control">
                                     @foreach ($categories as $categorie)
@@ -47,18 +29,31 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-12">
                             <div class="form-group">
-                                <label for="user">Utilisateur</label>
-                                <select name="user" class="form-control">
-                                    <option value="">Sélectionner Utilisateur</option>
-                                    @foreach ($users as $user)
-                                    <option value="{{$user->id}}">{{$user->nom}} {{$user->prenoms}}</option>
-                                    @endforeach
-                                </select>
+                                <label for="description_offre">Description de l'Offre</label>
+                                <div  id="description"  style="height:200px"></div>
+                                <input type="hidden"  name="description">
                             </div>
                         </div>
-
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="lieu">Lieu</label>
+                                <input type="text" name="lieu" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="date_limite">Date Limite</label>
+                                <input type="date" name="date_limite" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="mission">Mission</label>
+                                <div  id="mission"  style="height:200px"></div>
+                            </div>
+                        </div>
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="profil">Profil</label>
@@ -77,13 +72,6 @@
                                 <label for="dossier_candidature">Dossier de Candidature</label>
                                 <div  id="dossier" style="height:200px"></div>
                                 <input type="hidden"  name="dossier_candidature">
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="description_offre">Description de l'Offre</label>
-                                <div  id="description"  style="height:200px"></div>
-                                <input type="hidden"  name="description">
                             </div>
                         </div>
                     </div>

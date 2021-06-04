@@ -8,7 +8,7 @@
     <div class="mt-2 col-12">
         <div class="card">
         <div class="card-header ">
-            <h3 class="card-title">Liste </h3>
+            <h3 class="card-title">Liste candidatures de Dévéloppeur</h3>
             <div class="card-tools">
             <div class="input-group input-group-sm" style="width: 150px;">
                 <input type="text" name="table_search" class="float-right form-control" placeholder="Search">
@@ -52,7 +52,7 @@
                     <td>Créer des Appli Web Pro</td>
                     <td>5</td>
                     <td>
-                        <a href="{{route('admin.candidatures.view')}}"><i class="fas fa-eye"></i></a>
+                        <a href="{{route('admin.offres.view')}}"><i class="fas fa-eye"></i></a>
                     </td>
                 </tr>
 
@@ -65,7 +65,7 @@
                     <td>Créer des Appli Web Pro</td>
                     <td>7</td>
                     <td>
-                        <a href="{{route('admin.candidatures.view')}}"><i class="fas fa-eye"></i></a>
+                        <a href="{{route('admin.offres.view')}}"><i class="fas fa-eye"></i></a>
                     </td>
                 </tr>
 
@@ -78,7 +78,7 @@
                     <td>Créer des Appli Web Pro</td>
                     <td>10</td>
                     <td>
-                        <a href="{{route('admin.candidatures.view')}}"><i class="fas fa-eye"></i></a>
+                        <a href="{{route('admin.offres.view')}}"><i class="fas fa-eye"></i></a>
                     </td>
                 </tr>
 

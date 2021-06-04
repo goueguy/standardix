@@ -13,7 +13,7 @@
             {{-- <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">--}}
         </div>
         <div class="white">
-            <span class="font-italic">Bienvenu {{Auth::user()->nom}} {{Auth::user()->prenoms}} !</span>
+            <span class="font-italic">Bienvenu {{Auth::user()->nom}} !</span>
         </div>
     </div>
     <nav class="mt-2">
@@ -125,19 +125,11 @@
                         </a>
                         <ul class="ml-3 nav nav-treeview">
                             <li class="nav-item">
-                            <a href="pages/layout/top-nav.html" class="nav-link">
+                            <a href="{{route('admin.categorie.create')}}" class="nav-link">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="text-sm text-white nav-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
                                     </svg>
                                 <p class="text-sm white">Liste Categories</p>
-                            </a>
-                            </li>
-                            <li class="nav-item">
-                            <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="text-sm text-white nav-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                                    </svg>
-                                <p  class="text-sm white">Ajout Categorie</p>
                             </a>
                             </li>
                         </ul>

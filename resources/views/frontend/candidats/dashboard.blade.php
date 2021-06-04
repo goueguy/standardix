@@ -12,10 +12,8 @@
                 <!-- cercle -->
                 <div class="flex flex-wrap items-stretch justify-center ">
                     <div class="flex flex-col items-center justify-center">
-                        {{-- Photo de profil de l'abonné --}}
                         <div class="w-16 h-16 mt-5 rounded-full bg-yellow">
                         </div>
-                        {{-- Nom et prenom de l'abonné --}}
                         <span class="flex items-center justify-center my-2 text-center text-white cursor-pointer text-md hover:opacity-75">
                     <span>ID: {{Auth::user()->nom}}</span>
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
@@ -23,6 +21,29 @@
                     </svg>
                         </span>
                     </div>
+                    @if (Auth::user()->niveau_acces==1 || Auth::user()->niveau_acces==2)
+                    <div class="flex flex-col p-10 mt-10 mb-0 text-white text-md">
+                        <a href="{{route('admin.dashboard')}}" class="flex flex-row px-2 my-2 hover:opacity-75">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+                            </svg>
+                            <span class="ml-3">Aller vers espace administration</span>
+                        </a>
+                        <div class="inline-flex items-center">
+                            <a href="#"  class="flex flex-row px-2 my-2 hover:opacity-75">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                                </svg>
+                                <span class="ml-3">
+                                    <form action="{{route('logout')}}" method="post">
+                                        @csrf
+                                        <button type="submit">Deconnexion</button>
+                                    </form>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                    @else
                     <div class="flex flex-col p-10 mt-10 mb-0 text-white text-md">
                         <a href="#" class="flex flex-row px-2 my-2 hover:opacity-75">
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -64,17 +85,18 @@
                             </a>
                         </div>
                     </div>
-                        <footer class="flex flex-row justify-center text-xs text-white">
-                            <span class="flex flex-row px-5 mt-32 hover:opacity-75">
-                                <a href="#">ACCUEIL</a>
-                            </span>
-                            <span class="flex flex-row px-5 mt-32 hover:opacity-75">
-                                <a href="#">CONTACTS</a>
-                            </span>
-                            <span class="flex flex-row px-5 mt-32 hover:opacity-75">
-                                <a href="#">CGU</a>
-                            </span>
-                        </footer>
+                    @endif
+                    <footer class="flex flex-row justify-center text-xs text-white">
+                        <span class="flex flex-row px-5 mt-32 hover:opacity-75">
+                            <a href="#">ACCUEIL</a>
+                        </span>
+                        <span class="flex flex-row px-5 mt-32 hover:opacity-75">
+                            <a href="#">CONTACTS</a>
+                        </span>
+                        <span class="flex flex-row px-5 mt-32 hover:opacity-75">
+                            <a href="#">CGU</a>
+                        </span>
+                    </footer>
                 </div>
             </div>
             <div class="block w-3/4 p-10 text-xl text-center bg-white">
@@ -87,6 +109,11 @@
                     </span>
                 </div>
                     <div class="mt-5">
+                        @if (session('danger'))
+                            <div class="bg-red-300 text-white block text-center">
+                                <span>{{session('danger')}}</span>
+                            </div>
+                        @endif
                         <h1 class="text-opacity-100 capitalize text-medium">HELLO, {{Auth::user()->nom.' '.Auth::user()->prenoms}}</h1>
                         <p class="font-light text-opacity-100 text-medium">Nous vous souhaitons plein de succès avec nous !</p>
                     </div>

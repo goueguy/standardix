@@ -8,10 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class CategorieOffre extends Model
 {
     use HasFactory;
-    protected $table ="categories_offres";
+    protected $table = "categories_offres";
     protected $fillable = [
-        'nom',
-        'description_categorie',
-        'user_id'
+        'categorie_offre_title',
+        'categorie_offre_desc',
+        'user_id',
+        'categorie_offre_slug'
     ];
 }
