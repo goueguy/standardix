@@ -64,7 +64,7 @@ Route::group(["as"=>"admin.","prefix"=>"admin"],function () {
 
 #=================MODULE CANDIDATS============
 Route::group(["prefix"=>"candidats","as"=>"candidats."],function () {
-    Route::group(["middleware"=>"isConnected"],function () {
+    Route::group(["middleware"=>"isCandidate"],function () {
         Route::get('/dashboard',[CandidatController::class, 'index'])->name('dashboard');
     });
 

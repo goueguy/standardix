@@ -17,7 +17,7 @@
                         </div>
                         {{-- Nom et prenom de l'abonné --}}
                         <span class="flex items-center justify-center my-2 text-center text-white cursor-pointer text-md hover:opacity-75">
-                    <span>ID: {{$LogIn['id']}}</span>
+                    <span>ID: {{Auth::user()->nom}}</span>
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                     </svg>
@@ -55,7 +55,12 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                                 </svg>
-                                <span class="ml-3"><a href="{{route('logout')}}">Deconnexion</a></span>
+                                <span class="ml-3">
+                                    <form action="{{route('logout')}}" method="post">
+                                        @csrf
+                                        <button type="submit">Deconnexion</button>
+                                    </form>
+                                </span>
                             </a>
                         </div>
                     </div>
@@ -82,7 +87,7 @@
                     </span>
                 </div>
                     <div class="mt-5">
-                        <h1 class="text-opacity-100 capitalize text-medium">HELLO, {{$LogIn['nom'].' '.$LogIn['prenoms']}}</h1>
+                        <h1 class="text-opacity-100 capitalize text-medium">HELLO, {{Auth::user()->nom.' '.Auth::user()->prenoms}}</h1>
                         <p class="font-light text-opacity-100 text-medium">Nous vous souhaitons plein de succès avec nous !</p>
                     </div>
                     <div class="flex flex-row mt-10 border border-t-0 border-b-0 border-l-4 border-r-0 border-yellow">

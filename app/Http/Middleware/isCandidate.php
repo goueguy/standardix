@@ -4,10 +4,9 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use App\Models\Inscription;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Response;
-class isConnected
+class isCandidate
 {
     /**
      * Handle an incoming request.
@@ -18,12 +17,10 @@ class isConnected
      */
     public function handle(Request $request, Closure $next)
     {
-        $userData = Inscription::where('id','=', session('LogIn'))->first();
-        if($userData){
+        if(Auth::id() && Auth::user()->niveau_acces==0){
             return $next($request);
         }else{
-            return redirect("connexion");
+            return redirect()->route("offres");
         }
-
     }
 }

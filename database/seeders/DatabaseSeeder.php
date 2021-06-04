@@ -26,11 +26,35 @@ class DatabaseSeeder extends Seeder
         //     'id_domaine'=>1
         // ]);
         // DB::table('users')->insert([
-        //     'nom' => "yoboue",
-        //     'prenoms'=>'ruben',
-        //     'email' => 'rubenyoboue@gmail.com',
+        //     'nom' => "marc",
+        //     'prenoms'=>'louis',
+        //     'email' => 'marc@gmail.com',
+        //     'niveau_acces'=>0,
+        //     'password'=>Hash::make("marc0000"),
+
+        // ]);
+        // DB::table('users')->insert([
+        //     'nom' => "Super Admin",
+        //     'prenoms'=>'Super Admin',
+        //     'email' => 'superadmin@gmail.com',
+        //     'niveau_acces'=>2,
+        //     'password'=>Hash::make("superadmin0802"),
+
+        // ]);
+        // DB::table('users')->insert([
+        //     'nom' => "Admin",
+        //     'prenoms'=>'Admin',
+        //     'email' => 'admin@gmail.com',
         //     'niveau_acces'=>1,
-        //     'password'=>Hash::make("rubicod"),
+        //     'password'=>Hash::make("admin0802"),
+
+        // ]);
+        // DB::table('users')->insert([
+        //     'nom' => "Admin",
+        //     'prenoms'=>'Admin',
+        //     'email' => 'superadmin@gmail.com',
+        //     'niveau_acces'=>2,
+        //     'password'=>Hash::make("superadmin0802"),
 
         // ]);
 
