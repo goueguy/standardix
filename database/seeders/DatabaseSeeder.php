@@ -45,33 +45,33 @@ class DatabaseSeeder extends Seeder
 
         ]);
         DB::table('users')->insert([
-            'nom' => "Admin",
-            'prenoms'=>'Admin',
-            'email' => 'superadmin@gmail.com',
+            'nom' => "User",
+            'prenoms'=>'User',
+            'email' => 'user@gmail.com',
             'niveau_acces'=>2,
-            'password'=>Hash::make("superadmin0802"),
+            'password'=>Hash::make("useradmin0802"),
 
         ]);
 
-        // DB::table('categories_offres')->insert([
-        //     'id' => 1,
-        //     'nom'=>"CDI",
-        // ]);
-        // DB::table('categories_offres')->insert([
-        //     'id' => 2,
-        //     'nom'=>"CDD",
-        // ]);
-        // DB::table('categories_offres')->insert([
-        //     'id' => 3,
-        //     'nom'=>"FREELANCE",
-        // ]);
-        // DB::table('categories_offres')->insert([
-        //     'id' => 4,
-        //     'nom'=>"STAGE",
-        // ]);
-        // DB::table('categories_offres')->insert([
-        //     'id' => 5,
-        //     'nom'=>"ALTERNANCE",
-        // ]);
+        DB::table('categories_offres')->insert([
+            'id' => 1,
+            'nom'=>"CDI",
+        ]);
+        DB::table('categories_offres')->insert([
+            'id' => 2,
+            'nom'=>"CDD",
+        ]);
+        DB::table('categories_offres')->insert([
+            'id' => 3,
+            'nom'=>"FREELANCE",
+        ]);
+        DB::table('categories_offres')->insert([
+            'id' => 4,
+            'nom'=>"STAGE",
+        ]);
+        DB::table('categories_offres')->insert([
+            'id' => 5,
+            'nom'=>"ALTERNANCE",
+        ]);
     }
 }
