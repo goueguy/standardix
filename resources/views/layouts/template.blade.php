@@ -13,11 +13,11 @@
         <div class="">
             @yield('content')
         </div>
-
         @include("layouts.includes.footer")
         @section('footer')
         @show
         @stack("header-style")
         @stack("metier")
+        @stack('dropdown')
     </body>
     </html>

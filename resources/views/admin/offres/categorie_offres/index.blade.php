@@ -1,20 +1,20 @@
-@extends('layouts.admin')
-@section('title', 'Catégories-Offres')
+    @extends('layouts.admin')
+    @section('title', 'Catégories-Offres')
 
-@section('content')
-<section class="content">
+    @section('content')
+    <section class="content">
     <div class="container-fluid ">
         <div class="row">
             @if(session("success"))
-              <span class="alert alert-success text-center p-2">{{session("success")}}</span>
+                <span class="p-2 text-center alert alert-success">{{session("success")}}</span>
             @endif
             <div class="col-md-12">
-                <div class="card card-default mt-2">
-                  <div class="card-header">
+                <div class="mt-2 card card-default">
+                    <div class="card-header">
                     <h3 class="card-title"><span class="float-left">Ajouter</span></h3>
                     <span class="float-right"><a href="{{route('admin.users.list')}}">Retour</a></span>
-                  </div>
-                  <form action="{{route('admin.categorie.store')}}" method="POST">
+                    </div>
+                    <form action="{{route('admin.categorie.store')}}" method="POST">
                     @csrf
                     <div class="card-body">
                         <div class="row">
@@ -28,38 +28,38 @@
                                 <div class="form-group">
                                     <label for="categorie_offre_desc">Description</label>
                                     <input type="text" name="categorie_offre_desc" class="form-control" placeholder="Description de la Categorie">
-                                  </div>
+                                    </div>
                             </div>
                         </div>
 
                     </div>
                     <div class="card-footer">
-                      <button type="submit" class="btn btn-primary">Ajouter</button>
+                        <button type="submit" class="btn btn-primary">Ajouter</button>
                     </div>
-                  </form>
+                    </form>
                 </div>
-              </div>
+                </div>
         </div>
 
             <!-- /.row -->
             <div class="row">
-             <div class="mt-2 col-12">
-               <div class="card">
-                 <div class="card-header ">
-                   <h3 class="card-title">Liste</h3>
-                 </div>
-                 <!-- /.card-header -->
-                 <div class="p-2 card-body table-responsive">
-                   <table class="table table-hover text-nowrap table-bordered" id="categorie_offres">
-                     <thead>
-                       <tr>
-                         <th>ID</th>
-                         <th>Catégorie</th>
-                         <th>Action</th>
-                       </tr>
-                     </thead>
-                     <tbody>
-                      @foreach ($categories_offres as $cat)
+                <div class="mt-2 col-12">
+                <div class="card">
+                    <div class="card-header ">
+                    <h3 class="card-title">Liste</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="p-2 card-body table-responsive">
+                    <table class="table table-hover text-nowrap table-bordered" id="categorie_offres">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Catégorie</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach ($categories_offres as $cat)
                         <tr>
                             <td>{{$cat->id}}</td>
                             <td>{{$cat->categorie_offre_title}}</td>
@@ -69,24 +69,24 @@
                                 <a href="#"><i class="fas fa-edit"></i></a>
                             </td>
                         </tr>
-                      @endforeach
-                     </tbody>
-                   </table>
-                 </div>
-                 <!-- /.card-body -->
-               </div>
-               <!-- /.card -->
-             </div>
-           </div>
+                        @endforeach
+                        </tbody>
+                    </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+                </div>
+            </div>
     </div>
-</section>
-@endsection
-@section('scripts')
+    </section>
+    @endsection
+    @section('scripts')
 
-<script>
+    <script>
     $(function () {
 
-      $('#categorie_offres').DataTable({
+        $('#categorie_offres').DataTable({
         "paging": true,
         "lengthChange": false,
         "searching": true,
@@ -95,7 +95,7 @@
         "autoWidth": false,
         "responsive": true,
 
-      });
+        });
     });
-</script>
+    </script>
 @endsection

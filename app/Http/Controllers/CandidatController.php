@@ -15,6 +15,22 @@ class CandidatController extends Controller
     {
         return view("frontend.candidats.dashboard");
     }
+    public function parameters()
+    {
+        return view("frontend.candidats.parametres");
+    }
+    public function rendezVous()
+    {
+        return view("frontend.candidats.rendez-vous");
+    }
+    public function subscribes()
+    {
+        return view("frontend.candidats.subscribes");
+    }
+    public function offers()
+    {
+        return view("frontend.candidats.offers");
+    }
 
 
     /**

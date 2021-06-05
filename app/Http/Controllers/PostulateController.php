@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Offre;
+use App\Models\Candidature;
 use Illuminate\Http\Request;
-
+use Session;
+use Illuminate\Support\Facades\Validator;
 class PostulateController extends Controller
 {
     /**
@@ -35,9 +37,53 @@ class PostulateController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,$slug)
     {
-        //
+        //dd($request->all());
+        $this->validate($request,[
+            'name' => 'required|string|min:3',
+            'firstname' => 'required|min:3',
+            'email' => 'required|email',
+            'metiers' => 'required',
+            'cv' => 'required|mimes:pdf,PDF',
+            'motivation' => 'required|max:255'
+        ]);
+
+        $nom = $request->nom;
+        $firstname = $request->prenoms;
+        $email = $request->email;
+        $metiers = $request->metiers;
+        $file_cv = $request->file('cv');
+        $motivation = $request->motivation;
+
+        //dd($motivation);
+        if ($request->hasFile('cv')) {
+             //get file with extension
+            $fileNameWithExtension = $request->file("cv")->getClientOriginalName();
+            //get filename
+            $fileName = pathinfo($fileNameWithExtension, PATHINFO_FILENAME);
+            //get file extension
+            $extension = $request->file("cv")->getClientOriginalExtension();
+            //file to store in database
+            $fileNameStore = $fileName."_".time().".".$extension;
+            //$path = $request->file("file")->store("public/files",$fileNameStore);
+            $request->file("cv")->move("cv_uploads", $fileNameStore);
+
+        }else{
+            $fileNameStore = "text.pdf";
+        }
+        $newCandidature = new Candidature;
+        $newCandidature->name = $nom;
+        $newCandidature->firstname =$firstname;
+        $newCandidature->email =$email;
+        $newCandidature->metiers =$metiers;
+        $newCandidature->cv = $fileNameStore ;
+        $newCandidature->motivation = $motivation;
+        $newCandidature->save();
+
+        return back()->with('message','Votre candidature a été validée pour cette Offre');
+
+
     }
 
     /**

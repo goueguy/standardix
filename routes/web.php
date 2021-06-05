@@ -79,5 +79,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/candidats/dashboard',[CandidatController::class, 'index'])->name('candidats.dashboard');
     Route::post('/candidats/{slug}/postulate', [PostulateController::class, 'store'])->name('candidats.postulate.store');
     Route::get('/candidats/{slug}/postulate',[PostulateController::class, 'index'])->name('candidats.postulate.index');
+    Route::get('/candidats/parametres',[CandidatController::class, 'parameters'])->name('candidats.parametres');
+    Route::get('/candidats/rdv',[CandidatController::class, 'rendezVous'])->name('candidats.rdv');
+    Route::get('/candidats/souscriptions',[CandidatController::class, 'subscribes'])->name('candidats.souscriptions');
+    Route::get('/candidats/offres-lancees',[CandidatController::class, 'offers'])->name('candidats.offres');
 });
 Auth::routes();
