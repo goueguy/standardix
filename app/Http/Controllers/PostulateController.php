@@ -37,7 +37,7 @@ class PostulateController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,$slug)
+    public function store(Request $request)
     {
         //dd($request->all());
         $this->validate($request,[
@@ -79,6 +79,7 @@ class PostulateController extends Controller
         $newCandidature->metiers =$metiers;
         $newCandidature->cv = $fileNameStore ;
         $newCandidature->motivation = $motivation;
+        //$newCandidature->user_id =
         $newCandidature->save();
 
         return back()->with('message','Votre candidature a été validée pour cette Offre');
