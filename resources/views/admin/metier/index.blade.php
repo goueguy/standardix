@@ -30,6 +30,7 @@
                                     <input type="text" name="description" class="form-control" placeholder="Description du Metier">
                                   </div>
                             </div>
+                            
                         </div>
 
                     </div>

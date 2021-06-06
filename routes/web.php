@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\CategorieController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\UsersController;
+use App\Http\Controllers\Admin\RendezVousController;
 use App\Http\Controllers\Admin\OffresController;
 use App\Http\Controllers\PostulateController;
 use App\Http\Controllers\CandidatController;
@@ -46,6 +47,8 @@ Route::group(["as"=>"admin.","prefix"=>"admin"],function () {
         Route::get('/users/add',[UsersController::class, 'add'])->name('users.add');
         Route::get('/users/roles',[CategorieController::class,'createRole'])->name('roles.create');
         Route::post('/users/roles/add',[CategorieController::class,'storeRole'])->name('roles.store');
+        Route::get('/users/parametres/password',[UsersController::class,'createPassword'])->name('users.password');
+        Route::get('/users/parametres/profil',[UsersController::class,'createProfil'])->name('users.profil');
         #===========================OFFRES==========================
         Route::get('/offres',[OffresController::class, 'index'])->name('offres.list');
         Route::get('/offres/lancees',[OffresController::class, 'lancees'])->name('offres.lancees');
@@ -61,6 +64,11 @@ Route::group(["as"=>"admin.","prefix"=>"admin"],function () {
         Route::post('/domaines/categories/add',[DomaineController::class,'storeDomaine'])->name('domaine.store');
         Route::get('/metier/categories',[MetierController::class,'index'])->name('metier.create');
         Route::post('/metier/categories/add',[MetierController::class,'storeMetier'])->name('metier.store');
+
+        Route::get('/rendez-vous',[RendezVousController::class,'index'])->name('rendezvous.index');
+        Route::post('/rendez-vous/add',[RendezVousController::class,'create'])->name('rendezvous.create');
+
+
 
     });
     #=========================AUTH=================================

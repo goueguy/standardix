@@ -25,6 +25,14 @@ class UsersController extends Controller
         return view('admin.users.list-users', compact('users'));
     }
 
+    public function createPassword(){
+
+        return view('admin.users.parametres.password');
+    }
+    public function createProfil(){
+
+        return view('admin.users.parametres.profil');
+    }
     /**
      * Show the form for creating a new resource.
      *
