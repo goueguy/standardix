@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\OffresController;
 use App\Http\Controllers\PostulateController;
 use App\Http\Controllers\CandidatController;
+use App\Http\Controllers\Admin\DomaineController;
 use App\Http\Controllers\AdminController;
 use App\Http\Middleware\isAdmin;
 use Illuminate\Support\Facades\Route;
@@ -58,6 +59,8 @@ Route::group(["as"=>"admin.","prefix"=>"admin"],function () {
         Route::get('/candidatures/view',[UsersController::class, 'view'])->name('candidatures.view');
         Route::get('/offres/categories/add',[CategorieController::class,'index'])->name('categorie.create');
         Route::post('/offres/categories/add',[CategorieController::class,'store'])->name('categorie.store');
+        Route::get('/domaines/categories',[DomaineController::class,'index'])->name('domaine.create');
+        Route::post('/domaines/categories/add',[DomaineController::class,'storeDomaine'])->name('domaine.store');
 
     });
     #=========================AUTH=================================
