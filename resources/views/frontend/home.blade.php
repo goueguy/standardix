@@ -12,7 +12,7 @@
                 <div>
                     <h2 class="text-gray-400 uppercase"><a href="{{route('details-offres', $offre->slug)}}">{{$offre->titre}}</a></h2>
                     <p class="font-light">
-                        {{$offre->description_offres}}
+                        {{substr_replace($offre->description_offres,"...",248)}}
                     </p>
                     <div class="flex flex-row items-center">
                         <div class="flex pt-3 text-sm font-light"><a href="{{route('details-offres', $offre->slug)}}"><span class="p-2 mr-2 text-center text-white bg-gray-500 rounded-full">Voir plus</span></a><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -23,7 +23,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="flex flex-col space-y-24 item-center">
+                <div class="flex flex-col space-y-14 item-center">
                     <span class="p-2 text-center text-white bg-green-500 rounded-full"><a href="#">{{$offre->categorie_offre_id}}</a></span>
                     <span class="p-2 text-center text-white bg-red-500 rounded-full"><a href="{{route('candidats.postulate.index', $offre->slug)}}">Postuler</a></span>
                 </div>
