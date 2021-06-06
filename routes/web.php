@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\OffresController;
 use App\Http\Controllers\PostulateController;
 use App\Http\Controllers\CandidatController;
 use App\Http\Controllers\Admin\DomaineController;
+use App\Http\Controllers\Admin\MetierController;
 use App\Http\Controllers\AdminController;
 use App\Http\Middleware\isAdmin;
 use Illuminate\Support\Facades\Route;
@@ -58,6 +59,8 @@ Route::group(["as"=>"admin.","prefix"=>"admin"],function () {
         Route::post('/offres/categories/add',[CategorieController::class,'store'])->name('categorie.store');
         Route::get('/domaines/categories',[DomaineController::class,'index'])->name('domaine.create');
         Route::post('/domaines/categories/add',[DomaineController::class,'storeDomaine'])->name('domaine.store');
+        Route::get('/metier/categories',[MetierController::class,'index'])->name('metier.create');
+        Route::post('/metier/categories/add',[MetierController::class,'storeMetier'])->name('metier.store');
 
     });
     #=========================AUTH=================================
