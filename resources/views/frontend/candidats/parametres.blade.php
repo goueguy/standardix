@@ -7,7 +7,7 @@
     <div class="p-3 mt-5">
         <h2 class="mb-4 font-bold uppercase border-l-4 border-green-600"><span class="pl-2">Informations Personnelles</span></h2>
         @if(session("success"))
-            <div class="text-white text-center p-2 mb-3 rounded-full bg-gray-400">
+            <div class="p-2 mb-3 text-center text-white bg-gray-400 rounded-full">
                 {{session("success")}}
             </div>
         @endif
@@ -47,12 +47,12 @@
                         <option value="{{$domaine->id}}" {{ $domaine->id==Auth::user()->domaine->id ? "selected" : 1}}>{{$domaine->nom}}</option>
                         @endforeach
                     @else
+                        <option value="">------Domaine d'Emploi-----</option>
                         @foreach($domaines as $domaine)
-                            <option value="">------Domaine d'Emploi-----</option>
                             <option value="{{$domaine->id}}">{{$domaine->nom}}</option>
                         @endforeach
-                    @endif 
-                       
+                    @endif
+
                 </select>
                 {{-- <input type="text" name="domaine" class="@error('domaine') border border-red-500 @enderror w-1/2 p-2 mb-2 bg-white border rounded-full focus:outline-none" placeholder="Domaine" value="{{Auth::user()->domaine->nom}}" /> --}}
             </div>
