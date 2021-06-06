@@ -27,9 +27,6 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/',[HomeController::class, 'index']
 )->name('offres');
 
-Route::get('/detail-offre',[HomeController::class, 'showDetailOffre']
-)->name('details-offres');
-
 Route::get('/nos-metiers',[HomeController::class, 'showPageNosMetiers']
 )->name('nos-metiers');
 
@@ -77,6 +74,7 @@ Route::group(["as"=>"admin.","prefix"=>"admin"],function () {
 // })->middleware(["isAdmin"]);
 
 Route::middleware(['auth'])->group(function () {
+    Route::get('/detail-offre',[HomeController::class, 'showDetailOffre'])->name('details-offres');
     Route::get('/candidats/dashboard',[CandidatController::class, 'index'])->name('candidats.dashboard');
     Route::post('/candidats/{slug}/postulate', [PostulateController::class, 'store'])->name('candidats.postulate.store');
     Route::get('/candidats/{slug}/postulate',[PostulateController::class, 'index'])->name('candidats.postulate.index');

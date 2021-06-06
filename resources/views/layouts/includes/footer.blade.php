@@ -10,7 +10,7 @@
         <div class="pt-12 pb-24 pl-8">
             <a href="{{route('offres')}}" class="pr-12 text-gray-800 uppercase pl-14">Accueil</a>
             <a href="#" class="pr-10 text-gray-800 uppercase">Standardix</a>
-            <a href="{{route('candidature-spontanee')}}" class="pr-10 text-gray-800 uppercase">Candidature spontanée</a>
+            <a href="{{route('register')}}" class="pr-10 text-gray-800 uppercase">Candidature spontanée</a>
             <a href="#" class="pr-10 text-gray-800 uppercase">Nos métiers</a>
             <a href="{{route('login')}}" class="pr-10 text-gray-800 uppercase">Connexion</a>
         </div>

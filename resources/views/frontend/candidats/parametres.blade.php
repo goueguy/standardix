@@ -42,9 +42,17 @@
             <div class="flex flex-row space-x-2">
                 <input type="text" name="lieu_habitation" class="@error('lieu_habitation') border border-red-500 @enderror w-1/2 p-2 mb-2 bg-white border rounded-full focus:outline-none" placeholder="Lieu d'Habitation"  value="{{Auth::user()->lieu_habitation}}"/>
                 <select name="domaine" class="@error('domaine') border border-red-500 @enderror w-1/2 p-2 mb-2 bg-white border rounded-full focus:outline-none">
-                    @foreach($domaines as $domaine)
-                        <option value="{{$domaine->id}}" {{ $domaine->id==Auth::user()->domaine->id ? "selected" :""}}>{{$domaine->nom}}</option>
-                    @endforeach
+                    @if(Auth::user()->domaine_emploi_id)
+                        @foreach($domaines as $domaine)
+                        <option value="{{$domaine->id}}" {{ $domaine->id==Auth::user()->domaine->id ? "selected" : 1}}>{{$domaine->nom}}</option>
+                        @endforeach
+                    @else
+                        @foreach($domaines as $domaine)
+                            <option value="">------Domaine d'Emploi-----</option>
+                            <option value="{{$domaine->id}}">{{$domaine->nom}}</option>
+                        @endforeach
+                    @endif 
+                       
                 </select>
                 {{-- <input type="text" name="domaine" class="@error('domaine') border border-red-500 @enderror w-1/2 p-2 mb-2 bg-white border rounded-full focus:outline-none" placeholder="Domaine" value="{{Auth::user()->domaine->nom}}" /> --}}
             </div>

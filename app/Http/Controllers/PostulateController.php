@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Offre;
 use App\Models\Candidature;
 use Illuminate\Http\Request;
-use Session;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 class PostulateController extends Controller
 {
     /**
@@ -37,12 +37,12 @@ class PostulateController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,$slug)
     {
-        //dd($request->all());
+        
         $this->validate($request,[
-            'name' => 'required|string|min:3',
-            'firstname' => 'required|min:3',
+            'nom' => 'required|string|min:3',
+            'prenoms' => 'required|min:3',
             'email' => 'required|email',
             'metiers' => 'required',
             'cv' => 'required|mimes:pdf,PDF',
@@ -72,15 +72,27 @@ class PostulateController extends Controller
         }else{
             $fileNameStore = "text.pdf";
         }
-        $newCandidature = new Candidature;
-        $newCandidature->name = $nom;
-        $newCandidature->firstname =$firstname;
-        $newCandidature->email =$email;
-        $newCandidature->metiers =$metiers;
-        $newCandidature->cv = $fileNameStore ;
-        $newCandidature->motivation = $motivation;
-        //$newCandidature->user_id =
-        $newCandidature->save();
+        $offre = Offre::where("slug",$slug)->first();
+        //dd($offre->id);
+        $candidateData = Candidature::where("user_id",Auth::id())
+        ->where("offre_id",$offre->id)
+        ->first();
+        //dd($candidateData);
+        if($candidateData){
+            return back()->with('error','Vous avez déja postulé pour cette offre');
+        }else{
+            $newCandidature = new Candidature;
+            $newCandidature->name = $nom;
+            $newCandidature->firstname =$firstname;
+            $newCandidature->email =$email;
+            $newCandidature->metiers =$metiers;
+            $newCandidature->cv = $fileNameStore ;
+            $newCandidature->motivation = $motivation;
+            $newCandidature->user_id = Auth::id();
+            $newCandidature->offre_id = $offre->id;
+            $newCandidature->save();
+        }
+       
 
         return back()->with('message','Votre candidature a été validée pour cette Offre');
 
