@@ -62,8 +62,8 @@ Route::group(["as"=>"admin.","prefix"=>"admin"],function () {
         Route::post('/offres/categories/add',[CategorieController::class,'store'])->name('categorie.store');
         Route::get('/domaines/categories',[DomaineController::class,'index'])->name('domaine.create');
         Route::post('/domaines/categories/add',[DomaineController::class,'storeDomaine'])->name('domaine.store');
-        Route::get('/metier/categories',[MetierController::class,'index'])->name('metier.create');
-        Route::post('/metier/categories/add',[MetierController::class,'storeMetier'])->name('metier.store');
+        Route::get('/metiers',[MetierController::class,'index'])->name('metier.create');
+        Route::post('/metier/add',[MetierController::class,'storeMetier'])->name('metier.store');
 
         Route::get('/rendez-vous',[RendezVousController::class,'index'])->name('rendezvous.index');
         Route::post('/rendez-vous/add',[RendezVousController::class,'create'])->name('rendezvous.create');

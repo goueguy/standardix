@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\DomaineEmploi;
+use App\Models\Metier;
 use App\Models\Role;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -30,8 +32,10 @@ class UsersController extends Controller
         return view('admin.users.parametres.password');
     }
     public function createProfil(){
-
-        return view('admin.users.parametres.profil');
+        $roles = Role::all();
+        $domaines = DomaineEmploi::all();
+        $metiers = Metier::all();
+        return view('admin.users.parametres.profil',compact('roles','domaines','metiers'));
     }
     /**
      * Show the form for creating a new resource.

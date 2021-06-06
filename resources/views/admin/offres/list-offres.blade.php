@@ -10,16 +10,6 @@
         <div class="card-header ">
             <h3 class="card-title">Liste</h3>
             <div class="card-tools">
-            <div class="input-group input-group-sm" style="width: 150px;">
-                <input type="text" name="table_search" class="float-right form-control" placeholder="Search">
-                <div class="input-group-append">
-                <button type="submit" class="btn btn-default">
-                    <i class="fas fa-search"></i>
-                </button>
-                </div>
-            </div>
-            </div>
-            <div class="card-tools">
             <div class="input-group input-group-sm" style="width: 80px;">
                 <div class="input-group-append">
                 <a href="{{route('admin.offres.add')}}" class="btn btn-primary">Ajouter</a>
@@ -28,8 +18,8 @@
             </div>
         </div>
         <!-- /.card-header -->
-        <div class="p-0 card-body table-responsive">
-            <table class="table table-hover text-nowrap">
+        <div class="p-2 card-body table-responsive">
+            <table class="table table-hover text-nowrap table-bordered" id="offres">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -97,4 +87,22 @@
     </div>
     </div>
 </div>
+@endsection
+@section('scripts')
+
+<script>
+$(function () {
+
+    $('#offres').DataTable({
+    "paging": true,
+    "lengthChange": false,
+    "searching": true,
+    "ordering": true,
+    "info": true,
+    "autoWidth": false,
+    "responsive": true,
+
+    });
+});
+</script>
 @endsection

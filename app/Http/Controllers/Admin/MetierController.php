@@ -32,10 +32,10 @@ class MetierController extends Controller
             'nom.string' => 'Chaine de caractère uniquement',
         ]
         );
-        $new_role = new metier();
-        $new_role->nom = $request->nom ;
-        $new_role->	description_metier = $request->description;
-        $new_role->save();
+        $new_metier = new metier();
+        $new_metier->nom_metier = $request->nom ;
+        $new_metier->description_metier = $request->description;
+        $new_metier->save();
         return redirect()->back()->with("success","Metier Ajouté!");
     }
 
