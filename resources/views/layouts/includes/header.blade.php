@@ -12,7 +12,7 @@
             <div class="inline-flex mr-12 mt-14">
                 <a href="{{route('offres')}}" class="pr-8 font-bold uppercase"><span>Accueil</span></a>
                 <a href="#" class="pr-8 font-bold uppercase"><span>Standardix</span></a>
-                <a href="{{route('candidature-spontanee')}}" class="pr-8 font-bold uppercase"><span>Candidature spontanée</span></a>
+                <a href="{{route('register')}}" class="pr-8 font-bold uppercase"><span>Candidature spontanée</span></a>
                 <a href="#" class="pr-8 font-bold uppercase"><span>Nos métiers</span></a>
                 <a href="#" class="pr-8 font-bold uppercase"><span>Contact</span></a>
                 @auth

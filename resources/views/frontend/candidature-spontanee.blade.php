@@ -50,7 +50,7 @@
                     <div class="flex w-1/2 px-10 py-3 mb-5 text-lg text-left bg-white shadow-md rounded-2xl focus:outline-none">
                         <label for="image" class="flex justify-between w-full">
                             <span class="text-medium">Deposer votre CV</span>
-                            <input type="file" id="image" name="cv">
+                            <input type="file" id="image" name="cv" class="hidden">
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13l-3 3m0 0l-3-3m3 3V8m0 13a9 9 0 110-18 9 9 0 010 18z" />
                         </svg>

@@ -32,8 +32,6 @@ Route::get('/detail-offre',[HomeController::class, 'showDetailOffre']
 Route::get('/nos-metiers',[HomeController::class, 'showPageNosMetiers']
 )->name('nos-metiers');
 
-Route::get('/candidature-spontanee',[HomeController::class, 'showPageCandidatureSpontanee']
-)->name('candidature-spontanee');
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 #-===========================ESPACE ADMIN=====================
@@ -83,5 +81,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/candidats/rdv',[CandidatController::class, 'rendezVous'])->name('candidats.rdv');
     Route::get('/candidats/souscriptions',[CandidatController::class, 'subscribes'])->name('candidats.souscriptions');
     Route::get('/candidats/offres-lancees',[CandidatController::class, 'offers'])->name('candidats.offres');
+    Route::get('/candidature-spontanee',[HomeController::class, 'showPageCandidatureSpontanee'])->name('candidature-spontanee');
 });
 Auth::routes();
