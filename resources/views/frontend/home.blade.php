@@ -17,9 +17,9 @@
                     <div class="flex flex-row items-center">
                         <div class="flex pt-3 text-sm font-light"><a href="{{route('details-offres', $offre->slug)}}"><span class="p-2 mr-2 text-center text-white bg-gray-500 rounded-full">Voir plus</span></a><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                            </svg><span class="px-1 font-bold">Date d'édition</span>:{{$offre->date_edition}} <span class="pr-2"></span><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            </svg><span class="px-1 font-bold">Date d'édition</span>:{{date('d-m-Y',strtotime($offre->date_edition))}} <span class="pr-2"></span><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                            </svg><span class="pl-1 font-bold">Date limite</span>:{{$offre->date_limite}}
+                            </svg><span class="pl-1 font-bold">Date limite</span>:{{date('d-m-Y',strtotime($offre->date_limite))}}
                         </div>
                     </div>
                 </div>
