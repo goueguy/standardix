@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-
+use App\Models\User;
+use App\Models\DomaineEmploi;
 class CandidatController extends Controller
 {
     /**
@@ -15,9 +16,13 @@ class CandidatController extends Controller
     {
         return view("frontend.candidats.dashboard");
     }
-    public function parameters()
+    public function parameters($user)
     {
-        return view("frontend.candidats.parametres");
+        //dd($user);
+        $user = User::where("id",$user)->first();
+        $domaines = DomaineEmploi::get();
+        //dd($user->domaine->nom);
+        return view("frontend.candidats.parametres",compact('domaines'));
     }
     public function rendezVous()
     {
@@ -31,7 +36,28 @@ class CandidatController extends Controller
     {
         return view("frontend.candidats.offers");
     }
-
+    public function changeParameters(Request $request,$user){
+        $request->validate([
+            "nom"=>"required|string",
+            "prenoms"=>"required|string",
+            "motivation"=>"required|string",
+            "telephone"=>"required|string",
+            "lieu_habitation"=>"required|string",
+            "domaine"=>"required|integer"
+        ]);
+        $userData = [
+            "nom" => $request->nom,
+            "prenoms" => $request->prenoms,
+            "motivation" => $request->motivation,
+            "contact" => $request->telephone,
+            "lieu_habitation" => $request->lieu_habitation,
+            "domaine_emploi_id" => $request->domaine,
+            "updated_at"=>date("Y-m-d h:i:s")
+        ];
+        //dd($userData);
+        User::where("id",decrypt($user))->update($userData);
+        return back()->with("success","Information a été modifiée");
+    }
 
     /**
      * Show the form for creating a new resource.

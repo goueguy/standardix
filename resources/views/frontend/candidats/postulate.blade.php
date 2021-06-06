@@ -12,6 +12,11 @@
                             {{session('message')}}
                         </div>
                     @endif
+                    @if(session('error'))
+                    <div class="w-3/4 p-3 mb-4 text-center text-white bg-red-500 rounded-full" role="alert">
+                        {{session('error')}}
+                    </div>
+                @endif
                 <form action="{{route('candidats.postulate.store', $offre->slug)}}" enctype="multipart/form-data" method="POST">
                     @csrf
                     <div class="mb-5">

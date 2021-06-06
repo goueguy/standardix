@@ -4,7 +4,7 @@ use App\Models\Offre;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
+use App\Models\User;
 class CreateCandidaturesTable extends Migration
 {
     /**
@@ -23,6 +23,7 @@ class CreateCandidaturesTable extends Migration
             $table->string('cv');
             $table->text('motivation');
             $table->foreignIdFor(Offre::class)->nullable();
+            $table->foreignIdFor(User::class)->nullable();
             $table->timestamps();
         });
     }

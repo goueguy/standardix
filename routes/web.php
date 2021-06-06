@@ -28,14 +28,9 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/',[HomeController::class, 'index']
 )->name('offres');
 
-Route::get('/detail-offre',[HomeController::class, 'showDetailOffre']
-)->name('details-offres');
-
 Route::get('/nos-metiers',[HomeController::class, 'showPageNosMetiers']
 )->name('nos-metiers');
 
-Route::get('/candidature-spontanee',[HomeController::class, 'showPageCandidatureSpontanee']
-)->name('candidature-spontanee');
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 #-===========================ESPACE ADMIN=====================
@@ -82,12 +77,15 @@ Route::group(["as"=>"admin.","prefix"=>"admin"],function () {
 // })->middleware(["isAdmin"]);
 
 Route::middleware(['auth'])->group(function () {
+    Route::get('/detail-offre',[HomeController::class, 'showDetailOffre'])->name('details-offres');
     Route::get('/candidats/dashboard',[CandidatController::class, 'index'])->name('candidats.dashboard');
     Route::post('/candidats/{slug}/postulate', [PostulateController::class, 'store'])->name('candidats.postulate.store');
     Route::get('/candidats/{slug}/postulate',[PostulateController::class, 'index'])->name('candidats.postulate.index');
-    Route::get('/candidats/parametres',[CandidatController::class, 'parameters'])->name('candidats.parametres');
+    Route::get('/candidats/{user}/parametres',[CandidatController::class, 'parameters'])->name('candidats.parametres');
+    Route::post('/candidats/{user}/parametres',[CandidatController::class, 'changeParameters'])->name('candidats.parametres.change');
     Route::get('/candidats/rdv',[CandidatController::class, 'rendezVous'])->name('candidats.rdv');
     Route::get('/candidats/souscriptions',[CandidatController::class, 'subscribes'])->name('candidats.souscriptions');
     Route::get('/candidats/offres-lancees',[CandidatController::class, 'offers'])->name('candidats.offres');
+    Route::get('/candidature-spontanee',[HomeController::class, 'showPageCandidatureSpontanee'])->name('candidature-spontanee');
 });
 Auth::routes();
