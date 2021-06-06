@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Role;
+use App\Models\DomaineEmploi;
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
@@ -30,6 +31,9 @@ class User extends Authenticatable
     ];
     public function roles(){
         return $this->hasMany(Role::class, 'id', 'role_id');
+    }
+    public function domaine(){
+        return $this->hasOne(DomaineEmploi::class,'id','domaine_emploi_id');
     }
 
     /**

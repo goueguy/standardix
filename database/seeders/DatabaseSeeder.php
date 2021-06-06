@@ -17,35 +17,41 @@ class DatabaseSeeder extends Seeder
     {
 
         DB::table('domaine_emplois')->insert([
-            'nom' => "CDI",
+            'nom' => "RESSOURCES HUMAINES ET COMMUNICATION",
+        ]);
+        DB::table('domaine_emplois')->insert([
+            'nom' => "RELATION CLIENTÈLE",
+        ]);
+        DB::table('domaine_emplois')->insert([
+            'nom' => "INFORMATIQUE DEVELOPPEMENT D'APPLICATIONS",
         ]);
         DB::table('users')->insert([
-            'nom' => "marc",
-            'prenoms'=>'louis',
-            'email' => 'marc@gmail.com',
+            'nom' => "David",
+            'prenoms'=>'beckham',
+            'email' => 'david.beckham@gmail.com',
             'role_id'=>1,
+            'password'=>Hash::make("david0000"),
+        ]);
+        DB::table('users')->insert([
+            'nom' => "John",
+            'prenoms'=>'Doe',
+            'email' => 'john@gmail.com',
+            'role_id'=>3,
+            'password'=>Hash::make("john0000"),
+        ]);
+        DB::table('users')->insert([
+            'nom' => "Marc",
+            'prenoms'=>'Zuckerberg',
+            'email' => 'zuckerberg@gmail.com',
+            'role_id'=>2,
             'password'=>Hash::make("marc0000"),
         ]);
         DB::table('users')->insert([
-            'nom' => "Super",
-            'prenoms'=>'Admin',
-            'email' => 'superadmin@gmail.com',
-            'role_id'=>3,
-            'password'=>Hash::make("superadmin0802"),
-        ]);
-        DB::table('users')->insert([
-            'nom' => "Admin",
-            'prenoms'=>'Admin',
-            'email' => 'admin@gmail.com',
-            'role_id'=>2,
-            'password'=>Hash::make("admin0802"),
-        ]);
-        DB::table('users')->insert([
-            'nom' => "User",
-            'prenoms'=>'User',
-            'email' => 'user@gmail.com',
+            'nom' => "Kouassi",
+            'prenoms'=>'Konan',
+            'email' => 'konan.kouassi@gmail.com',
             'role_id'=>1,
-            'password'=>Hash::make("user0802"),
+            'password'=>Hash::make("konan0000"),
         ]);
         DB::table('categories_offres')->insert([
             'id' => 1,
