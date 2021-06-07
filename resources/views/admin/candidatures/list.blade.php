@@ -14,13 +14,6 @@
                 </div>
             @endif
             <h3 class="card-title">Liste </h3>
-            <div class="card-tools">
-            <div class="input-group input-group-sm" style="width: 80px;">
-                <div class="input-group-append">
-                <a href="{{route('admin.offres.add')}}" class="btn btn-primary">Ajouter</a>
-                </div>
-            </div>
-            </div>
         </div>
         <!-- /.card-header -->
         <div class="p-2 card-body table-responsive">
