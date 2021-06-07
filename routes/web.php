@@ -49,6 +49,8 @@ Route::group(["as"=>"admin.","prefix"=>"admin"],function () {
         Route::post('/users/roles/add',[CategorieController::class,'storeRole'])->name('roles.store');
         Route::get('/users/parametres/password',[UsersController::class,'createPassword'])->name('users.password');
         Route::get('/users/parametres/profil',[UsersController::class,'createProfil'])->name('users.profil');
+        Route::post('/users/parametres/{user}/profil',[UsersController::class,'updateProfil'])->name('users.profil.update');
+        Route::post('/users/parametres/{user}/password',[UsersController::class,'updatePassword'])->name('users.password.update');
         #===========================OFFRES==========================
         Route::get('/offres',[OffresController::class, 'index'])->name('offres.list');
         Route::get('/offres/lancees',[OffresController::class, 'lancees'])->name('offres.lancees');

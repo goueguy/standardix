@@ -9,7 +9,8 @@ use App\Models\Role;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 class UsersController extends Controller
 {
     /**
@@ -59,5 +60,48 @@ class UsersController extends Controller
     public function list()
     {
         return view("admin.candidatures.list");
+    }
+    public function updateProfil(Request $request,$user_id){
+        //dd($request->all());
+        $this->validate($request,[
+            "nom"=>"required|string|min:3",
+            "prenoms"=>"required|string|min:3",
+            "contact"=>"required",
+            "role"=>"required|integer",
+            "lieu_habitation"=>"required|string|min:3",
+            "domaine_emploi"=>"required",
+            "metier"=>"required",
+            "motivation"=>"required|string|min:3"
+        ]);
+        $data = [
+            "nom"=>$request->nom,
+            "prenoms"=>$request->prenoms,
+            "contact"=>$request->contact,
+            "role_id"=>$request->role,
+            "lieu_habitation"=>$request->lieu_habitation,
+            "domaine_emploi_id"=>$request->domaine_emploi,
+            "metier_id"=>$request->metier,
+            "motivation"=>$request->motivation
+        ];
+        User::where("id",decrypt($user_id))->update($data);
+        return back()->with("success","Vos Informations on été modifiées");
+    }
+    public function updatePassword(Request $request,$user_id){
+        $this->validate($request,[
+            "old_password"=>"required|min:8",
+            "password"=>"required|min:8",
+            "password_confirmation"=>"required|min:8|same:password",
+        ]);
+        //password=john0000
+        $old_password = $request->old_password;
+        $password = $request->password;
+        $verifyPasswordExist = User::where("id",decrypt($user_id))->first();
+        if(Hash::check($old_password, $verifyPasswordExist->password)){
+            User::where("id",decrypt($user_id))->update(["password"=>Hash::make($password)]);
+            return back()->with("success","Vos Informations on été modifiées");
+        }else{
+            return back()->with("error","Mot de passe Incorrect ou Inexistant");
+        }
+
     }
 }
