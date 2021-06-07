@@ -26,4 +26,8 @@ class Offre extends Model
     public function categorie(){
         return $this->belongsTo(CategorieOffre::class);
     }
+
+    public function candidatures(){
+        return $this->hasMany(Candidature::class);
+    }
 }

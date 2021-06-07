@@ -17,4 +17,13 @@ class Candidature extends Model
         'cv',
         'motivation'
     ];
+
+    public function metier(){
+        return $this->hasOne(Metier::class,'id','metiers');
+    }
+
+    public function offre(){
+        return $this->belongsTo(Offre::class);
+    }
+
 }

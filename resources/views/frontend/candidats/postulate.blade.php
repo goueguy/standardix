@@ -34,11 +34,9 @@
                     <div class="flex items-center justify-start mb-5">
                         <select name="metiers" class="@error('metiers') border border-red-500 @enderror w-1/2 px-10 py-3 text-lg text-left text-gray-500 shadow-md appearance-none rounded-2xl focus:outline-none">
                             <option value="" class="capitalize">Le metier souhaité</option>
-                            <option value="1" class="capitalize">Teleconseiller</option>
-                            <option value="2">Assistante particulière</option>
-                            <option value="3">Televendeur commercial</option>
-                            <option value="4">Commercial freelance</option>
-                            <option value="5">Commercial terrain</option>
+                            @foreach ($metiers as  $metier)
+                                <option value="{{$metier->id}}">{{$metier->nom_metier}}</option>
+                            @endforeach
                         </select>
                         <div class="inset-y-0 right-0 flex items-center px-2 -mt-3 -ml-10 text-gray-700 pointer-events-none">
                             <svg class="w-4 h-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>

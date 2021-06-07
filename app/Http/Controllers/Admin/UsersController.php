@@ -3,14 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Candidature;
 use App\Models\DomaineEmploi;
 use App\Models\Metier;
 use App\Models\Role;
 use Illuminate\Http\Request;
 use App\Models\User;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 class UsersController extends Controller
 {
     /**
@@ -21,10 +21,19 @@ class UsersController extends Controller
     public function index()
     {
         // $query = DB::table('users')->where('niveau_acces');
-        $users = User::all();
+        $candidatures = Candidature::all();
         // foreach ($users->roles as $user) {
         //     dd($user->roles);
+        //}
+
+        // foreach ($candidatures as $key => $value) {
+        //     dd($value->metier->nom_metier);
         // }
+
+        return view('admin.candidatures.list', compact('candidatures'));
+    }
+    public function list(){
+        $users= User::all();
         return view('admin.users.list-users', compact('users'));
     }
 
@@ -57,10 +66,7 @@ class UsersController extends Controller
         return view('admin.users.view-users');
     }
 
-    public function list()
-    {
-        return view("admin.candidatures.list");
-    }
+
     public function updateProfil(Request $request,$user_id){
         //dd($request->all());
         $this->validate($request,[
@@ -102,6 +108,20 @@ class UsersController extends Controller
         }else{
             return back()->with("error","Mot de passe Incorrect ou Inexistant");
         }
+
+    }
+
+    public function delete($id_candidat){
+
+        $data = Candidature::where("id",decrypt($id_candidat))->first();
+        //delete cv file in uploads folder
+        $data->delete();
+        if(File::exists(public_path("cv_uploads/".$data->cv))){
+            File::delete(public_path("cv_uploads/".$data->cv));
+        }
+
+        return back()->with("success","Cette candidature a été supprimée");
+
 
     }
 }

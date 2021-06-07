@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Offre;
+use App\Models\Metier;
 use App\Models\Candidature;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -17,7 +18,8 @@ class PostulateController extends Controller
     public function index($slug)
     {
         $offre= Offre::where('slug', $slug)->first();
-        return view('frontend.candidats.postulate', compact('offre'));
+        $metiers = Metier::all();
+        return view('frontend.candidats.postulate', compact('offre','metiers'));
 
     }
 
@@ -39,7 +41,7 @@ class PostulateController extends Controller
      */
     public function store(Request $request,$slug)
     {
-        
+
         $this->validate($request,[
             'nom' => 'required|string|min:3',
             'prenoms' => 'required|min:3',
@@ -92,7 +94,7 @@ class PostulateController extends Controller
             $newCandidature->offre_id = $offre->id;
             $newCandidature->save();
         }
-       
+
 
         return back()->with('message','Votre candidature a été validée pour cette Offre');
 

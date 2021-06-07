@@ -41,7 +41,7 @@ Route::group(["as"=>"admin.","prefix"=>"admin"],function () {
         #===========================DASHBOARD======================
         Route::get('/dashboard',[AdminController::class, 'dashboard'])->name('dashboard');
         #===========================USERS==========================
-        Route::get('/users',[UsersController::class, 'index'])->name('users.list');
+        Route::get('/users',[UsersController::class, 'list'])->name('users.list');
         Route::get('/users/edit',[UsersController::class, 'edit'])->name('users.edit');
         Route::get('/users/view',[UsersController::class, 'view'])->name('users.view');
         Route::get('/users/add',[UsersController::class, 'add'])->name('users.add');
@@ -58,7 +58,8 @@ Route::group(["as"=>"admin.","prefix"=>"admin"],function () {
         Route::get('/offres/view',[OffresController::class, 'view'])->name('offres.view');
         Route::get('/offres/add',[OffresController::class, 'add'])->name('offres.add');
         #===========================CANDIDATURES==========================
-        Route::get('/candidatures',[UsersController::class, 'list'])->name('candidatures.list');
+        Route::get('/candidatures',[UsersController::class, 'index'])->name('candidatures.list');
+        Route::get('/candidatures/{candidat}',[UsersController::class, 'delete'])->name('candidatures.delete');
         Route::get('/candidatures/view',[UsersController::class, 'view'])->name('candidatures.view');
         Route::get('/offres/categories/add',[CategorieController::class,'index'])->name('categorie.create');
         Route::post('/offres/categories/add',[CategorieController::class,'store'])->name('categorie.store');

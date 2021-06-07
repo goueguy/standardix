@@ -14,5 +14,9 @@ class Metier extends Model
         'user_id',
         'slug'
     ];
+
+    public function candidatures(){
+        return $this->hasMany(Candidature::class);
+    }
 }
 

@@ -8,6 +8,11 @@
     <div class="mt-2 col-12">
         <div class="card">
         <div class="card-header ">
+            @if(session('success'))
+                <div class="alert alert-success text-center">
+                    {{session('success')}}
+                </div>
+            @endif
             <h3 class="card-title">Liste </h3>
             <div class="card-tools">
             <div class="input-group input-group-sm" style="width: 80px;">
@@ -22,56 +27,32 @@
             <table class="table table-hover text-nowrap table-bordered" id="candidatures">
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>Titre</th>
-                    <th>Description</th>
-                    <th>Lieu</th>
-                    <th>Date Limite</th>
-                    <th>Mission</th>
-                    <th>Total Candidatures</th>
+                    <th>N°</th>
+                    <th>Nom & Prénoms</th>
+                    <th>Email</th>
+                    <th>Métiers</th>
+                    <th>Cv</th>
+                    <th>Motivation</th>
+                    <th>Offre</th>
                     <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Développeur</td>
-                    <td>FullStack Dev PHP</td>
-                    <td>Abidjan</td>
-                    <td>04-06-2021</td>
-                    <td>Créer des Appli Web Pro</td>
-                    <td>5</td>
-                    <td>
-                        <a href="{{route('admin.candidatures.view')}}"><i class="fas fa-eye"></i></a>
-                    </td>
-                </tr>
+                    @foreach ($candidatures as $key => $candidature)
+                    <tr>
+                        <td>{{$key+1}}</td>
+                        <td>{{$candidature->name.' '.$candidature->firstname}}</td>
+                        <td>{{$candidature->email}}</td>
+                        <td>{{$candidature->metier->nom_metier}}</td>
+                        <td><a href="{{asset('cv_uploads/'.$candidature->cv)}}">Télécharger</a></td>
+                        <td>{{$candidature->motivation}}</td>
+                        <td>{{$candidature->offre->titre}}</td>
+                        <td>
+                            <a href="{{route('admin.candidatures.delete',encrypt($candidature->id))}}"><i class="fas fa-trash"></i></a>
+                        </td>
 
-                <tr>
-                    <td>2</td>
-                    <td>Développeur</td>
-                    <td>FullStack Dev PHP</td>
-                    <td>Abidjan</td>
-                    <td>04-06-2021</td>
-                    <td>Créer des Appli Web Pro</td>
-                    <td>7</td>
-                    <td>
-                        <a href="{{route('admin.candidatures.view')}}"><i class="fas fa-eye"></i></a>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>3</td>
-                    <td>Développeur</td>
-                    <td>FullStack Dev PHP</td>
-                    <td>Abidjan</td>
-                    <td>04-06-2021</td>
-                    <td>Créer des Appli Web Pro</td>
-                    <td>10</td>
-                    <td>
-                        <a href="{{route('admin.candidatures.view')}}"><i class="fas fa-eye"></i></a>
-                    </td>
-                </tr>
-
+                    </tr>
+                    @endforeach
             </tbody>
             </table>
         </div>
