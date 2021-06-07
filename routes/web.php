@@ -41,7 +41,7 @@ Route::group(["as"=>"admin.","prefix"=>"admin"],function () {
         #===========================DASHBOARD======================
         Route::get('/dashboard',[AdminController::class, 'dashboard'])->name('dashboard');
         #===========================USERS==========================
-        Route::get('/users',[UsersController::class, 'list'])->name('users.list');
+        Route::get('/users',[UsersController::class, 'index'])->name('users.list');
         Route::get('/users/edit',[UsersController::class, 'edit'])->name('users.edit');
         Route::get('/users/view',[UsersController::class, 'view'])->name('users.view');
         Route::get('/users/add',[UsersController::class, 'add'])->name('users.add');
@@ -58,12 +58,15 @@ Route::group(["as"=>"admin.","prefix"=>"admin"],function () {
         Route::get('/offres/view',[OffresController::class, 'view'])->name('offres.view');
         Route::get('/offres/add',[OffresController::class, 'add'])->name('offres.add');
         #===========================CANDIDATURES==========================
-        Route::get('/candidatures',[UsersController::class, 'index'])->name('candidatures.list');
-        Route::get('/candidatures/{candidat}',[UsersController::class, 'delete'])->name('candidatures.delete');
+        Route::get('/candidatures',[UsersController::class, 'list'])->name('candidatures.list');
         Route::get('/candidatures/view',[UsersController::class, 'view'])->name('candidatures.view');
+        Route::get('/candidatures/{candidat}/delete',[UsersController::class, 'delete'])->name('candidatures.delete');
         Route::get('/offres/categories/add',[CategorieController::class,'index'])->name('categorie.create');
         Route::post('/offres/categories/add',[CategorieController::class,'store'])->name('categorie.store');
-        Route::get('/domaines/categories',[DomaineController::class,'index'])->name('domaine.create');
+        Route::get('/domaines',[DomaineController::class,'index'])->name('domaine.create');
+        Route::get('/domaines/{id}/edit',[DomaineController::class,'edit'])->name('domaine.edit');
+        Route::get('/domaines/{id}/delete',[DomaineController::class,'destroy'])->name('domaine.delete');
+        Route::post('/domaines/{id}/update',[DomaineController::class,'update'])->name('domaine.update');
         Route::post('/domaines/categories/add',[DomaineController::class,'storeDomaine'])->name('domaine.store');
         Route::get('/metiers',[MetierController::class,'index'])->name('metier.create');
         Route::post('/metier/add',[MetierController::class,'storeMetier'])->name('metier.store');
