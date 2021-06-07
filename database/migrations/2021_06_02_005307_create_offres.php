@@ -22,9 +22,9 @@ class CreateOffres extends Migration
             $table->string('lieu')->nullable();
             $table->foreignIdFor(CategorieOffre::class)->nullable();
             $table->string('duree_contrat')->nullable();
-            $table->string('profil');
+            $table->text('profil');
             $table->text('avantages');
-            $table->string('dossier_candidature');
+            $table->text('dossier_candidature');
             $table->text('description_offres');
             $table->foreignIdFor(User::class)->nullable();
             $table->string('slug')->nullable()->unique();

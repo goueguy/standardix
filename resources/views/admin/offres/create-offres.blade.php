@@ -5,93 +5,107 @@
 <section class="content">
 <div class="container-fluid ">
     <div class="row">
+        @if(session('success'))
+            <div class="mt-4 mb-4 col-lg-12 alert alert-success">
+                {{session('success')}}
+            </div>
+        @endif
         <div class="col-md-12">
             <div class="mt-2 card card-default">
                 <div class="card-header">
                 <h3 class="card-title">Ajouter</h3>
                 </div>
-                <form action="#" method="POST">
+                <form action="{{route('admin.offres.store')}}" method="POST" onsubmit="send()">
+                @csrf
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="name">titre</label>
-                                <input type="text" name="titre" class="form-control">
+                                <input type="text" name="titre" class="form-control" value="{{old('titre')}}">
+                                @error('titre')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="categorie_offre">Categorie de l'Offre</label>
                                 <select name="categorie_offre" class="form-control">
+                                    <option value=""></option>
                                     @foreach ($categories as $categorie)
                                     <option value="{{$categorie->id}}">{{$categorie->categorie_offre_title}}</option>
                                     @endforeach
                                 </select>
+                                @error('categorie_offre')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="description_offre">Description de l'Offre</label>
                                 <div  id="description"  style="height:200px"></div>
-                                <input type="hidden"  name="description">
+                                <input type="hidden"  name="description" id="descriptionField">
+                                @error('description')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="lieu">Lieu</label>
-                                <input type="text" name="lieu" class="form-control">
+                                <input type="text" name="lieu" class="form-control" value="{{old('lieu')}}">
+                                @error('lieu')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="date_limite">Date Limite</label>
-                                <input type="date" name="date_limite" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="mission">Mission</label>
-                                <div  id="mission"  style="height:200px"></div>
+                                <input type="date" name="date_limite" class="form-control" value="{{old('date')}}">
+                                @error('date_limite')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="profil">Profil</label>
                                 <div id="profil" style="height:200px"></div>
+                                <input type="hidden" name="profil" id="profilField" class="form-control" value="{{old('profil')}}">
+                                @error('profil')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="avantages">Avantages</label>
                                 <div id="avantages" style="height:200px"></div>
-                                <input type="hidden" name="avantages" class="form-control">
+                                <input type="hidden" id="avantagesField" name="avantages" class="form-control" value="{{old('avantages')}}">
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="dossier_candidature">Dossier de Candidature</label>
-                                <div  id="dossier" style="height:200px"></div>
-                                <input type="hidden"  name="dossier_candidature">
+                                <div  id="dossier"  style="height:200px"></div>
+                                <input type="hidden"  id="dossierField" name="dossier_candidature" class="@error('dossier_candidature') is-invalid @enderror">
+                                @error('dossier_candidature')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="niveau_acces">Niveau d'accès</label>
-                                <select name="niveau_acces" class="form-control">
-                                    <option value="">Sélectionner Niveau</option>
-                                    <option value="0">Utilisateur</option>
-                                    <option value="1">Admin</option>
-                                    <option value="2">Super Admin</option>
-                                </select>
-                            </div>
-                            <input type="hidden"  name="niveau_acces">
-                        </div>
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="form-group">
                                 <label for="duree_contrat">Durée du Contrat</label>
-                                <input type="text" name="duree_contrat" class="form-control">
+                                <input type="text" name="duree_contrat" class="form-control" value="{{old('duree_contrat')}}">
+                                @error('duree_contrat')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                     </div>
@@ -115,17 +129,32 @@
             [{ 'color': [] }, { 'background': [] }],
             [{ 'font': [] }],
             [{ 'align': [] }]];
-
-        let quill;
-        let inputs = ["#mission","#profil","#avantages","#dossier","#description"];
-        for(let i = 0; i<=inputs.length; i++){
-                quill= new Quill(inputs[i], {
+        let change = (quilInput) =>{
+            return new Quill(quilInput, {
                 theme: 'snow',
                 modules:{
                     toolbar:toolbarOptions
                 }
             });
         }
+        let dossier = change("#dossier");
+        let profil = change("#profil");
+        let avantages = change("#avantages");
+        let description = change("#description");
+        function send(){
+
+            let descriptionField = document.querySelector("#descriptionField");
+            let avantagesField = document.querySelector("#avantagesField");
+            let profilField = document.querySelector("#profilField");
+            let dossierField = document.querySelector("#dossierField");
+            descriptionField.value = description.getText();
+            avantagesField.value = avantages.getText();
+            profilField.value = profil.getText();
+            dossierField.value = dossier.getText();
+            //alert(dossierCandidature);
+        }
+
+
 
     </script>
 @endpush

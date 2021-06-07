@@ -22,62 +22,33 @@
             <table class="table table-hover text-nowrap table-bordered" id="offres">
             <thead>
                 <tr>
-                    <th>ID</th>
+                    <th>N°</th>
                     <th>Titre</th>
                     <th>Description</th>
                     <th>Lieu</th>
                     <th>Date Limite</th>
                     <th>Durée Contrat</th>
-                    <th>Mission</th>
+                    <th>Catégorie</th>
                     <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Développeur</td>
-                    <td>FullStack Dev PHP</td>
-                    <td>Abidjan</td>
-                    <td>04-06-2021</td>
-                    <td>6 mois</td>
-                    <td>Créer des Appli Web Pro</td>
-                    <td>
-                        <a href="{{route('admin.offres.view')}}"><i class="fas fa-eye"></i></a>
-                        <a href="#"><i class="fas fa-trash"></i></a>
-                        <a href="{{route('admin.offres.edit')}}"><i class="fas fa-edit"></i></a>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>2</td>
-                    <td>Développeur</td>
-                    <td>FullStack Dev PHP</td>
-                    <td>Abidjan</td>
-                    <td>04-06-2021</td>
-                    <td>6 mois</td>
-                    <td>Créer des Appli Web Pro</td>
-                    <td>
-                        <a href="{{route('admin.users.view')}}"><i class="fas fa-eye"></i></a>
-                        <a href="#"><i class="fas fa-trash"></i></a>
-                        <a href="{{route('admin.users.edit')}}"><i class="fas fa-edit"></i></a>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>3</td>
-                    <td>Développeur</td>
-                    <td>FullStack Dev PHP</td>
-                    <td>Abidjan</td>
-                    <td>04-06-2021</td>
-                    <td>6 mois</td>
-                    <td>Créer des Appli Web Pro</td>
-                    <td>
-                        <a href="{{route('admin.users.view')}}"><i class="fas fa-eye"></i></a>
-                        <a href="#"><i class="fas fa-trash"></i></a>
-                        <a href="{{route('admin.users.edit')}}"><i class="fas fa-edit"></i></a>
-                    </td>
-                </tr>
-
+                @foreach ($offres as $key=> $offre)
+                    <tr>
+                        <td>{{$key+1}}</td>
+                        <td>{{$offre->titre}}</td>
+                        <td> {{substr_replace($offre->description_offres,"...",20)}}</td>
+                        <td>{{$offre->lieu}}</td>
+                        <td>{{$offre->date_limite}}</td>
+                        <td>{{$offre->duree_contrat}}</td>
+                        <td><span class="badge bg-warning">{{$offre->categorie->categorie_offre_title}}</span></td>
+                        <td>
+                            <a href="{{route('admin.offres.view')}}"><i class="fas fa-eye"></i></a>
+                            <a href="#"  onclick="return confirm('Voulez-vous supprimer cette Offre');"><i class="fas fa-trash"></i></a>
+                            <a href="{{route('admin.offres.edit')}}"><i class="fas fa-edit"></i></a>
+                        </td>
+                    </tr>
+                @endforeach
             </tbody>
             </table>
         </div>

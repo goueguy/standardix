@@ -24,7 +24,7 @@ class Offre extends Model
     ];
 
     public function categorie(){
-        return $this->belongsTo(CategorieOffre::class);
+        return $this->hasOne(CategorieOffre::class,'id','categorie_offre_id');
     }
 
     public function candidatures(){
