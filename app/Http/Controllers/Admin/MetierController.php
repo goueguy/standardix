@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Metier;
 use Illuminate\Http\Request;
+use App\Models\DomaineEmploi;
 
 class MetierController extends Controller
 {
@@ -69,7 +70,8 @@ class MetierController extends Controller
      */
     public function edit($id)
     {
-        //
+        $metier = Metier::find(decrypt($id));
+        return view("admin.metier.edit",compact('metier'));
     }
 
     /**
@@ -81,7 +83,19 @@ class MetierController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate(["nom"=>"required|string"]
+        ,[
+            'nom.required' => 'Champ requis',
+            'nom.string' => 'Chaine de caractère uniquement',
+        ]
+        );
+        $data = [
+            "nom_metier"=>$request->nom,
+            "description_metier"=> $request->description
+        ];
+        Metier::where("id",decrypt($id))->update($data);
+
+        return redirect("admin/metiers")->with("success","Métier Modifié!");
     }
 
     /**
@@ -92,6 +106,7 @@ class MetierController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Metier::find(decrypt($id))->delete();
+        return redirect("admin/metiers")->with("success","Métier Supprimé!");
     }
 }

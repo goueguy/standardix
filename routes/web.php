@@ -64,11 +64,14 @@ Route::group(["as"=>"admin.","prefix"=>"admin"],function () {
         Route::get('/offres/categories/add',[CategorieController::class,'index'])->name('categorie.create');
         Route::post('/offres/categories/add',[CategorieController::class,'store'])->name('categorie.store');
         Route::get('/domaines',[DomaineController::class,'index'])->name('domaine.create');
-        Route::get('/domaines/{id}/edit',[DomaineController::class,'edit'])->name('domaine.edit');
-        Route::get('/domaines/{id}/delete',[DomaineController::class,'destroy'])->name('domaine.delete');
-        Route::post('/domaines/{id}/update',[DomaineController::class,'update'])->name('domaine.update');
+        Route::get('/domaines/{domaine}/edit',[DomaineController::class,'edit'])->name('domaine.edit');
+        Route::get('/domaines/{domaine}/delete',[DomaineController::class,'destroy'])->name('domaine.delete');
+        Route::post('/domaines/{domaine}/update',[DomaineController::class,'update'])->name('domaine.update');
         Route::post('/domaines/categories/add',[DomaineController::class,'storeDomaine'])->name('domaine.store');
         Route::get('/metiers',[MetierController::class,'index'])->name('metier.create');
+        Route::get('/metiers/{metier}/edit',[MetierController::class,'edit'])->name('metier.edit');
+        Route::post('/metiers/{metier}/update',[MetierController::class,'update'])->name('metier.update');
+        Route::get('/metiers/{metier}/delete',[MetierController::class,'destroy'])->name('metier.delete');
         Route::post('/metier/add',[MetierController::class,'storeMetier'])->name('metier.store');
 
         Route::get('/rendez-vous',[RendezVousController::class,'index'])->name('rendezvous.index');

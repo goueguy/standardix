@@ -5,9 +5,11 @@
 <section class="content">
 <div class="container-fluid ">
     <div class="row">
-        @if(session("success"))
-            <span class="p-2 text-center alert alert-success">{{session("success")}}</span>
-        @endif
+        <div class="mt-4 mb-4 col-md-12">
+            @if(session("success"))
+                <span class="p-2 text-center alert alert-success">{{session("success")}}</span>
+            @endif
+        </div>
         <div class="col-md-12">
             <div class="mt-2 card card-default">
                 <div class="card-header">
@@ -54,8 +56,9 @@
                 <table class="table table-hover text-nowrap table-bordered" id="domaines">
                     <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>N°</th>
                         <th>Nom</th>
+                        <th>Description</th>
                         <th>Action</th>
                     </tr>
                     </thead>
@@ -64,10 +67,11 @@
                     <tr>
                         <td>{{$metier->id}}</td>
                         <td>{{$metier->nom_metier}}</td>
+                        <td>{{$metier->description_metier}}</td>
                         <td>
-                            <a href="#"><i class="fas fa-eye"></i></a>
-                            <a href="#"><i class="fas fa-trash"></i></a>
-                            <a href="#"><i class="fas fa-edit"></i></a>
+                            {{-- <a href="#"><i class="fas fa-eye"></i></a> --}}
+                            <a href="{{route('admin.metier.delete',encrypt($metier->id))}}" onclick="return confirm('Voulez-vous supprimer ce métier')"><i class="fas fa-trash"></i></a>
+                            <a href="{{route('admin.metier.edit',encrypt($metier->id))}}"><i class="fas fa-edit"></i></a>
                         </td>
                     </tr>
                     @endforeach
