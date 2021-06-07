@@ -5,9 +5,11 @@
 <section class="content">
 <div class="container-fluid ">
     <div class="row">
-        @if(session("success"))
-            <span class="p-2 text-center alert alert-success">{{session("success")}}</span>
-        @endif
+        <div class="mt-4 mb-4 col-md-12">
+            @if(session("success"))
+                <span class="p-2 text-center alert alert-success">{{session("success")}}</span>
+            @endif
+        </div>
         <div class="col-md-12">
             <div class="mt-2 card card-default">
                 <div class="card-header">
@@ -53,20 +55,23 @@
                 <table class="table table-hover text-nowrap table-bordered" id="domaines">
                     <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Catégorie</th>
+                        <th>N°</th>
+                        <th>Nom</th>
+                        <th>Description</th>
                         <th>Action</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach ($domaines as $domaine)
+
+                    @foreach ($domaines as $key=> $domaine)
                     <tr>
-                        <td>{{$domaine->id}}</td>
+                        <td>{{$key+1}}</td>
                         <td>{{$domaine->nom}}</td>
+                        <td>{{$domaine->description_domaine_emplois}}</td>
                         <td>
-                            <a href="#"><i class="fas fa-eye"></i></a>
-                            <a href="#"><i class="fas fa-trash"></i></a>
-                            <a href="#"><i class="fas fa-edit"></i></a>
+                            {{-- <a href="#"><i class="fas fa-eye"></i></a> --}}
+                            <a href="{{route('admin.domaine.delete',encrypt($domaine->id))}}" onclick="return confirm('Voulez-vous supprimer ce domaine')"><i class="fas fa-trash"></i></a>
+                            <a href="{{route('admin.domaine.edit',encrypt($domaine->id))}}"><i class="fas fa-edit"></i></a>
                         </td>
                     </tr>
                     @endforeach

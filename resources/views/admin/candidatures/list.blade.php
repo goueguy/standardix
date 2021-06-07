@@ -9,7 +9,7 @@
         <div class="card">
         <div class="card-header ">
             @if(session('success'))
-                <div class="alert alert-success text-center">
+                <div class="text-center alert alert-success">
                     {{session('success')}}
                 </div>
             @endif
@@ -41,7 +41,7 @@
                         <td>{{$candidature->motivation}}</td>
                         <td>{{$candidature->offre->titre}}</td>
                         <td>
-                            <a href="{{route('admin.candidatures.delete',encrypt($candidature->id))}}"><i class="fas fa-trash"></i></a>
+                            <a href="{{route('admin.candidatures.delete',encrypt($candidature->id))}}" onclick="return confirm('Voulez-vous supprimer cette Candidature');"><i class="fas fa-trash"></i></a>
                         </td>
 
                     </tr>
