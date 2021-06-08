@@ -24,7 +24,7 @@
                     </div>
                 </div>
                 <div class="flex flex-col space-y-14 item-center">
-                    <span class="p-2 text-center text-white bg-green-500 rounded-full"><a href="#">{{$offre->categorie_offre_id}}</a></span>
+                    <span class="p-2 text-center text-white bg-green-500 rounded-full"><a href="#">{{$offre->categorie->categorie_offre_title}}</a></span>
                     <span class="p-2 text-center text-white bg-red-500 rounded-full"><a href="{{route('candidats.postulate.index', $offre->slug)}}">Postuler</a></span>
                 </div>
             </div>
