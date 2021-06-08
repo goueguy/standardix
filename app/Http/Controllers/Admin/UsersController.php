@@ -20,23 +20,23 @@ class UsersController extends Controller
      */
     public function index()
     {
-        // $query = DB::table('users')->where('niveau_acces');
         $candidatures = Candidature::orderBy("id","desc")->get();
-        // foreach ($users->roles as $user) {
-        //     dd($user->roles);
-        //}
-
-        // foreach ($candidatures as $key => $value) {
-        //     dd($value->metier->nom_metier);
-        // }
-
         return view('admin.candidatures.list', compact('candidatures'));
+    }
+    public function usersList()
+    {
+        //$users = User::whereIn('role_id',[2,3])->orderBy("id","desc")->get();
+        $users = User::orderBy("id","desc")->get();
+        return view('admin.users.list-users', compact('users'));
     }
     public function list(){
         $users= User::all();
         return view('admin.users.list-users', compact('users'));
     }
-
+    public function editPassword($user){
+        $user = User::find(decrypt($user));
+        return view('admin.users.user-password', compact('user'));
+    }
     public function createPassword(){
 
         return view('admin.users.parametres.password');
@@ -54,18 +54,19 @@ class UsersController extends Controller
      */
     public function add()
     {
-        $users = User::all();
-        return view('admin.users.create-users',compact("users"));
+        $roles = Role::all();
+        return view('admin.users.create-users',compact("roles"));
     }
-    public function edit()
+    public function edit($user)
     {
-        return view('admin.users.edit-users');
+        $user = User::find(decrypt($user));
+        $roles = Role::all();
+        return view('admin.users.edit-users',compact('user','roles'));
     }
     public function view()
     {
         return view('admin.users.view-users');
     }
-
 
     public function updateProfil(Request $request,$user_id){
         //dd($request->all());
@@ -110,7 +111,6 @@ class UsersController extends Controller
         }
 
     }
-
     public function delete($id_candidat){
 
         $data = Candidature::where("id",decrypt($id_candidat))->first();
@@ -119,9 +119,57 @@ class UsersController extends Controller
         if(File::exists(public_path("cv_uploads/".$data->cv))){
             File::delete(public_path("cv_uploads/".$data->cv));
         }
-
         return back()->with("success","Cette candidature a été supprimée");
+    }
 
+    public function store(Request $request){
+        $this->validate($request,[
+            "name"=>"required|string|min:3",
+            "firstname"=>"required|string|min:3",
+            "email"=>"required|email|unique:users",
+            "password"=>"required|string|min:8",
+            "role"=>"required|integer"
+        ]);
 
+        $newUser = new User;
+        $newUser->nom=$request->name;
+        $newUser->prenoms=$request->firstname;
+        $newUser->email=$request->email;
+        $newUser->password=Hash::make($request->password);
+        $newUser->role_id=$request->role;
+        $newUser->save();
+        return redirect('admin/users')->with('success','Utilisateur crée');
+    }
+
+    public function deleteUser($user){
+        User::find(decrypt($user))->delete();
+        return redirect('admin/users')->with('success','Utilisateur supprimé');
+    }
+    public function update(Request $request,$user){
+        $this->validate($request,[
+            "name"=>"required|string|min:3",
+            "firstname"=>"required|string|min:3",
+            "email"=>"required|email",
+            "role"=>"required|integer"
+        ]);
+
+        $data = [
+            "nom"=>$request->name,
+            "prenoms"=>$request->firstname,
+            "email"=>$request->email,
+            "role_id"=>$request->role,
+        ];
+        User::where("id",decrypt($user))->update($data);
+        return redirect('admin/users')->with('success','Utilisateur modifié');
+    }
+
+    public function updateUserListPassword(Request $request,$user_id){
+        $this->validate($request,[
+            "password"=>"required|min:8",
+            "password_confirmation"=>"required|min:8|same:password",
+        ]);
+        $password = $request->password;
+        User::where("id",decrypt($user_id))->update(["password"=>Hash::make($password)]);
+        return redirect('admin/users')->with("success","Mot de passe modifié");
     }
 }

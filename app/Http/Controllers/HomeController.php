@@ -20,8 +20,10 @@ class HomeController extends Controller
     public function showPageCandidatureSpontanee(){
         return view("frontend.candidature-spontanee");
     }
-    public function showDetailOffre(){
-        return view("frontend.detail_offre");
+    public function showDetailOffre($slug){
+        //dd($slug);
+        $offre = Offre::where("slug",$slug)->first();
+        return view("frontend.detail_offre",compact('offre'));
     }
 
 

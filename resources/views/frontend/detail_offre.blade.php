@@ -10,9 +10,9 @@
         <!-- DETAIL -->
         <div class="inline-flex px-8 py-6 mb-4 bg-white border rounded-lg shadow-lg">
             <div>
-                <h2 class="text-gray-400 uppercase">Formateur Sénior billingue</h2>
+                <h2 class="text-gray-400 uppercase">{{$offre->titre}}</h2>
                 <p class="font-light">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa commodi illo nam in itaque corrupti aliquam accusamus, saepe sint libero accusantium veniam voluptatibus delectus
+                    {{substr_replace($offre->description_offres,"...",248)}}
                 </p>
             </div>
             {{-- <div>
@@ -23,16 +23,16 @@
         <div class="relative detailDefault">
             <div class="inline-flex justify-between px-8 py-6 bg-white border rounded-lg">
                 <div class="flex flex-col w-3/5">
-                    <h3>À propos de l’offre d’emploi</h3>
+                    <h3>Profil de l’offre d’emploi</h3>
                     <div class="font-light">
-                        <p>Dans le cadre d’un programme stratégique de développement de nos activités, nous recrutons un développeur web et mobile.
+                        <p>{{substr_replace($offre->profil,"...",248)}}
                         </p>
                     </div>
                 </div>
                 <div class="flex flex-col w-2/5">
                     {{-- <h3 class="pb-2">Descriptif du poste</h3>
                     <p class="font-light">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dicta nostrum mollitia expedita tenetur accusamus ad? Reiciendis et porro laudantium laborum, esse est illum. In expedita atque ab repellat ipsum sapiente.</p> --}}
-                    <h3 class="py-2">Type d’emploi: <span class="font-light">STAGE</span></h3>
+                    <h3 class="py-2">Type d’Offre: <span class="font-light">{{$offre->categorie->categorie_offre_title}}</span></h3>
                 </div>
             </div>
             <div class="flex flex-row items-center justify-center w-full bg-white border rounded">
@@ -47,27 +47,15 @@
         <div class="hidden hiddenDetail">
             <div class="inline-flex justify-between px-8 py-6 bg-white border rounded-lg">
                 <div class="flex flex-col w-3/5">
-                    <h3>À propos de l’offre d’emploi</h3>
+                    <h3>Profil de l’offre d’emploi</h3>
                     <div class="font-light">
-                        <p>Dans le cadre d’un programme stratégique de développement de nos activités, nous recrutons un développeur web et mobile.
-                        </p>
-                        <p>Profil du poste</p>
-                        <ul>
-                            <li>* Avoir un Bac+3 au moins</li>
-                            <li>* Avoir mis en ligne un site web ou une application mobile</li>
-                            <li>* Maitrisé le Framework Flutter est un atout</li>
-                        </ul>
-                        <div>
-                            <p>Délai: 15 Mai 2021</p>
-                            <p>* Dossier de candidature</p>
-                            <p>* Veuillez faire parvenir votre CV à l’adresse e-mail suivante : contact@iatecole.com.</p>
-                        </div>
+                        {{$offre->profil}}
                     </div>
                 </div>
                 <div class="flex flex-col w-2/5">
                     {{-- <h3 class="pb-2">Descriptif du poste</h3>
                     <p class="font-light">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dicta nostrum mollitia expedita tenetur accusamus ad? Reiciendis et porro laudantium laborum, esse est illum. In expedita atque ab repellat ipsum sapiente.</p> --}}
-                    <h3 class="py-2">Type d’emploi: <span class="font-light">STAGE</span></h3>
+                    <h3 class="py-2">Type d’Offre: <span class="font-light">{{$offre->categorie->categorie_offre_title}}</span></h3>
 
                 </div>
             </div>

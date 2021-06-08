@@ -5,6 +5,13 @@
 <div class="container">
     <!-- /.row -->
     <div class="row">
+        <div class="mt-3 col-lg-12">
+            @if(session('success'))
+                <div class="text-center alert alert-success">
+                    {{session('success')}}
+                </div>
+            @endif
+        </div>
     <div class="mt-2 col-12">
         <div class="card">
         <div class="card-header ">
@@ -22,30 +29,29 @@
             <table class="table table-hover text-nowrap table-bordered" id="users">
             <thead>
                 <tr>
-                <th>ID</th>
+                <th>N°</th>
                 <th>Nom</th>
                 <th>Prénoms</th>
                 <th>Email</th>
                 <th>Contact</th>
                 <th>Niveau Accès</th>
-                <th>Cv</th>
                 <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($users as $user)
+                @foreach ($users as $key=> $user)
                 <tr>
-                <td>{{$user->id}}</td>
+                <td>{{$key+1}}</td>
                 <td>{{$user->nom}}</td>
                 <td>{{$user->prenoms}}</td>
                 <td>{{$user->email}}</td>
                 <td>{{$user->contact}}</td>
                 <td>{{$user->roles->first()->nom}}</td>
-                <td>{{$user->cv}}</td>
                 <td>
-                    <a href="{{route('admin.users.view')}}"><i class="fas fa-eye"></i></a>
-                    <a href="#"><i class="fas fa-trash"></i></a>
-                    <a href="{{route('admin.users.edit')}}"><i class="fas fa-edit"></i></a>
+                    {{-- <a href="{{route('admin.users.view')}}"><i class="fas fa-eye"></i></a> --}}
+                    <a href="{{route('admin.users.edit.password',encrypt($user->id))}}"><i class="fas fa-key"></i></a>
+                    <a href="{{route('admin.users.delete',encrypt($user->id))}}" onclick="return confirm('Voulez-vous supprimer cet Utilisateur');"><i class="fas fa-trash"></i></a>
+                    <a href="{{route('admin.users.edit',encrypt($user->id))}}"><i class="fas fa-edit"></i></a>
                 </td>
                 </tr>
                 @endforeach

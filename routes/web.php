@@ -41,10 +41,14 @@ Route::group(["as"=>"admin.","prefix"=>"admin"],function () {
         #===========================DASHBOARD======================
         Route::get('/dashboard',[AdminController::class, 'dashboard'])->name('dashboard');
         #===========================USERS==========================
-        Route::get('/users',[UsersController::class, 'index'])->name('users.list');
-        Route::get('/users/edit',[UsersController::class, 'edit'])->name('users.edit');
+        Route::get('/users',[UsersController::class, 'usersList'])->name('users.list');
+        Route::get('/users/{user}/edit',[UsersController::class, 'edit'])->name('users.edit');
+        Route::get('/users/{user}/passsword',[UsersController::class, 'editPassword'])->name('users.edit.password');
+        Route::post('/users/{user}/update',[UsersController::class, 'updateUserListPassword'])->name('users.update.password');
         Route::get('/users/view',[UsersController::class, 'view'])->name('users.view');
         Route::get('/users/add',[UsersController::class, 'add'])->name('users.add');
+        Route::post('/users/store',[UsersController::class, 'store'])->name('users.store');
+        Route::get('/users/{user}/delete',[UsersController::class, 'deleteUser'])->name('users.delete');
         Route::get('/users/roles',[CategorieController::class,'createRole'])->name('roles.create');
         Route::post('/users/roles/add',[CategorieController::class,'storeRole'])->name('roles.store');
         Route::get('/users/parametres/password',[UsersController::class,'createPassword'])->name('users.password');
@@ -97,7 +101,7 @@ Route::group(["as"=>"admin.","prefix"=>"admin"],function () {
 // })->middleware(["isAdmin"]);
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/detail-offre',[HomeController::class, 'showDetailOffre'])->name('details-offres');
+    Route::get('/offre/{slug}/detail',[HomeController::class, 'showDetailOffre'])->name('details-offres');
     Route::get('/candidats/dashboard',[CandidatController::class, 'index'])->name('candidats.dashboard');
     Route::post('/candidats/{slug}/postulate', [PostulateController::class, 'store'])->name('candidats.postulate.store');
     Route::get('/candidats/{slug}/postulate',[PostulateController::class, 'index'])->name('candidats.postulate.index');
