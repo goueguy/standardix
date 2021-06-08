@@ -5,6 +5,13 @@
 <div class="container">
     <!-- /.row -->
     <div class="row">
+        <div class="col-lg-12">
+            @if(session('success'))
+                <div class="mt-4 mb-4 text-center col-lg-12 alert alert-success">
+                    {{session('success')}}
+                </div>
+            @endif
+        </div>
     <div class="mt-2 col-12">
         <div class="card">
         <div class="card-header ">
@@ -43,9 +50,9 @@
                         <td>{{$offre->duree_contrat}}</td>
                         <td><span class="badge bg-warning">{{$offre->categorie->categorie_offre_title}}</span></td>
                         <td>
-                            <a href="{{route('admin.offres.view')}}"><i class="fas fa-eye"></i></a>
-                            <a href="#"  onclick="return confirm('Voulez-vous supprimer cette Offre');"><i class="fas fa-trash"></i></a>
-                            <a href="{{route('admin.offres.edit')}}"><i class="fas fa-edit"></i></a>
+                            <a href="{{route('admin.offres.view',encrypt($offre->id))}}"><i class="fas fa-eye"></i></a>
+                            <a href="{{route('admin.offres.delete',encrypt($offre->id))}}"  onclick="return confirm('Voulez-vous supprimer cette Offre');"><i class="fas fa-trash"></i></a>
+                            <a href="{{route('admin.offres.edit',encrypt($offre->id))}}"><i class="fas fa-edit"></i></a>
                         </td>
                     </tr>
                 @endforeach

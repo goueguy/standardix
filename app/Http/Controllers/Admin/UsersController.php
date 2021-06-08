@@ -21,7 +21,7 @@ class UsersController extends Controller
     public function index()
     {
         // $query = DB::table('users')->where('niveau_acces');
-        $candidatures = Candidature::all();
+        $candidatures = Candidature::orderBy("id","desc")->get();
         // foreach ($users->roles as $user) {
         //     dd($user->roles);
         //}

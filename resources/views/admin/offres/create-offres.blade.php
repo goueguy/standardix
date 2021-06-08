@@ -6,7 +6,7 @@
 <div class="container-fluid ">
     <div class="row">
         @if(session('success'))
-            <div class="mt-4 mb-4 col-lg-12 alert alert-success">
+            <div class="mt-4 mb-4 text-center col-lg-12 alert alert-success">
                 {{session('success')}}
             </div>
         @endif
@@ -64,7 +64,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="date_limite">Date Limite</label>
-                                <input type="date" name="date_limite" class="form-control" value="{{old('date')}}">
+                                <input type="text" id="datepicker" name="date_limite" class="form-control" value="{{old('date')}}">
                                 @error('date_limite')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
@@ -121,40 +121,5 @@
 </section>
 @endsection
 @push('offres')
-    <script>
-        let toolbarOptions = [
-            ['bold','italic','underline','strike'],
-            [{'header':1},{'header':2}],
-            [{'list':'ordered'},{'list':'bullet'}],
-            [{ 'color': [] }, { 'background': [] }],
-            [{ 'font': [] }],
-            [{ 'align': [] }]];
-        let change = (quilInput) =>{
-            return new Quill(quilInput, {
-                theme: 'snow',
-                modules:{
-                    toolbar:toolbarOptions
-                }
-            });
-        }
-        let dossier = change("#dossier");
-        let profil = change("#profil");
-        let avantages = change("#avantages");
-        let description = change("#description");
-        function send(){
-
-            let descriptionField = document.querySelector("#descriptionField");
-            let avantagesField = document.querySelector("#avantagesField");
-            let profilField = document.querySelector("#profilField");
-            let dossierField = document.querySelector("#dossierField");
-            descriptionField.value = description.getText();
-            avantagesField.value = avantages.getText();
-            profilField.value = profil.getText();
-            dossierField.value = dossier.getText();
-            //alert(dossierCandidature);
-        }
-
-
-
-    </script>
+    <script src="{{asset('assets/js/quill.js')}}"></script>
 @endpush

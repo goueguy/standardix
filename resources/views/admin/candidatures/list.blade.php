@@ -24,9 +24,10 @@
                     <th>Nom & Prénoms</th>
                     <th>Email</th>
                     <th>Métiers</th>
+                    <th>Offre</th>
                     <th>Cv</th>
                     <th>Motivation</th>
-                    <th>Offre</th>
+
                     <th>Action</th>
                 </tr>
                 </thead>
@@ -37,9 +38,9 @@
                         <td>{{$candidature->name.' '.$candidature->firstname}}</td>
                         <td>{{$candidature->email}}</td>
                         <td>{{$candidature->metier->nom_metier}}</td>
+                        <td>{{$candidature->offre->titre}}</td>
                         <td><a href="{{asset('cv_uploads/'.$candidature->cv)}}">Télécharger</a></td>
                         <td>{{$candidature->motivation}}</td>
-                        <td>{{$candidature->offre->titre}}</td>
                         <td>
                             <a href="{{route('admin.candidatures.delete',encrypt($candidature->id))}}" onclick="return confirm('Voulez-vous supprimer cette Candidature');"><i class="fas fa-trash"></i></a>
                         </td>

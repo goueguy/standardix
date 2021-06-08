@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Candidature;
 use App\Models\Offre;
 use App\Models\User;
 use App\Models\RendezVous;
@@ -17,11 +18,11 @@ class RendezVousController extends Controller
      */
     public function index()
     {
-        $users=User::all();
+        $candidatures=Candidature::all();
         $offres=Offre::all();
 
         $messages= RendezVous::all();
-        return view('admin.rendezvous.index', compact('messages', 'users', 'offres'));
+        return view('admin.rendezvous.index', compact('messages', 'candidatures', 'offres'));
     }
 
     /**

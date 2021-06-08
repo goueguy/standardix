@@ -52,9 +52,9 @@
                     <td>6 mois</td>
                     <td>Créer des Appli Web Pro</td>
                     <td>
-                        <a href="{{route('admin.offres.view')}}"><i class="fas fa-eye"></i></a>
+                        <a href="#"><i class="fas fa-eye"></i></a>
                         <a href="#"><i class="fas fa-trash"></i></a>
-                        <a href="{{route('admin.offres.edit')}}"><i class="fas fa-edit"></i></a>
+                        <a href="#"><i class="fas fa-edit"></i></a>
                     </td>
                 </tr>
 
@@ -67,9 +67,9 @@
                     <td>6 mois</td>
                     <td>Créer des Appli Web Pro</td>
                     <td>
-                        <a href="{{route('admin.offres.view')}}"><i class="fas fa-eye"></i></a>
+                        <a href="#"><i class="fas fa-eye"></i></a>
                         <a href="#"><i class="fas fa-trash"></i></a>
-                        <a href="{{route('admin.offres.edit')}}"><i class="fas fa-edit"></i></a>
+                        <a href="#"><i class="fas fa-edit"></i></a>
                     </td>
                 </tr>
 
@@ -82,9 +82,9 @@
                     <td>6 mois</td>
                     <td>Créer des Appli Web Pro</td>
                     <td>
-                        <a href="{{route('admin.offres.view')}}"><i class="fas fa-eye"></i></a>
+                        <a href="#"><i class="fas fa-eye"></i></a>
                         <a href="#"><i class="fas fa-trash"></i></a>
-                        <a href="{{route('admin.offres.edit')}}"><i class="fas fa-edit"></i></a>
+                        <a href="#"><i class="fas fa-edit"></i></a>
                     </td>
                 </tr>
 

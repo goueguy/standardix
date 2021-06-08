@@ -6,7 +6,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
-use App\Models\User;
+use App\Models\Offre;
+use App\Models\Candidature;
+use App\Models\RendezVous;
+use Carbon\Carbon;
 class AdminController extends Controller
 {
     /**
@@ -23,7 +26,16 @@ class AdminController extends Controller
         return view("admin.login");
     }
     public function dashboard(){
-        return view("admin.index");
+        $totalOffre = Offre::get()->count();
+
+        $newTotalOffre = Offre::whereDate("date_edition",date("Y-m-d"))->get()->count();
+        //dd($newTotalOffre);
+        $lastTenDays = Carbon::today()->subDays(7);
+        $recentOffres = Offre::whereDate('date_edition', '>=', $lastTenDays)->get();
+
+        $totalCandidature = Candidature::get()->count();
+        $totalRendezVous = RendezVous::get()->count();
+        return view('admin.index',compact('totalOffre','totalCandidature','totalRendezVous','newTotalOffre','recentOffres'));
     }
     /**
      * Show the form for creating a new resource.

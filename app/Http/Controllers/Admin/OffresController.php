@@ -38,11 +38,11 @@ class OffresController extends Controller
         $users = User::all();
         return view('admin.offres.list-offres-lancees',compact("categories","users"));
     }
-    public function edit()
+    public function edit($id)
     {
+        $offre = Offre::find(decrypt($id));
         $categories = CategorieOffre::all();
-        $users = User::all();
-        return view('admin.offres.edit-offres',compact("categories","users"));
+        return view('admin.offres.edit-offres',compact('offre','categories'));
     }
 
     /**
@@ -87,7 +87,7 @@ class OffresController extends Controller
         $newOffres->description_offres = $request->description;
         $newOffres->lieu =  $request->lieu;
         $newOffres->profil = $request->profil;
-        $newOffres->date_limite = $request->date_limite;
+        $newOffres->date_limite = \Carbon\Carbon::parse($request->date_limite)->format('Y-m-d')." ".date('h:i:s');
         $newOffres->avantages = $request->avantages;
         $newOffres->dossier_candidature = $request->dossier_candidature;
         $newOffres->duree_contrat = $request->duree_contrat;
@@ -128,7 +128,39 @@ class OffresController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate(
+            [
+                "titre"=>"required|string|min:8",
+                "categorie_offre"=>"required|integer",
+                "description"=>"required|string|min:5",
+                "lieu"=>"required|string|min:5",
+                "profil"=>"required|string|min:5",
+                "date_limite"=>"required",
+                "avantages"=>"required|string|min:5",
+                "dossier_candidature"=>"required|string|min:5",
+                "duree_contrat"=>"required|string|min:3"
+            ]
+
+        );
+
+        $dataOffre = [
+            "titre" => $request->titre,
+            "categorie_offre_id" => $request->categorie_offre,
+            "description_offres" => $request->description,
+            "lieu" => $request->lieu,
+            "profil" => $request->profil,
+            // date("Y-m-d",strtotime($request->date_limite))." ".date('h:i:s')
+            "date_limite" => \Carbon\Carbon::parse($request->date_limite)->format('Y-m-d')." ".date('h:i:s'),
+            "avantages" => $request->avantages,
+            "dossier_candidature" => $request->dossier_candidature,
+            "duree_contrat" => $request->duree_contrat,
+            "slug" => Str::slug($request->titre),
+            "user_id" => Auth::id(),
+            // "date_edition" => date("Y-m-d H:i:s")
+        ];
+        Offre::where("id",decrypt($id))->update($dataOffre);
+
+        return redirect("admin/offres")->with("success","Offre modifiée");
     }
 
     /**
@@ -139,6 +171,7 @@ class OffresController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Offre::find(decrypt($id))->delete();
+        return back()->with("success","Offre Supprimée");
     }
 }
