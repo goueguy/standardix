@@ -1,10 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Candidature;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\DomaineEmploi;
+use App\Models\Offre;
 class CandidatController extends Controller
 {
     /**
@@ -14,7 +17,8 @@ class CandidatController extends Controller
      */
     public function index()
     {
-        return view("frontend.candidats.dashboard");
+        $offres = Offre::all();
+        return view("frontend.candidats.dashboard",compact('offres'));
     }
     public function parameters($user)
     {
@@ -30,11 +34,19 @@ class CandidatController extends Controller
     }
     public function subscribes()
     {
-        return view("frontend.candidats.subscribes");
+
+        $candidatures = Candidature::where("user_id",Auth::id())->get();
+        $idOffre = array();
+        foreach ($candidatures as $key => $value) {
+            array_push($idOffre,$value->offre_id);
+        }
+        $offres = Offre::whereIn("id",$idOffre)->get();
+        return view("frontend.candidats.subscribes",compact('offres'));
     }
     public function offers()
     {
-        return view("frontend.candidats.offers");
+        $offres = Offre::all();
+        return view("frontend.candidats.offers",compact('offres'));
     }
     public function changeParameters(Request $request,$user){
         $request->validate([
@@ -59,69 +71,9 @@ class CandidatController extends Controller
         return back()->with("success","Information a été modifiée");
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+    public function detailOffre($offre){
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        $offre = Offre::find(decrypt($offre));
+        return view("frontend.candidats.detail-offre",compact('offre'));
     }
 }

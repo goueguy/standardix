@@ -172,4 +172,5 @@ class UsersController extends Controller
         User::where("id",decrypt($user_id))->update(["password"=>Hash::make($password)]);
         return redirect('admin/users')->with("success","Mot de passe modifié");
     }
+    
 }

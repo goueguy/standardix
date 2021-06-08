@@ -43,8 +43,9 @@ Route::group(["as"=>"admin.","prefix"=>"admin"],function () {
         #===========================USERS==========================
         Route::get('/users',[UsersController::class, 'usersList'])->name('users.list');
         Route::get('/users/{user}/edit',[UsersController::class, 'edit'])->name('users.edit');
+        Route::post('/users/{user}/update',[UsersController::class, 'update'])->name('users.update.info');
         Route::get('/users/{user}/passsword',[UsersController::class, 'editPassword'])->name('users.edit.password');
-        Route::post('/users/{user}/update',[UsersController::class, 'updateUserListPassword'])->name('users.update.password');
+        Route::post('/users/{user}/password',[UsersController::class, 'updateUserListPassword'])->name('users.update.password');
         Route::get('/users/view',[UsersController::class, 'view'])->name('users.view');
         Route::get('/users/add',[UsersController::class, 'add'])->name('users.add');
         Route::post('/users/store',[UsersController::class, 'store'])->name('users.store');
@@ -111,5 +112,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/candidats/souscriptions',[CandidatController::class, 'subscribes'])->name('candidats.souscriptions');
     Route::get('/candidats/offres-lancees',[CandidatController::class, 'offers'])->name('candidats.offres');
     Route::get('/candidature-spontanee',[HomeController::class, 'showPageCandidatureSpontanee'])->name('candidature-spontanee');
+    Route::get('/candidatures/{offre}',[CandidatController::class, 'detailOffre'])->name('candidatures.detail.offre');
 });
 Auth::routes();

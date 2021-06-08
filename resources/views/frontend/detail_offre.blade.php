@@ -29,10 +29,13 @@
                         </p>
                     </div>
                 </div>
-                <div class="flex flex-col w-2/5">
+                <div class="flex flex-row justify-between w-2/5">
                     {{-- <h3 class="pb-2">Descriptif du poste</h3>
                     <p class="font-light">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dicta nostrum mollitia expedita tenetur accusamus ad? Reiciendis et porro laudantium laborum, esse est illum. In expedita atque ab repellat ipsum sapiente.</p> --}}
                     <h3 class="py-2">Type d’Offre: <span class="font-light">{{$offre->categorie->categorie_offre_title}}</span></h3>
+                    <a href="{{redirect()->back()->getTargetUrl()}}"> <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12.066 11.2a1 1 0 000 1.6l5.334 4A1 1 0 0019 16V8a1 1 0 00-1.6-.8l-5.333 4zM4.066 11.2a1 1 0 000 1.6l5.334 4A1 1 0 0011 16V8a1 1 0 00-1.6-.8l-5.334 4z" />
+                    </svg></a>
                 </div>
             </div>
             <div class="flex flex-row items-center justify-center w-full bg-white border rounded">
