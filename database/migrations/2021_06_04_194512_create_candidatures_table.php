@@ -22,6 +22,7 @@ class CreateCandidaturesTable extends Migration
             $table->string('metiers');
             $table->string('cv');
             $table->text('motivation');
+            $table->integer('selected')->default(0);
             $table->foreignIdFor(Offre::class)->nullable();
             $table->foreignIdFor(User::class)->nullable();
             $table->timestamps();
