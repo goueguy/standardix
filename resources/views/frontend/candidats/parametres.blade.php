@@ -3,7 +3,7 @@
 @section('content')
 <!--Informations Personnelles-->
 
-<div class="flex flex-col w-3/4">
+<div class="flex flex-col ">
     <div class="p-3 mt-5">
         <h2 class="mb-4 font-bold uppercase border-l-4 border-green-600"><span class="pl-2">Informations Personnelles</span></h2>
         @if(session("success"))

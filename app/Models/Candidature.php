@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use App\Models\RendezVous;
 class Candidature extends Model
 {
     use HasFactory;
@@ -15,7 +15,8 @@ class Candidature extends Model
         'email',
         'metiers',
         'cv',
-        'motivation'
+        'motivation',
+        'status'
     ];
 
     public function metier(){
@@ -26,4 +27,7 @@ class Candidature extends Model
         return $this->belongsTo(Offre::class);
     }
 
+    public function rendezvous(){
+        return $this->hasMany(RendezVous::class);
+    }
 }

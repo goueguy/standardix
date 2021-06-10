@@ -32,6 +32,7 @@
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/resources/demos/style.css">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     </head>
     <body class="hold-transition sidebar-mini layout-fixed">
 

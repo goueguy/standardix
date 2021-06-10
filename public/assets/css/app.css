@@ -57,6 +57,7 @@ Improve consistency of default fonts in all browsers. (https://github.com/sindre
 
 body {
   font-family:
+    'Gilroy',
 		system-ui,
 		-apple-system, /* Firefox supports this but not yet `system-ui` */
 		'Segoe UI',
@@ -377,7 +378,7 @@ html {
  */
 
 body {
-  font-family: inherit;
+  font-family: Gilroy;
   line-height: inherit;
 }
 

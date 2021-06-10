@@ -1,11 +1,12 @@
 <?php
 
 use App\Models\Offre;
+use App\Models\RendezVous;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use App\Models\User;
-class CreateCandidaturesTable extends Migration
+class CreateNotificationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,16 +15,11 @@ class CreateCandidaturesTable extends Migration
      */
     public function up()
     {
-        Schema::create('candidatures', function (Blueprint $table) {
+        Schema::create('notifications', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('firstname');
-            $table->string('email');
-            $table->string('metiers');
-            $table->string('cv');
-            $table->text('motivation');
-            $table->integer('status')->default(0);
-            $table->foreignIdFor(Offre::class)->nullable();
+            $table->text('content')->nullable();
+            $table->string('slug')->nullable();
+            $table->boolean('status')->default(0)->nullable();
             $table->foreignIdFor(User::class)->nullable();
             $table->timestamps();
         });
@@ -36,6 +32,6 @@ class CreateCandidaturesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('candidatures');
+        Schema::dropIfExists('notifications');
     }
 }

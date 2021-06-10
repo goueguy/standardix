@@ -91,7 +91,7 @@
                             <div class="form-group">
                                 <label for="dossier_candidature">Dossier de Candidature</label>
                                 <div  id="dossier"  style="height:200px"></div>
-                                <input type="hidden"  id="dossierField" name="dossier_candidature" class="@error('dossier_candidature') is-invalid @enderror">
+                                <input type="hidden"  id="dossierField" name="dossier_candidature" value="{{old('dossier_candidature')}}" class="@error('dossier_candidature') is-invalid @enderror">
                                 @error('dossier_candidature')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror

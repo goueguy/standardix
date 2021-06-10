@@ -87,7 +87,7 @@ class OffresController extends Controller
         $newOffres->description_offres = $request->description;
         $newOffres->lieu =  $request->lieu;
         $newOffres->profil = $request->profil;
-        $newOffres->date_limite = \Carbon\Carbon::parse($request->date_limite)->format('Y-m-d')." ".date('h:i:s');
+        $newOffres->date_limite = \Carbon\Carbon::createFromFormat('d/m/Y',$request->date_limite)->format('Y-m-d H:i:s');
         $newOffres->avantages = $request->avantages;
         $newOffres->dossier_candidature = $request->dossier_candidature;
         $newOffres->duree_contrat = $request->duree_contrat;
@@ -150,7 +150,7 @@ class OffresController extends Controller
             "lieu" => $request->lieu,
             "profil" => $request->profil,
             // date("Y-m-d",strtotime($request->date_limite))." ".date('h:i:s')
-            "date_limite" => \Carbon\Carbon::parse($request->date_limite)->format('Y-m-d')." ".date('h:i:s'),
+            "date_limite" =>\Carbon\Carbon::createFromFormat('d/m/Y',$request->date_limite)->format('Y-m-d H:i:s'),
             "avantages" => $request->avantages,
             "dossier_candidature" => $request->dossier_candidature,
             "duree_contrat" => $request->duree_contrat,

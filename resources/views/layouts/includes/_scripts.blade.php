@@ -9,8 +9,8 @@
 <script src="{{asset('/assets/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <!-- ChartJS -->
 <script src="{{asset('/assets/plugins/chart.js/Chart.min.js')}}"></script>
-<!-- Sparkline -->
-<script src="{{asset('/assets/plugins/sparklines/sparkline.js')}}"></script>
+{{-- <!-- Sparkline -->
+<script src="{{asset('/assets/plugins/sparklines/sparkline.js')}}"></script> --}}
 <!-- JQVMap -->
 <script src="{{asset('/assets/plugins/jqvmap/jquery.vmap.min.js')}}"></script>
 <script src="{{asset('/assets/plugins/jqvmap/maps/jquery.vmap.usa.js')}}"></script>

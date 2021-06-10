@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\Models\Candidature;
 class RendezVous extends Model
 {
     use HasFactory;
@@ -20,4 +20,7 @@ class RendezVous extends Model
         'date_rendez_vous'
     ];
 
+    public function candidature(){
+        return $this->belongsTo(Candidature::class);
+    }
 }
