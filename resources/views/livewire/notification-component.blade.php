@@ -20,7 +20,7 @@
         <div class="h-24 p-4 text-sm bg-gray-200 border-b md:text-base">
             <ul class="flex flex-col">
                 @foreach ($notifs as $notif)
-                    <li class="px-2 my-1 text-sm hover:bg-gray-100"><a href="#" class="flex flex-row justify-between hover:opacity-75"><span class="hover:underline">{{$notif->content}}</span> <span class="text-xs italic">{{Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $notif->created_at)->diffForHumans()}}</span></a></li>
+                    <li class="px-2 my-1 ml-3 text-sm hover:bg-gray-100"><a href="#" class="flex flex-row justify-between hover:opacity-75"><span class="hover:underline">{{$notif->content}}</span> <span class="text-xs italic">{{Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $notif->created_at)->diffForHumans()}}</span></a></li>
                 @endforeach
             </ul>
         </div>

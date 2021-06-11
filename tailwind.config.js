@@ -37,10 +37,8 @@
     },
     },
     variants: {
-        display:[
-            'responsive','dropdown'
-        ],
+        display:[],
     extend: {},
     },
-    plugins: [require('tailwindcss-dropdown')],
+    plugins: [],
 }
