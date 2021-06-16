@@ -59,10 +59,10 @@ Route::group(["as"=>"admin.","prefix"=>"admin"],function () {
         #===========================OFFRES==========================
         Route::get('/offres',[OffresController::class, 'index'])->name('offres.list');
         Route::get('/offres/lancees',[OffresController::class, 'lancees'])->name('offres.lancees');
-        Route::get('/offres/{id}edit',[OffresController::class, 'edit'])->name('offres.edit');
-        Route::get('/offres/{id}/view',[OffresController::class, 'view'])->name('offres.view');
-        Route::get('/offres/{id}/delete',[OffresController::class, 'destroy'])->name('offres.delete');
-        Route::post('/offres/{id}/update',[OffresController::class, 'update'])->name('offres.update');
+        Route::get('/offres/{id}/edit',[OffresController::class, 'edit'])->name('offres.edit');
+        Route::get('/offres/{slug}/view',[OffresController::class, 'view'])->name('offres.view');
+        Route::get('/offres/{slug}/delete',[OffresController::class, 'destroy'])->name('offres.delete');
+        Route::post('/offres/{slug}/update',[OffresController::class, 'update'])->name('offres.update');
         Route::get('/offres/add',[OffresController::class, 'add'])->name('offres.add');
         Route::post('/offres/add',[OffresController::class, 'store'])->name('offres.store');
         #===========================CANDIDATURES==========================
@@ -110,7 +110,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/candidats/{user}/parametres',[CandidatController::class, 'parameters'])->name('candidats.parametres');
     Route::post('/candidats/{user}/parametres',[CandidatController::class, 'changeParameters'])->name('candidats.parametres.change');
     Route::get('/candidats/rdv',[CandidatController::class, 'rendezVous'])->name('candidats.rdv');
-    Route::get('/candidats/souscriptions',[CandidatController::class, 'subscribes'])->name('candidats.souscriptions');
+    Route::get('/candidats/candidatures',[CandidatController::class, 'candidatures'])->name('candidats.candidatures');
     Route::get('/candidats/offres-lancees',[CandidatController::class, 'offers'])->name('candidats.offres');
     Route::get('/candidature-spontanee',[HomeController::class, 'showPageCandidatureSpontanee'])->name('candidature-spontanee');
     Route::get('/candidatures/{slug}',[CandidatController::class, 'detailOffre'])->name('candidatures.detail.offre');
@@ -118,6 +118,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/candidatures/verify',[CandidatController::class, 'verifyCandidatesExists'])->name('candidatures.verify');
     Route::get('/candidatures/{candidat}/rendez-vous/create',[CandidatController::class, 'createRendezVous'])->name('candidatures.rendezvous.create');
     Route::post('/candidatures/rendez-vous/store',[CandidatController::class, 'storeRendezVous'])->name('candidatures.rendezvous.store');
-    
+
 });
 Auth::routes();

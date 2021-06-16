@@ -25,7 +25,7 @@
                     @endif
                     </div>
                 </div>
-                <form action="{{route('admin.users.profil.update',encrypt(Auth::user()->id))}}" method="POST">
+                <form action="{{route('admin.users.profil.update',Auth::user()->id)}}" method="POST">
                 @csrf
                 <div class="card-body">
                     <div class="row">

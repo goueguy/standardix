@@ -70,8 +70,8 @@
                         <td>{{$domaine->description_domaine_emplois}}</td>
                         <td>
                             {{-- <a href="#"><i class="fas fa-eye"></i></a> --}}
-                            <a href="{{route('admin.domaine.delete',encrypt($domaine->id))}}" onclick="return confirm('Voulez-vous supprimer ce domaine')"><i class="fas fa-trash"></i></a>
-                            <a href="{{route('admin.domaine.edit',encrypt($domaine->id))}}"><i class="fas fa-edit"></i></a>
+                            <a href="{{route('admin.domaine.delete',$domaine->id)}}" onclick="return confirm('Voulez-vous supprimer ce domaine')"><i class="fas fa-trash"></i></a>
+                            <a href="{{route('admin.domaine.edit',$domaine->id)}}"><i class="fas fa-edit"></i></a>
                         </td>
                     </tr>
                     @endforeach

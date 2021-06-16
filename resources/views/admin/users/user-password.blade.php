@@ -11,7 +11,7 @@
                 <h3 class="card-title"><span class="float-left">Mot de passe de {{$user->nom}} {{$user->prenoms}}</span></h3>
                 <span class="float-right"><a href="{{route('admin.users.list')}}">Retour</a></span>
                 </div>
-                <form action="{{route('admin.users.update.password',encrypt($user->id))}}" method="POST">
+                <form action="{{route('admin.users.update.password',$user->id)}}" method="POST">
                 @csrf
                 <div class="card-body">
                     <div class="row">

@@ -49,9 +49,9 @@
                 <td>{{$user->roles->first()->nom}}</td>
                 <td>
                     {{-- <a href="{{route('admin.users.view')}}"><i class="fas fa-eye"></i></a> --}}
-                    <a href="{{route('admin.users.edit.password',encrypt($user->id))}}"><i class="fas fa-key"></i></a>
-                    <a href="{{route('admin.users.delete',encrypt($user->id))}}" onclick="return confirm('Voulez-vous supprimer cet Utilisateur');"><i class="fas fa-trash"></i></a>
-                    <a href="{{route('admin.users.edit',encrypt($user->id))}}"><i class="fas fa-edit"></i></a>
+                    <a href="{{route('admin.users.edit.password',$user->id)}}"><i class="fas fa-key"></i></a>
+                    <a href="{{route('admin.users.delete',$user->id)}}" onclick="return confirm('Voulez-vous supprimer cet Utilisateur');"><i class="fas fa-trash"></i></a>
+                    <a href="{{route('admin.users.edit',$user->id)}}"><i class="fas fa-edit"></i></a>
                 </td>
                 </tr>
                 @endforeach

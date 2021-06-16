@@ -14,7 +14,7 @@
                 <h3 class="card-title"><span class="float-left">Ajouter</span></h3>
                 <span class="float-right"><a href="{{route('admin.metier.create')}}">Retour</a></span>
                 </div>
-                <form action="{{route('admin.metier.update',encrypt($metier->id))}}" method="POST">
+                <form action="{{route('admin.metier.update',$metier->id)}}" method="POST">
                 @csrf
                 <div class="card-body">
                     <div class="row">

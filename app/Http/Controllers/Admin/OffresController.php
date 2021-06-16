@@ -26,11 +26,12 @@ class OffresController extends Controller
      *
      * @return void
      */
-    public function view()
+    public function view($slug)
     {
         $categories = CategorieOffre::all();
         $users = User::all();
-        return view('admin.offres.view-offres',compact("categories","users"));
+        $offre = Offre::where("slug",$slug)->first();
+        return view('admin.offres.view-offres',compact("categories","users",'offre'));
     }
     public function lancees()
     {
@@ -38,9 +39,9 @@ class OffresController extends Controller
         $users = User::all();
         return view('admin.offres.list-offres-lancees',compact("categories","users"));
     }
-    public function edit($id)
+    public function edit($slug)
     {
-        $offre = Offre::find(decrypt($id));
+        $offre = Offre::where("slug",$slug)->first();
         $categories = CategorieOffre::all();
         return view('admin.offres.edit-offres',compact('offre','categories'));
     }
@@ -126,7 +127,7 @@ class OffresController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $slug)
     {
         $request->validate(
             [
@@ -158,7 +159,7 @@ class OffresController extends Controller
             "user_id" => Auth::id(),
             // "date_edition" => date("Y-m-d H:i:s")
         ];
-        Offre::where("id",decrypt($id))->update($dataOffre);
+        Offre::where("slug",$slug)->update($dataOffre);
 
         return redirect("admin/offres")->with("success","Offre modifiée");
     }
@@ -169,9 +170,9 @@ class OffresController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($slug)
     {
-        Offre::find(decrypt($id))->delete();
+        Offre::where("slug",$slug)->delete();
         return back()->with("success","Offre Supprimée");
     }
 }

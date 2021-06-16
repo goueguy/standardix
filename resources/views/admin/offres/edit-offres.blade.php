@@ -15,9 +15,9 @@
         <div class="col-md-12">
             <div class="mt-2 card card-default">
                 <div class="card-header">
-                <h3 class="card-title">Ajouter</h3>
+                <h3 class="card-title">Modifier</h3>
                 </div>
-                <form action="{{route('admin.offres.update',encrypt($offre->id))}}" method="POST" onsubmit="send()">
+                <form action="{{route('admin.offres.update',$offre->slug)}}" method="POST" onsubmit="send()">
                 @csrf
                 <div class="card-body">
                     <div class="row">

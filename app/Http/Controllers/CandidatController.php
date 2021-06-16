@@ -36,7 +36,7 @@ class CandidatController extends Controller
         return view("frontend.candidats.rendez-vous",compact('messages'));
     }
 
-    public function subscribes()
+    public function candidatures()
     {
 
         $candidatures = Candidature::where("user_id",Auth::id())->get();
@@ -108,7 +108,7 @@ class CandidatController extends Controller
         $rendezvous->offre_id = $request->offres;
         $rendezvous->candidats_id = implode(",",$request->candidats);
         $rendezvous->save();
-        
+
         return back()->with("success","Le Rendez-Vous a été envoyé à tous les Candidats");
 
     }

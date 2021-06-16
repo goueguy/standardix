@@ -34,7 +34,7 @@ class UsersController extends Controller
         return view('admin.users.list-users', compact('users'));
     }
     public function editPassword($user){
-        $user = User::find(decrypt($user));
+        $user = User::find($user);
         return view('admin.users.user-password', compact('user'));
     }
     public function createPassword(){
@@ -59,7 +59,7 @@ class UsersController extends Controller
     }
     public function edit($user)
     {
-        $user = User::find(decrypt($user));
+        $user = User::find($user);
         $roles = Role::all();
         return view('admin.users.edit-users',compact('user','roles'));
     }
@@ -90,7 +90,7 @@ class UsersController extends Controller
             "metier_id"=>$request->metier,
             "motivation"=>$request->motivation
         ];
-        User::where("id",decrypt($user_id))->update($data);
+        User::where("id",$user_id)->update($data);
         return back()->with("success","Vos Informations on été modifiées");
     }
     public function updatePassword(Request $request,$user_id){
@@ -102,9 +102,9 @@ class UsersController extends Controller
         //password=john0000
         $old_password = $request->old_password;
         $password = $request->password;
-        $verifyPasswordExist = User::where("id",decrypt($user_id))->first();
+        $verifyPasswordExist = User::where("id",$user_id)->first();
         if(Hash::check($old_password, $verifyPasswordExist->password)){
-            User::where("id",decrypt($user_id))->update(["password"=>Hash::make($password)]);
+            User::where("id",$user_id)->update(["password"=>Hash::make($password)]);
             return back()->with("success","Vos Informations on été modifiées");
         }else{
             return back()->with("error","Mot de passe Incorrect ou Inexistant");
@@ -113,7 +113,7 @@ class UsersController extends Controller
     }
     public function delete($id_candidat){
 
-        $data = Candidature::where("id",decrypt($id_candidat))->first();
+        $data = Candidature::where("id",$id_candidat)->first();
         //delete cv file in uploads folder
         $data->delete();
         if(File::exists(public_path("cv_uploads/".$data->cv))){
@@ -142,7 +142,7 @@ class UsersController extends Controller
     }
 
     public function deleteUser($user){
-        User::find(decrypt($user))->delete();
+        User::find($user)->delete();
         return redirect('admin/users')->with('success','Utilisateur supprimé');
     }
     public function update(Request $request,$user){
@@ -159,7 +159,7 @@ class UsersController extends Controller
             "email"=>$request->email,
             "role_id"=>$request->role,
         ];
-        User::where("id",decrypt($user))->update($data);
+        User::where("id",$user)->update($data);
         return redirect('admin/users')->with('success','Utilisateur modifié');
     }
 
@@ -169,8 +169,8 @@ class UsersController extends Controller
             "password_confirmation"=>"required|min:8|same:password",
         ]);
         $password = $request->password;
-        User::where("id",decrypt($user_id))->update(["password"=>Hash::make($password)]);
+        User::where("id",$user_id)->update(["password"=>Hash::make($password)]);
         return redirect('admin/users')->with("success","Mot de passe modifié");
     }
-    
+
 }

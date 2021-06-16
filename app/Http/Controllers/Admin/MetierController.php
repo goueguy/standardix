@@ -70,7 +70,7 @@ class MetierController extends Controller
      */
     public function edit($id)
     {
-        $metier = Metier::find(decrypt($id));
+        $metier = Metier::find($id);
         return view("admin.metier.edit",compact('metier'));
     }
 
@@ -93,7 +93,7 @@ class MetierController extends Controller
             "nom_metier"=>$request->nom,
             "description_metier"=> $request->description
         ];
-        Metier::where("id",decrypt($id))->update($data);
+        Metier::where("id",$id)->update($data);
 
         return redirect("admin/metiers")->with("success","Métier Modifié!");
     }
@@ -106,7 +106,7 @@ class MetierController extends Controller
      */
     public function destroy($id)
     {
-        Metier::find(decrypt($id))->delete();
+        Metier::find($id)->delete();
         return redirect("admin/metiers")->with("success","Métier Supprimé!");
     }
 }

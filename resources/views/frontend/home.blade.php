@@ -15,7 +15,7 @@
                         {{substr_replace($offre->description_offres,"...",248)}}
                     </p>
                     <div class="flex flex-row items-center">
-                        <div class="flex pt-3 text-sm font-light"><a href="{{route('details-offres', $offre->slug)}}"><span class="p-2 mr-2 text-center text-white bg-gray-500 rounded-full">Voir plus</span></a><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <div class="flex pt-3 text-sm font-light"><a href="{{route('details-offres', $offre->slug)}}"><span class="p-2 mr-2 text-center text-white font-bold bg-gray-500 rounded-full">Voir plus</span></a><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                             </svg><span class="px-1 font-bold">Date d'édition</span>:{{date('d-m-Y',strtotime($offre->date_edition))}} <span class="pr-2"></span><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -24,8 +24,8 @@
                     </div>
                 </div>
                 <div class="flex flex-col space-y-14 item-center">
-                    <span class="p-2 text-center text-white bg-green-500 rounded-full"><a href="#">{{$offre->categorie->categorie_offre_title}}</a></span>
-                    <span class="p-2 text-center text-white bg-red-500 rounded-full"><a href="{{route('candidats.postulate.index', $offre->slug)}}">Postuler</a></span>
+                    <span class="p-2 text-center text-gray-600 font-bold rounded-full"><a href="#">{{$offre->categorie->categorie_offre_title}}</a></span>
+                    <span class="p-2 text-center text-white bg-primary rounded-full"><a href="{{route('candidats.postulate.index', $offre->slug)}}">Postuler</a></span>
                 </div>
             </div>
         @endforeach

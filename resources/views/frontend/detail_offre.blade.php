@@ -21,44 +21,46 @@
         </div>
         <!-- Details Content -->
         <div class="relative detailDefault">
-            <div class="inline-flex justify-between px-8 py-6 bg-white border rounded-lg">
-                <div class="flex flex-col w-3/5">
+            <div class="inline-flex justify-ebd px-8 py-6 bg-white border rounded-lg">
+                <div class="flex flex-col">
                     <h3>Profil de l’offre d’emploi</h3>
-                    <div class="font-light">
+                    <div class="flex flex-row font-light w-full">
                         <p>{{substr_replace($offre->profil,"...",248)}}
                         </p>
                     </div>
                 </div>
-                <div class="flex flex-row justify-between w-2/5">
+                <div class="flex flex-row pl-2 text-justify">
                     {{-- <h3 class="pb-2">Descriptif du poste</h3>
                     <p class="font-light">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dicta nostrum mollitia expedita tenetur accusamus ad? Reiciendis et porro laudantium laborum, esse est illum. In expedita atque ab repellat ipsum sapiente.</p> --}}
-                    <h3 class="py-2">Type d’Offre: <span class="font-light">{{$offre->categorie->categorie_offre_title}}</span></h3>
-                    <a href="{{redirect()->back()->getTargetUrl()}}"> <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12.066 11.2a1 1 0 000 1.6l5.334 4A1 1 0 0019 16V8a1 1 0 00-1.6-.8l-5.333 4zM4.066 11.2a1 1 0 000 1.6l5.334 4A1 1 0 0011 16V8a1 1 0 00-1.6-.8l-5.334 4z" />
-                    </svg></a>
+                    <h3 class="py-2"><span class="font-bold text-gray-500">{{$offre->categorie->categorie_offre_title}}</span></h3>
                 </div>
             </div>
-            <div class="flex flex-row items-center justify-center w-full bg-white border rounded">
+            <div class="flex flex-col items-center justify-center w-full bg-white border rounded">
                 <div class="flex items-center text-blue-400">
                     <button type="button" id="seemore" class="font-bold pointer-cursor">Voir Plus</button><svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                     </svg>
+                </div>
+                <div class="border w-full flex items-center justify-center rounded">
+                    <a href="{{redirect()->back()->getTargetUrl()}}"> <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12.066 11.2a1 1 0 000 1.6l5.334 4A1 1 0 0019 16V8a1 1 0 00-1.6-.8l-5.333 4zM4.066 11.2a1 1 0 000 1.6l5.334 4A1 1 0 0011 16V8a1 1 0 00-1.6-.8l-5.334 4z"></path>
+                    </svg></a>
                 </div>
             </div>
         </div>
         <!-- See More Content -->
         <div class="hidden hiddenDetail">
             <div class="inline-flex justify-between px-8 py-6 bg-white border rounded-lg">
-                <div class="flex flex-col w-3/5">
+                <div class="flex flex-col">
                     <h3>Profil de l’offre d’emploi</h3>
                     <div class="font-light">
                         {{$offre->profil}}
                     </div>
                 </div>
-                <div class="flex flex-col w-2/5">
+                <div class="flex flex-row justify-end pl-2 w-2/5 text-justify">
                     {{-- <h3 class="pb-2">Descriptif du poste</h3>
                     <p class="font-light">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dicta nostrum mollitia expedita tenetur accusamus ad? Reiciendis et porro laudantium laborum, esse est illum. In expedita atque ab repellat ipsum sapiente.</p> --}}
-                    <h3 class="py-2">Type d’Offre: <span class="font-light">{{$offre->categorie->categorie_offre_title}}</span></h3>
+                    <h3 class="py-2"><span class="font-bold text-gray-500">{{$offre->categorie->categorie_offre_title}}</span></h3>
 
                 </div>
             </div>

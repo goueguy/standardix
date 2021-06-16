@@ -69,7 +69,7 @@ class DomaineController extends Controller
      */
     public function edit($id)
     {
-        $domaine = DomaineEmploi::find(decrypt($id));
+        $domaine = DomaineEmploi::find($id);
         return view("admin.domaines.edit",compact('domaine'));
     }
 
@@ -92,7 +92,7 @@ class DomaineController extends Controller
             "nom"=>$request->nom,
             "description_domaine_emplois"=> $request->description
         ];
-        DomaineEmploi::where("id",decrypt($id))->update($data);
+        DomaineEmploi::where("id",$id)->update($data);
 
         return redirect("admin/domaines")->with("success","Domaine Modifié!");
     }
@@ -105,7 +105,7 @@ class DomaineController extends Controller
      */
     public function destroy($id)
     {
-        DomaineEmploi::find(decrypt($id))->delete();
+        DomaineEmploi::find($id)->delete();
         return redirect("admin/domaines")->with("success","Domaine Supprimé!");
 
     }

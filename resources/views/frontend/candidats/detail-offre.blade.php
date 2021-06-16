@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="flex-col p-5 mt-5">
-    <a href="{{redirect()->back()->getTargetUrl()}}" class="flex flex-row items-center w-28 justify-content-center hover:bg-gray-100"> 
+    <a href="{{redirect()->back()->getTargetUrl()}}" class="flex flex-row items-center w-28 justify-content-center hover:bg-gray-100">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12.066 11.2a1 1 0 000 1.6l5.334 4A1 1 0 0019 16V8a1 1 0 00-1.6-.8l-5.333 4zM4.066 11.2a1 1 0 000 1.6l5.334 4A1 1 0 0011 16V8a1 1 0 00-1.6-.8l-5.334 4z" />
         </svg>
@@ -11,8 +11,8 @@
     </a>
     <h2 class="mb-4 font-bold text-center underline text-primary">{{$offre->titre}}</h2>
 
-    <div class="flex flex-col mb-3">
-        <div class="inline-flex justify-between">
+    <div class="flex flex-col mb-3 justify-items-end">
+        <div class="inline-flex">
             <label class="float-left font-bold">Type d'Offre</label><label class="float-right font-bold">Lieu</label>
         </div>
         <div class="flex flex-row space-x-2">
