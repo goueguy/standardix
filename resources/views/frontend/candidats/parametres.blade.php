@@ -11,12 +11,11 @@
                 {{session("success")}}
             </div>
         @endif
-        <form action="{{route('candidats.parametres.change',encrypt(Auth::user()->id))}}" method="POST">
+        <form action="{{route('candidats.parametres.change',Auth::user()->id)}}" method="POST">
             @csrf
             <div class="flex flex-row space-x-2">
-                <input type="text" name="nom" class="@error('nom') border border-red-500 @enderror w-1/2 p-2 mb-2 bg-white border rounded-full  focus:outline-none" placeholder="Nom" value="{{Auth::user()->nom}}"/>
-                <input type="text" name="prenoms" class="@error('prenoms') border border-red-500 @enderror w-1/2 p-2 mb-2 bg-white border rounded-full focus:outline-none" placeholder="Prénoms" value="{{Auth::user()->prenoms}}" />
-
+                <input type="text" name="nom" class="@error('nom') border-red-500 @enderror w-1/2 p-2 mb-2 bg-white border rounded-full  focus:outline-none" placeholder="Nom" value="{{Auth::user()->nom}}"/>
+                <input type="text" name="prenoms" class="@error('prenoms')border-red-500 @enderror w-1/2 p-2 mb-2 bg-white border rounded-full focus:outline-none" placeholder="Prénoms" value="{{Auth::user()->prenoms}}" />
             </div>
             <div class="flex flex-row justify-between">
             @error('nom')

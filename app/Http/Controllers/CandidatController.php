@@ -59,14 +59,14 @@ class CandidatController extends Controller
         return view("frontend.candidats.offers",compact('offres'));
     }
     public function changeParameters(Request $request,$user){
-        $request->validate([
-            "nom"=>"required|string",
-            "prenoms"=>"required|string",
-            "motivation"=>"required|string",
-            "telephone"=>"required|string",
-            "lieu_habitation"=>"required|string",
-            "domaine"=>"required|integer"
-        ]);
+        // $request->validate([
+        //     "nom"=>"required|string",
+        //     "prenoms"=>"required|string",
+        //     "motivation"=>"required|string",
+        //     "telephone"=>"required|string",
+        //     "lieu_habitation"=>"required|string",
+        //     "domaine"=>"required|integer"
+        // ]);
         $userData = [
             "nom" => $request->nom,
             "prenoms" => $request->prenoms,

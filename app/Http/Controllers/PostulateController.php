@@ -52,7 +52,10 @@ class PostulateController extends Controller
             'cv' => 'required|max:2048|mimes:pdf,PDF',
             'motivation' => 'required|max:255'
         ],[
-            'cv.max'=>'Le fichier ne doit pas dépasser 2 Mo'
+            'cv.max'=>'Le fichier ne doit pas dépasser 2 Mo',
+            'cv.required'=>'Le CV est requis',
+            'cv.mimes'=>'Le CV n\'est pas au bon format',
+            'metiers.required'=>'Sélectionner un métier'
         ]
     );
 

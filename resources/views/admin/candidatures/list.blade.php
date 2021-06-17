@@ -87,7 +87,7 @@ $(function (e) {
         "autoWidth": false,
         "responsive": true
     });
-    
+
     //check all checkbox input in a sample click
     $("#checkboxAll").click(function(e){
         if($(this).is(':checked',true)){
@@ -96,16 +96,16 @@ $(function (e) {
             $(".checkboxClass").prop('checked',false);
         }
     });
-    
+
     $("#btnRendezVous").click(function(e){
         e.preventDefault();
-        
+
         let allInputs = [];
         $(".checkboxClass:checked").each(function(){
             allInputs.push($(this).attr('data-id'));
         })
-        //console.log(allInputs);
-        $.ajax({
+        if(allInputs.length>0){
+            $.ajax({
             url:$(this).data('url'),
             type:"POST",
             headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
@@ -114,13 +114,18 @@ $(function (e) {
                 if(data['status']==200){
                     let param = data['candidats'];
                     window.location.href='/candidatures/'+param+'/rendez-vous/create';
-                    
+
                 }
             },
             error:function(error){
-                console.log("error");
+                swal("ATTENTION !", error, "error");
             }
         })
+        }else{
+            swal("ATTENTION !", "VOUS DEVEZ SÉLECTIONNER AU MOINS UN CANDIDAT", "error");
+        }
+        //console.log(allInputs);
+
     });
 });
 

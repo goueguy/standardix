@@ -46,6 +46,7 @@
 <script src="{{asset('/assets/plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
 <script src="{{asset('/assets/plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
     $( function() {
         $( "#datepicker" ).datepicker(

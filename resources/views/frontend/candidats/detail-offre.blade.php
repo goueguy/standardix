@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="flex-col p-5 mt-5">
-    <a href="{{redirect()->back()->getTargetUrl()}}" class="flex flex-row items-center w-28 justify-content-center hover:bg-gray-100">
+    <a href="{{route('candidats.offres')}}" class="flex flex-row items-center w-28 justify-content-center hover:bg-gray-100">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12.066 11.2a1 1 0 000 1.6l5.334 4A1 1 0 0019 16V8a1 1 0 00-1.6-.8l-5.333 4zM4.066 11.2a1 1 0 000 1.6l5.334 4A1 1 0 0011 16V8a1 1 0 00-1.6-.8l-5.334 4z" />
         </svg>
@@ -50,7 +50,7 @@
     <div class="flex flex-row mt-4 mb-4 space-x-2">
         <input type="text" placeholder="Date d'edition" class="w-full p-3 bg-gray-100 border focus:outline-none" readonly value="{{$offre->duree_contrat}}">
     </div>
-
+    <a href="{{route('candidats.postulate.index', $offre->slug)}}" class="py-3 mt-5 font-bold text-center transition duration-500 bg-yellow-300 rounded-full shadow-md text-md px-28 focus:outline-none float-right">POSTULER</a>
 </div>
 
 
