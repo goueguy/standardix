@@ -3,7 +3,7 @@
     <!-- cercle -->
     <div class="flex flex-wrap items-stretch justify-center ">
         <div class="flex flex-col items-center justify-center">
-            <div class="w-16 h-16 mt-5 ">
+            <div class="w-16 h-16 mt-8">
                 <img src="{{asset('assets/images/avatar.svg')}}" class="bg-white rounded-full">
             </div>
             <span class="flex items-center justify-center my-2 text-center text-white cursor-pointer text-md hover:opacity-75">

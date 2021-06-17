@@ -8,6 +8,7 @@ use App\Models\Candidature;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Exceptions\PostTooLargeException;
 class PostulateController extends Controller
 {
     /**
@@ -41,26 +42,32 @@ class PostulateController extends Controller
      */
     public function store(Request $request,$slug)
     {
-
+        if (isset($_SERVER['CONTENT_LENGTH']) && $_SERVER['CONTENT_LENGTH'] > ((int) ini_get('post_max_size') * 1024 * 1024))
+			dd('File to big');
         $this->validate($request,[
             'nom' => 'required|string|min:3',
             'prenoms' => 'required|min:3',
             'email' => 'required|email',
             'metiers' => 'required',
-            'cv' => 'required|mimes:pdf,PDF',
+            'cv' => 'required|max:2048|mimes:pdf,PDF',
             'motivation' => 'required|max:255'
-        ]);
+        ],[
+            'cv.max'=>'Le fichier ne doit pas dépasser 2 Mo'
+        ]
+    );
 
+
+    try {
         $nom = $request->nom;
         $firstname = $request->prenoms;
         $email = $request->email;
         $metiers = $request->metiers;
         $file_cv = $request->file('cv');
         $motivation = $request->motivation;
-
         //dd($motivation);
         if ($request->hasFile('cv')) {
              //get file with extension
+
             $fileNameWithExtension = $request->file("cv")->getClientOriginalName();
             //get filename
             $fileName = pathinfo($fileNameWithExtension, PATHINFO_FILENAME);
@@ -81,7 +88,7 @@ class PostulateController extends Controller
         ->first();
         //dd($candidateData);
         if($candidateData){
-            return back()->with('error','Vous avez déja postulé pour cette offre');
+            return back()->with('error','Vous avez déja postulé');
         }else{
             $newCandidature = new Candidature;
             $newCandidature->name = $nom;
@@ -94,9 +101,12 @@ class PostulateController extends Controller
             $newCandidature->offre_id = $offre->id;
             $newCandidature->save();
         }
+        } catch (\Exception $ex) {
+            echo $ex->getMessage();
+        }
 
 
-        return back()->with('message','Votre candidature a été validée pour cette Offre');
+        return back()->with('message','Votre candidature a été validée');
 
 
     }

@@ -52,6 +52,9 @@
                         </svg>
                         </label>
                     </div>
+                    @error('cv')
+                        <span class="text-red-500">{{$message}}</span>
+                    @enderror
 
                     <textarea name="motivation" id="" placeholder="Votre motivation" class="@error('motivation') border border-red-600 @enderror w-full p-5 mb-5 placeholder-gray-500 shadow-md resize-none h-60 rounded-2xl focus:outline-none"></textarea>
 

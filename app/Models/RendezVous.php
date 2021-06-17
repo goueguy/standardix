@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Candidature;
+use App\Models\Offre;
 class RendezVous extends Model
 {
     use HasFactory;
@@ -23,4 +24,8 @@ class RendezVous extends Model
     public function candidature(){
         return $this->belongsTo(Candidature::class);
     }
+    public function offre(){
+        return $this->belongsTo(offre::class);
+    }
+
 }

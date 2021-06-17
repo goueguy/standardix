@@ -6,7 +6,7 @@
     <div class="flex justify-center">
         <table class="w-full mb-4 text-sm bg-white rounded shadow-md">
             <tbody>
-                <tr class="border-b">
+                <tr class="border">
                     <th class="p-3 text-left">N°</th>
                     <th class="p-3 text-left">Titre</th>
                     <th class="p-3 px-5 text-left">Description</th>
@@ -23,14 +23,14 @@
                         <td class="p-3 "><input type="text"  class="bg-transparent">{{date("d-m-Y",strtotime($offre->date_limite))}}</td>
 
                         <td class="flex justify-end p-3">
-                            <a href="{{route('candidatures.detail.offre',$offre->slug)}}"  title="Voir en détail" class="px-2 py-1 mr-2 mr-3 text-sm text-white text-green-600 rounded hover:bg-blue-100 focus:outline-none focus:shadow-outline">
+                            <a href="{{route('candidatures.detail.offre',$offre->slug)}}"  title="Voir en détail" class="px-2 py-1 mr-3 text-sm text-green-600 rounded hover:bg-blue-100 focus:outline-none focus:shadow-outline">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                                 </svg>
 
                             </a>
-                            <a href="{{route('candidats.postulate.index', $offre->slug)}}" title="Cliquer pour postuler" class="py-1 mr-3 text-sm text-white text-yellow-500 rounded hover:bg-green-100 focus:outline-none focus:shadow-outline">
+                            <a href="{{route('candidats.postulate.index', $offre->slug)}}" title="Cliquer pour postuler" class="py-1 mr-3 text-sm text-yellow-500 rounded hover:bg-green-100 focus:outline-none focus:shadow-outline">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path d="M12 14l9-5-9-5-9 5 9 5z" />
                                     <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
@@ -62,6 +62,6 @@
             </tbody>
         </table>
     </div>
-
+    {{$offres->links()}}
 @endsection
 

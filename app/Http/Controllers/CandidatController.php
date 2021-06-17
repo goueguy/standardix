@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Candidature;
+use App\Models\CandidatureRendezVous;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -19,8 +20,12 @@ class CandidatController extends Controller
      */
     public function index()
     {
-        $offres = Offre::all();
-        return view("frontend.candidats.dashboard",compact('offres'));
+        $offres = Offre::orderBy('id','desc')->limit(5)->get();
+        $totalOffre =  Offre::count();
+        //$this->CandidatureStat();
+        $totalRendezVous = RendezVous::whereIn("id", $this->RendezVousDataId())->count();
+        $totalCandidature = Candidature::where('user_id',Auth::id())->count();
+        return view("frontend.candidats.dashboard",compact('totalCandidature','offres','totalOffre','totalRendezVous'));
     }
     public function parameters($user)
     {
@@ -32,8 +37,9 @@ class CandidatController extends Controller
     }
     public function rendezVous()
     {
-        $messages = RendezVous::where("candidats_id",Auth::id())->get();
-        return view("frontend.candidats.rendez-vous",compact('messages'));
+        //$this->RendezVousDataId();
+        $rendezvous = RendezVous::whereIn("id",$this->RendezVousDataId())->get();
+        return view("frontend.candidats.rendez-vous",compact('rendezvous'));
     }
 
     public function candidatures()
@@ -49,7 +55,7 @@ class CandidatController extends Controller
     }
     public function offers()
     {
-        $offres = Offre::all();
+        $offres = Offre::paginate(10);
         return view("frontend.candidats.offers",compact('offres'));
     }
     public function changeParameters(Request $request,$user){
@@ -71,7 +77,7 @@ class CandidatController extends Controller
             "updated_at"=>date("Y-m-d h:i:s")
         ];
         //dd($userData);
-        User::where("id",decrypt($user))->update($userData);
+        User::where("id",$user)->update($userData);
         return back()->with("success","Information a été modifiée");
     }
 
@@ -81,7 +87,7 @@ class CandidatController extends Controller
         return view("frontend.candidats.detail-offre",compact('offre'));
     }
     public function selectCandidature(Request $request,$candidat){
-        $candidatData = Candidature::where("id",decrypt($candidat))->first();
+        $candidatData = Candidature::where("id",$candidat)->first();
         ($candidatData->status==0) ? $candidatData->update(['status'=>1]) : $candidatData->update(['status'=>0]);
         return back()->with("success","Le statut de cette candidature a été modifié");
     }
@@ -106,8 +112,17 @@ class CandidatController extends Controller
         $rendezvous->slug = Str::slug($request->label);
         $rendezvous->user_id = Auth::id();
         $rendezvous->offre_id = $request->offres;
-        $rendezvous->candidats_id = implode(",",$request->candidats);
+        //$rendezvous->candidats_id = implode(",",$request->candidats);
+
         $rendezvous->save();
+        foreach ($request->candidats as $key => $value) {
+            CandidatureRendezVous::create(
+                [
+                    'candidature_id'=>$value,
+                    'rendez_vous_id'=>$rendezvous->id
+                ]
+            );
+        }
 
         return back()->with("success","Le Rendez-Vous a été envoyé à tous les Candidats");
 
@@ -127,5 +142,15 @@ class CandidatController extends Controller
         $offres=Offre::all();
         $messages= RendezVous::all();
         return view('admin.rendezvous.create-rendezvous', compact('messages', 'candidats', 'offres','allOffreCandidatId'));
+    }
+
+    public function RendezVousDataId(){
+        $candidature = CandidatureRendezVous::where("candidature_id",Auth::id())->get();
+        $rendezVousIds = [];
+        foreach ($candidature as $key => $value) {
+            array_push($rendezVousIds,$value->rendez_vous_id);
+        }
+
+        return $rendezVousIds;
     }
 }

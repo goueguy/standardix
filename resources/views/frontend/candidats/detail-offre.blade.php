@@ -35,19 +35,19 @@
         <textarea  class="w-full p-3 bg-gray-100 border resize-none focus:outline-none"  rows="10" readonly>{{$offre->description_offres}}</textarea>
     </div>
     <label class="font-bold">Profil</label>
-    <div class="flex flex-row mt-4 mb-4 space-x-2">
-        <textarea  class="w-auto w-full p-3 bg-gray-100 border resize-none focus:outline-none"  rows="10" readonly>{{$offre->profil}}</textarea>
+    <div class="flex flex-row mt-4 mb-4 space-x-2 ">
+        <textarea  class="w-full  p-3 bg-gray-100 border resize-none focus:outline-none"  rows="10" readonly>{{$offre->profil}}</textarea>
     </div>
     <label class="font-bold">Avantages</label>
     <div class="flex flex-row mt-4 mb-4 space-x-2">
         <textarea  class="w-full p-3 bg-gray-100 border resize-none focus:outline-none" rows="10" readonly>{{$offre->avantages}}</textarea>
     </div>
     <label class="font-bold">Dossier de Candidature</label>
-    <div class="flex flex-row mt-4 mb-3 mb-4 space-x-2">
+    <div class="flex flex-row mt-4 mb-4 space-x-2">
         <textarea  class="w-full p-3 bg-gray-100 border resize-none focus:outline-none" rows="10" readonly>{{$offre->dossier_candidature}}</textarea>
     </div>
     <label class="font-bold">Durée du Contrat</label>
-    <div class="flex flex-row mt-4 mb-3 mb-4 space-x-2">
+    <div class="flex flex-row mt-4 mb-4 space-x-2">
         <input type="text" placeholder="Date d'edition" class="w-full p-3 bg-gray-100 border focus:outline-none" readonly value="{{$offre->duree_contrat}}">
     </div>
 

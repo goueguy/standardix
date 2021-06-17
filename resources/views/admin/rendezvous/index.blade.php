@@ -34,7 +34,7 @@
                         <td>{{date("d-m-Y",strtotime($message->date_rendez_vous))}}</td>
                         <td>
                             <a href="#"><i class="fas fa-eye"></i></a>
-                            <a href="{{route('admin.rendez-vous.delete',encrypt($message->id))}}" onclick="return confirm('Voulez-vous supprimer ce Rendez-vous ?');"><i class="fas fa-trash"></i></a>
+                            <a href="{{route('admin.rendez-vous.delete',$message->id)}}" onclick="return confirm('Voulez-vous supprimer ce Rendez-vous ?');"><i class="fas fa-trash"></i></a>
                             <a href="#"><i class="fas fa-edit"></i></a>
                         </td>
                     </tr>

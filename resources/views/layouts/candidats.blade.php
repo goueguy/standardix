@@ -15,12 +15,13 @@
         <div class="relative min-h-screen md:flex">
             {{-- sfar --}}
             @include("layouts.includes._candidats_aside")
-            <div class="block w-3/4 p-10 text-xl bg-white">
+            <div class="block w-3/4 p-5 text-xl bg-white">
                 <livewire:notification-component />
                 @yield("content")
             </div>
         </div>
     </div>
+    @stack('js')
     @livewireScripts
 </body>
 </html>

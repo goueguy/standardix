@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use App\Models\RendezVous;
 class Offre extends Model
 {
     use HasFactory;
@@ -29,5 +29,8 @@ class Offre extends Model
 
     public function candidatures(){
         return $this->hasMany(Candidature::class);
+    }
+    public function rendezVous(){
+        return $this->hasMany(RendezVous::class);
     }
 }

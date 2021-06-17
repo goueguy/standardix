@@ -88,7 +88,7 @@ class RendezVousController extends Controller
      */
     public function destroy($candidat)
     {
-        RendezVous::find(decrypt($candidat))->delete();
+        RendezVous::find($candidat)->delete();
         return back()->with("success","Le Rendez-Vous a été supprimé");
     }
 }
