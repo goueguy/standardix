@@ -10,7 +10,8 @@ class HomeController extends Controller
 
     public function index()
     {
-        $offres=Offre::orderBy("id","desc")->get();
+        $offres=Offre::all();
+        //dd($offres->category->category_offre_title);
         return view("frontend.home", compact('offres'));
     }
     public function showPageNosMetiers()

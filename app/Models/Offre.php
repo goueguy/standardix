@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\RendezVous;
+use App\Models\CategoryOffre;
 class Offre extends Model
 {
     use HasFactory;
@@ -13,7 +14,7 @@ class Offre extends Model
         'date_edition',
         'date_limite',
         'lieu',
-        'categorie_offre_id',
+        'category_offre_id',
         'duree_contrat',
         'profil',
         'avantages',
@@ -23,8 +24,8 @@ class Offre extends Model
         'slug'
     ];
 
-    public function categorie(){
-        return $this->hasOne(CategorieOffre::class,'id','categorie_offre_id');
+    public function category(){
+        return $this->belongsTo(CategoryOffre::class,'id');
     }
 
     public function candidatures(){

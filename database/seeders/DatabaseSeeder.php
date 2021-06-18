@@ -53,19 +53,19 @@ class DatabaseSeeder extends Seeder
             'role_id'=>1,
             'password'=>Hash::make("konan0000"),
         ]);
-        DB::table('categories_offres')->insert([
+        DB::table('category_offres')->insert([
             'id' => 1,
-            'categorie_offre_title'=>"CDI",
+            'category_offre_title'=>"CDI",
             'user_id'=>1
         ]);
-        DB::table('categories_offres')->insert([
+        DB::table('category_offres')->insert([
             'id' => 2,
-            'categorie_offre_title'=>"FREELANCE",
+            'category_offre_title'=>"FREELANCE",
             'user_id'=>1
         ]);
-        DB::table('categories_offres')->insert([
+        DB::table('category_offres')->insert([
             'id' => 3,
-            'categorie_offre_title'=>"CDD",
+            'category_offre_title'=>"CDD",
             'user_id'=>2
         ]);
         DB::table('roles')->insert([

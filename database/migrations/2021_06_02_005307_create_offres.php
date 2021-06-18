@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\CategorieOffre;
+use App\Models\CategoryOffre;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -20,7 +20,7 @@ class CreateOffres extends Migration
             $table->dateTime('date_edition');
             $table->dateTime('date_limite');
             $table->string('lieu')->nullable();
-            $table->foreignIdFor(CategorieOffre::class)->nullable();
+            $table->foreignIdFor(CategoryOffre::class)->nullable();
             $table->string('duree_contrat')->nullable();
             $table->text('profil');
             $table->text('avantages');

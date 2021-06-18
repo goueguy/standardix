@@ -32,7 +32,7 @@
                 <div class="flex flex-row pl-2 text-justify">
                     {{-- <h3 class="pb-2">Descriptif du poste</h3>
                     <p class="font-light">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dicta nostrum mollitia expedita tenetur accusamus ad? Reiciendis et porro laudantium laborum, esse est illum. In expedita atque ab repellat ipsum sapiente.</p> --}}
-                    <h3 class="py-2"><span class="font-bold text-gray-500">{{$offre->categorie->categorie_offre_title}}</span></h3>
+                    <h3 class="py-2"><span class="font-bold text-gray-500">{{$offre->category->category_offre_title}}</span></h3>
                 </div>
             </div>
             <div class="flex flex-col items-center justify-center w-full bg-white border rounded">
@@ -40,11 +40,6 @@
                     <button type="button" id="seemore" class="font-bold pointer-cursor">Voir Plus</button><svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                     </svg>
-                </div>
-                <div class="border w-full flex items-center justify-center rounded">
-                    <a href="{{redirect()->back()->getTargetUrl()}}"> <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12.066 11.2a1 1 0 000 1.6l5.334 4A1 1 0 0019 16V8a1 1 0 00-1.6-.8l-5.333 4zM4.066 11.2a1 1 0 000 1.6l5.334 4A1 1 0 0011 16V8a1 1 0 00-1.6-.8l-5.334 4z"></path>
-                    </svg></a>
                 </div>
             </div>
         </div>
@@ -60,7 +55,7 @@
                 <div class="flex flex-row justify-end pl-2 w-2/5 text-justify">
                     {{-- <h3 class="pb-2">Descriptif du poste</h3>
                     <p class="font-light">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dicta nostrum mollitia expedita tenetur accusamus ad? Reiciendis et porro laudantium laborum, esse est illum. In expedita atque ab repellat ipsum sapiente.</p> --}}
-                    <h3 class="py-2"><span class="font-bold text-gray-500">{{$offre->categorie->categorie_offre_title}}</span></h3>
+                    <h3 class="py-2"><span class="font-bold text-gray-500">{{$offre->category->category_offre_title}}</span></h3>
 
                 </div>
             </div>

@@ -1,11 +1,10 @@
 <?php
 
-use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
-class CreateCategoriesOffres extends Migration
+use App\Models\User;
+class CreateCategoryOffresTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,12 +13,12 @@ class CreateCategoriesOffres extends Migration
      */
     public function up()
     {
-        Schema::create('categories_offres', function (Blueprint $table) {
+        Schema::create('category_offres', function (Blueprint $table) {
             $table->id();
-            $table->string('categorie_offre_title');
-            $table->string('categorie_offre_desc')->nullable();
+            $table->string('category_offre_title');
+            $table->string('category_offre_desc')->nullable();
             $table->foreignIdFor(User::class)->nullable();
-            $table->string('categorie_offre_slug')->nullable()->unique();
+            $table->string('category_offre_slug')->nullable()->unique();
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ class CreateCategoriesOffres extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categories_offres');
+        Schema::dropIfExists('category_offres');
     }
 }

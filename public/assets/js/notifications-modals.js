@@ -35,11 +35,12 @@ function toggleModal () {
     body.classList.toggle('modal-active')
 }
 
-$("#openModalLink").click(function(e){
-    e.preventDefault();
-    $(".contentClass").click(function(){
-        //alert($(this).attr("data-content"));
-        $("#content").text($(this).attr("data-content"));
-    });
 
-});
+// $("#openModalLink").click(function(e){
+//     e.preventDefault();
+//     $(".contentClass").click(function(){
+//         //alert($(this).attr("data-content"));
+//         $("#content").text($(this).attr("data-content"));
+//     });
+
+// });

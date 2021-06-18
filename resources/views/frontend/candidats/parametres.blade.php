@@ -26,8 +26,8 @@
             @enderror
             </div>
             <div class="flex flex-row space-x-2">
-                <input type="text" name="motivation" class="@error('motivation') border border-red-500 @enderror w-1/2 p-2 mb-2 bg-white border rounded-full focus:outline-none" placeholder="Motivation" value="{{Auth::user()->motivation}}"/>
-                <input type="tel" name="telephone" class="@error('telephone') border border-red-500 @enderror w-1/2 p-2 mb-2 bg-white border rounded-full focus:outline-none" placeholder="Contact" value="{{Auth::user()->contact}}"/>
+                <input type="text" name="motivation" class="@error('motivation') border-red-500 @enderror w-1/2 p-2 mb-2 bg-white border rounded-full focus:outline-none" placeholder="Motivation" value="{{Auth::user()->motivation}}"/>
+                <input type="tel" name="telephone" class="@error('telephone')  border-red-500 @enderror w-1/2 p-2 mb-2 bg-white border rounded-full focus:outline-none" placeholder="Contact" value="{{Auth::user()->contact}}"/>
             </div>
             <div class="flex flex-row justify-between">
                 @error('motivation')
@@ -39,8 +39,8 @@
             </div>
 
             <div class="flex flex-row space-x-2">
-                <input type="text" name="lieu_habitation" class="@error('lieu_habitation') border border-red-500 @enderror w-1/2 p-2 mb-2 bg-white border rounded-full focus:outline-none" placeholder="Lieu d'Habitation"  value="{{Auth::user()->lieu_habitation}}"/>
-                <select name="domaine" class="@error('domaine') border border-red-500 @enderror w-1/2 p-2 mb-2 bg-white border rounded-full focus:outline-none">
+                <input type="text" name="lieu_habitation" class="@error('lieu_habitation')  border-red-500 @enderror w-1/2 p-2 mb-2 bg-white border rounded-full focus:outline-none" placeholder="Lieu d'Habitation"  value="{{Auth::user()->lieu_habitation}}"/>
+                <select name="domaine" class="@error('domaine') border-red-500 @enderror w-1/2 p-2 mb-2 bg-white border rounded-full focus:outline-none">
                     @if(Auth::user()->domaine_emploi_id)
                         @foreach($domaines as $domaine)
                         <option value="{{$domaine->id}}" {{ $domaine->id==Auth::user()->domaine->id ? "selected" : 1}}>{{$domaine->nom}}</option>
@@ -53,7 +53,7 @@
                     @endif
 
                 </select>
-                {{-- <input type="text" name="domaine" class="@error('domaine') border border-red-500 @enderror w-1/2 p-2 mb-2 bg-white border rounded-full focus:outline-none" placeholder="Domaine" value="{{Auth::user()->domaine->nom}}" /> --}}
+                {{-- <input type="text" name="domaine" class="@error('domaine')border-red-500 @enderror w-1/2 p-2 mb-2 bg-white border rounded-full focus:outline-none" placeholder="Domaine" value="{{Auth::user()->domaine->nom}}" /> --}}
             </div>
             <div class="flex flex-row justify-between">
                 @error('lieu_habitation')

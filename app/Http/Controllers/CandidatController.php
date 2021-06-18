@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\DomaineEmploi;
 use App\Models\Offre;
 use App\Models\RendezVous;
+use App\Notifications\MessagesNotification;
 use Illuminate\Support\Str;
 class CandidatController extends Controller
 {
@@ -112,17 +113,29 @@ class CandidatController extends Controller
         $rendezvous->slug = Str::slug($request->label);
         $rendezvous->user_id = Auth::id();
         $rendezvous->offre_id = $request->offres;
-        //$rendezvous->candidats_id = implode(",",$request->candidats);
+        //$newRendezVous->candidats_id = implode(",",$request->candidats);
 
         $rendezvous->save();
-        foreach ($request->candidats as $key => $value) {
+
+        foreach ($request->candidats as $key => $candidat) {
+            // $rendezVousData = [
+            //     'candidature_id'=>$candidat,
+            //     'rendez_vous_id'=>$newRendezVous->id
+            // ];
+            $candidates= User::where('id',$candidat)->first();
             CandidatureRendezVous::create(
                 [
-                    'candidature_id'=>$value,
+                    'candidature_id'=>$candidat,
                     'rendez_vous_id'=>$rendezvous->id
                 ]
             );
+            //Envoyer la notification aux candidats
+            $candidates->notify(new MessagesNotification($rendezvous->id,$request->label,$request->contenu));
         }
+
+
+        //$user->notify(new NewMessages($newRendezVous));
+        //Notify to all candidates are selected
 
         return back()->with("success","Le Rendez-Vous a été envoyé à tous les Candidats");
 

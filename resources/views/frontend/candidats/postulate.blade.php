@@ -42,9 +42,6 @@
                             <svg class="w-4 h-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
                         </div>
                     </div>
-                    @error('metiers')
-                        <span class="text-red-500">{{$message}}</span>
-                    @enderror
 
                     <div class="@error('cv') border-red-500 @enderror border flex w-1/2 px-10 py-3 mb-5 text-lg text-left bg-white shadow-md rounded-2xl focus:outline-none">
                         <label for="cv" class="flex justify-between w-full">
@@ -54,12 +51,25 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13l-3 3m0 0l-3-3m3 3V8m0 13a9 9 0 110-18 9 9 0 010 18z" />
                         </svg>
                         </label>
+                        @error('cv')
+                            <span class="text-red-600 relative -right-6" title="{{$message}}">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                            </span>
+                        @enderror
                     </div>
-                    @error('cv')
-                        <span class="text-red-500">{{$message}}</span>
-                    @enderror
-
-                    <textarea name="motivation" id="" placeholder="Votre motivation" class="@error('motivation') border-red-600 @enderror border w-full p-5 mb-5 placeholder-gray-500 shadow-md resize-none h-60 rounded-2xl focus:outline-none"></textarea>
+                    <small class="text-gray-500 text-xs italic relative -top-5 underline">NB: CV au format pdf,PDF;taille max:2Mo</small>
+                    <div class="flex">
+                        <textarea name="motivation" id="" placeholder="Votre motivation" class="@error('motivation') border-red-600 @enderror border w-full p-5 mb-5 placeholder-gray-500 shadow-md resize-none h-60 rounded-2xl focus:outline-none"></textarea>
+                        @error('motivation')
+                        <span class="text-red-600 relative right-10 top-4" title="{{$message}}">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                        </span>
+                        @enderror
+                    </div>
 
                     <div class="px-32 mb-10">
                         <button type="submit" name="valider" class="py-3 mt-5 font-bold text-center transition duration-500 bg-yellow-300 rounded-full shadow-md text-md px-28 focus:outline-none">Soumettre</button>

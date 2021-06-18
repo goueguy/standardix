@@ -36,7 +36,7 @@
                                 <select name="categorie_offre" class="form-control">
                                     <option value=""></option>
                                     @foreach ($categories as $categorie)
-                                    <option value="{{$categorie->id}}" {{$categorie->id==$offre->categorie_offre_id ? "selected":""}}>{{$categorie->categorie_offre_title}}</option>
+                                    <option value="{{$categorie->id}}" {{$categorie->id==$offre->category_offre_id ? "selected":""}}>{{$categorie->category_offre_title}}</option>
                                     @endforeach
                                 </select>
                                 @error('categorie_offre')

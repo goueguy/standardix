@@ -7,22 +7,19 @@
         <link href="{{ asset('/assets/css/app.css') }}" rel="stylesheet">
         <link href="{{ asset('/assets/css/candidats.css') }}" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
-        @livewireStyles
     </head>
     <body>
 
-    <div class="flex flex-col" x-data="{ open: false }">
+    <div class="flex flex-col" x-data="{ open: false, modal:false}">
         <div class="relative min-h-screen md:flex">
-            {{-- sfar --}}
             @include("layouts.includes._candidats_aside")
             <div class="block w-3/4 p-5 text-xl bg-white">
-                <livewire:notification-component />
+                @include("layouts.includes._alert-notifs")
                 @yield("content")
             </div>
         </div>
     </div>
     @stack('js')
-    @livewireScripts
 </body>
 </html>
 

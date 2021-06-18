@@ -32,9 +32,9 @@
                             <div class="form-group">
                                 <label for="categorie_offre">Categorie de l'Offre</label>
                                 <select name="categorie_offre" class="form-control">
-                                    <option value=""></option>
+                                    <option value="">--Choisir--</option>
                                     @foreach ($categories as $categorie)
-                                    <option value="{{$categorie->id}}">{{$categorie->categorie_offre_title}}</option>
+                                    <option value="{{$categorie->id}}">{{$categorie->category_offre_title}}</option>
                                     @endforeach
                                 </select>
                                 @error('categorie_offre')

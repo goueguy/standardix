@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\CategorieOffre;
+use App\Models\CategoryOffre;
 use App\Models\User;
 use App\Models\Offre;
 use Illuminate\Http\Request;
@@ -28,21 +28,21 @@ class OffresController extends Controller
      */
     public function view($slug)
     {
-        $categories = CategorieOffre::all();
+        $categories = CategoryOffre::all();
         $users = User::all();
         $offre = Offre::where("slug",$slug)->first();
         return view('admin.offres.view-offres',compact("categories","users",'offre'));
     }
     public function lancees()
     {
-        $categories = CategorieOffre::all();
+        $categories = CategoryOffre::all();
         $users = User::all();
         return view('admin.offres.list-offres-lancees',compact("categories","users"));
     }
     public function edit($slug)
     {
         $offre = Offre::where("slug",$slug)->first();
-        $categories = CategorieOffre::all();
+        $categories = CategoryOffre::all();
         return view('admin.offres.edit-offres',compact('offre','categories'));
     }
 
@@ -53,7 +53,7 @@ class OffresController extends Controller
      */
     public function add()
     {
-        $categories = CategorieOffre::all();
+        $categories = CategoryOffre::all();
         $users = User::all();
         return view('admin.offres.create-offres',compact("categories","users"));
     }
@@ -84,7 +84,7 @@ class OffresController extends Controller
 
         $newOffres = new Offre;
         $newOffres->titre = $request->titre;
-        $newOffres->categorie_offre_id = $request->categorie_offre;
+        $newOffres->category_offre_id = $request->categorie_offre;
         $newOffres->description_offres = $request->description;
         $newOffres->lieu =  $request->lieu;
         $newOffres->profil = $request->profil;
@@ -146,7 +146,7 @@ class OffresController extends Controller
 
         $dataOffre = [
             "titre" => $request->titre,
-            "categorie_offre_id" => $request->categorie_offre,
+            "category_offre_id" => $request->categorie_offre,
             "description_offres" => $request->description,
             "lieu" => $request->lieu,
             "profil" => $request->profil,

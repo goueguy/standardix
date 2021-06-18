@@ -16,7 +16,7 @@
             <label class="float-left font-bold">Type d'Offre</label><label class="float-right font-bold">Lieu</label>
         </div>
         <div class="flex flex-row space-x-2">
-            <input type="text" placeholder="Catégorie de l'offre" class="w-1/2 p-3 bg-gray-100 border focus:outline-none" value="{{$offre->categorie->categorie_offre_title}}" readonly>
+            <input type="text" placeholder="Catégorie de l'offre" class="w-1/2 p-3 bg-gray-100 border focus:outline-none" value="{{$offre->category->category_offre_title}}" readonly>
             <input type="text" placeholder="Lieu" class="w-1/2 p-3 bg-gray-100 border focus:outline-none" readonly value="{{$offre->lieu}}">
         </div>
     </div>

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\CategorieOffre;
+use App\Models\CategoryOffre;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -17,7 +17,7 @@ class CategorieController extends Controller
      */
     public function index()
     {
-        $categories_offres = CategorieOffre::all();
+        $categories_offres = CategoryOffre::all();
         return view("admin.offres.categorie_offres.index",compact("categories_offres"));
     }
 
@@ -46,7 +46,7 @@ class CategorieController extends Controller
         ]
         );
 
-        $new_categorie_offre = new CategorieOffre;
+        $new_categorie_offre = new CategoryOffre;
         $new_categorie_offre->categorie_offre_title = $request->categorie_offre_title;
         $new_categorie_offre->categorie_offre_desc = $request->categorie_offre_desc;
         $new_categorie_offre->user_id = Auth::id();
@@ -94,7 +94,8 @@ class CategorieController extends Controller
      */
     public function edit($id)
     {
-        //
+        $categorie = CategoryOffre::find($id);
+        return view("admin.offres.categorie_offres.edit",compact('categorie'));
     }
 
     /**
@@ -106,7 +107,22 @@ class CategorieController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate(
+            [
+                "categorie_offre_title"=>"required|string",
+                "categorie_offre_desc"=>"required|string",
+            ]
+        ,[
+            'categorie_offre_title.required' => 'Champ requis',
+            'categorie_offre_desc.string' => 'Chaine de caractère uniquement',
+        ]
+        );
+        $data = [
+            "categorie_offre_title"=>$request->categorie_offre_title,
+            "categorie_offre_desc"=> $request->categorie_offre_desc
+        ];
+        CategoryOffre::where("id",$id)->update($data);
+        return redirect("admin/offres/categories/add")->with("success","Catégorie Modifiée!");
     }
 
     /**
@@ -117,6 +133,7 @@ class CategorieController extends Controller
      */
     public function destroy($id)
     {
-        //
+        CategoryOffre::find($id)->delete();
+        return back()->with('success','Catégorie supprimée');
     }
 }

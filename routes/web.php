@@ -10,6 +10,7 @@ use App\Http\Controllers\CandidatController;
 use App\Http\Controllers\Admin\DomaineController;
 use App\Http\Controllers\Admin\MetierController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Middleware\isAdmin;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -70,6 +71,9 @@ Route::group(["as"=>"admin.","prefix"=>"admin"],function () {
         Route::get('/candidatures/view',[UsersController::class, 'view'])->name('candidatures.view');
         Route::get('/candidatures/{candidat}/delete',[UsersController::class, 'delete'])->name('candidatures.delete');
         Route::get('/offres/categories/add',[CategorieController::class,'index'])->name('categorie.create');
+        Route::get('/offres/categories/{id}/edit',[CategorieController::class,'edit'])->name('categorie.edit');
+        Route::post('/offres/categories/{id}/update',[CategorieController::class,'update'])->name('categorie.update');
+        Route::get('/offres/categories/{id}/delete',[CategorieController::class,'destroy'])->name('categorie.delete');
         Route::post('/offres/categories/add',[CategorieController::class,'store'])->name('categorie.store');
         Route::get('/domaines',[DomaineController::class,'index'])->name('domaine.create');
         Route::get('/domaines/{domaine}/edit',[DomaineController::class,'edit'])->name('domaine.edit');
@@ -103,6 +107,8 @@ Route::group(["as"=>"admin.","prefix"=>"admin"],function () {
 // })->middleware(["isAdmin"]);
 
 Route::middleware(['auth'])->group(function () {
+    Route::get('/candidats/messages',[NotificationController::class,'index'])->name('candidats.notifications');
+    Route::post('/candidats/read',[NotificationController::class,'read'])->name('candidats.notifications.read');
     Route::get('/offre/{slug}/detail',[HomeController::class, 'showDetailOffre'])->name('details-offres');
     Route::get('/candidats/dashboard',[CandidatController::class, 'index'])->name('candidats.dashboard');
     Route::post('/candidats/{slug}/postulate', [PostulateController::class, 'store'])->name('candidats.postulate.store');
@@ -121,3 +127,4 @@ Route::middleware(['auth'])->group(function () {
 
 });
 Auth::routes();
+

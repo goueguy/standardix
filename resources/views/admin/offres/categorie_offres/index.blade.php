@@ -59,14 +59,14 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach ($categories_offres as $cat)
+                        @foreach ($categories_offres as $key=> $cat)
                         <tr>
-                            <td>{{$cat->id}}</td>
+                            <td>{{$key+1}}</td>
                             <td>{{$cat->categorie_offre_title}}</td>
                             <td>
-                                <a href="#"><i class="fas fa-eye"></i></a>
-                                <a href="#"><i class="fas fa-trash"></i></a>
-                                <a href="#"><i class="fas fa-edit"></i></a>
+                                {{-- <a href="#"><i class="fas fa-eye"></i></a> --}}
+                                <a href="{{route('admin.categorie.edit',$cat->id)}}"><i class="fas fa-edit"></i></a>
+                                <a href="{{route('admin.categorie.delete',$cat->id)}}" onclick="return confirm('VOULEZ-VOUS SUPPRIMER CETTE CATÉGORIE ?')"><i class="fas fa-trash"></i></a>
                             </td>
                         </tr>
                         @endforeach

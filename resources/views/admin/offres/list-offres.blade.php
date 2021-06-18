@@ -48,7 +48,7 @@
                         <td>{{$offre->lieu}}</td>
                         <td>{{$offre->date_limite}}</td>
                         <td>{{$offre->duree_contrat}}</td>
-                        <td><span class="badge bg-warning">{{$offre->categorie->categorie_offre_title}}</span></td>
+                        <td><span class="badge bg-warning">{{$offre->category->category_offre_title}}</span></td>
                         <td>
                             <a href="{{route('admin.offres.view',$offre->slug)}}"><i class="fas fa-eye"></i></a>
                             <a href="{{route('admin.offres.delete',$offre->slug)}}"  onclick="return confirm('Voulez-vous supprimer cette Offre');"><i class="fas fa-trash"></i></a>
