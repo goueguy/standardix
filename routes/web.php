@@ -85,13 +85,14 @@ Route::group(["as"=>"admin.","prefix"=>"admin"],function () {
         Route::post('/metiers/{metier}/update',[MetierController::class,'update'])->name('metier.update');
         Route::get('/metiers/{metier}/delete',[MetierController::class,'destroy'])->name('metier.delete');
         Route::post('/metier/add',[MetierController::class,'storeMetier'])->name('metier.store');
-
         Route::get('/rendez-vous',[RendezVousController::class,'index'])->name('rendezvous.index');
-        Route::get('/rendez-vous/create',[RendezVousController::class,'create'])->name('rendezvous.create');
-        Route::get('/rendez-vous/{id}/delete',[RendezVousController::class,'destroy'])->name('rendez-vous.delete');
-
-
-
+        Route::get('/rendez-vous/{id}/edit',[RendezVousController::class,'edit'])->name('rendezvous.edit');
+        Route::get('/rendez-vous/{id}/show',[RendezVousController::class,'show'])->name('rendezvous.show');
+        Route::post('/rendez-vous/{id}/update',[RendezVousController::class,'update'])->name('rendezvous.update');
+        Route::get('/rendez-vous/{id}/delete',[RendezVousController::class,'destroy'])->name('rendezvous.delete');
+        Route::post('/rendez-vous/store',[RendezVousController::class, 'store'])->name('rendezvous.store');
+        Route::get('/rendez-vous/{candidat}/create',[RendezVousController::class, 'create'])->name('rendezvous.create');
+        Route::post('/candidature/verify',[RendezVousController::class, 'verifyCandidatesExists'])->name('candidatures.verify');
     });
     #=========================AUTH=================================
     // Route::get('auth',[AdminController::class, 'login'])->name('auth');
@@ -120,10 +121,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/candidats/offres-lancees',[CandidatController::class, 'offers'])->name('candidats.offres');
     Route::get('/candidature-spontanee',[HomeController::class, 'showPageCandidatureSpontanee'])->name('candidature-spontanee');
     Route::get('/candidatures/{slug}',[CandidatController::class, 'detailOffre'])->name('candidatures.detail.offre');
-    Route::post('/candidatures/{id}/selected',[CandidatController::class, 'selectCandidature'])->name('candidatures.selected');
-    Route::post('/candidatures/verify',[CandidatController::class, 'verifyCandidatesExists'])->name('candidatures.verify');
-    Route::get('/candidatures/{candidat}/rendez-vous/create',[CandidatController::class, 'createRendezVous'])->name('candidatures.rendezvous.create');
-    Route::post('/candidatures/rendez-vous/store',[CandidatController::class, 'storeRendezVous'])->name('candidatures.rendezvous.store');
+
+    
 
 });
 Auth::routes();

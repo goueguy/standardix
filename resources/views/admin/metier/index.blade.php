@@ -5,7 +5,7 @@
 <section class="content">
 <div class="container-fluid ">
     <div class="row">
-        <div class="mt-4 mb-4 col-md-12">
+        <div class="mt-3 mb-3 col-md-12">
             @if(session("success"))
                 <span class="p-2 text-center alert alert-success">{{session("success")}}</span>
             @endif

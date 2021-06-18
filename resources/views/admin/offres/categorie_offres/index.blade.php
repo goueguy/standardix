@@ -3,11 +3,13 @@
 
     @section('content')
     <section class="content">
-    <div class="container-fluid ">
+    <div class="container-fluid">
         <div class="row">
-            @if(session("success"))
-                <span class="p-2 text-center alert alert-success">{{session("success")}}</span>
-            @endif
+            <div class="col-md-12 mt-3 mb-3">
+                @if(session("success"))
+                    <span class="p-2 text-center alert alert-success">{{session("success")}}</span>
+                @endif
+            </div>
             <div class="col-md-12">
                 <div class="mt-2 card card-default">
                     <div class="card-header">
@@ -62,7 +64,7 @@
                         @foreach ($categories_offres as $key=> $cat)
                         <tr>
                             <td>{{$key+1}}</td>
-                            <td>{{$cat->categorie_offre_title}}</td>
+                            <td>{{$cat->category_offre_title}}</td>
                             <td>
                                 {{-- <a href="#"><i class="fas fa-eye"></i></a> --}}
                                 <a href="{{route('admin.categorie.edit',$cat->id)}}"><i class="fas fa-edit"></i></a>

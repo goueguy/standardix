@@ -5,43 +5,43 @@
 <section class="content">
 <div class="container-fluid ">
     <div class="row">
-       
+        @if(session("success"))
+            <span class="p-2 text-center alert alert-success">{{session("success")}}</span>
+        @endif
         <div class="col-md-12">
             <div class="mt-2 card card-default">
                 <div class="card-header">
-                <h3 class="card-title"><span class="float-left">Ajouter</span></h3>
-                <span class="float-right"><a href="{{route('admin.candidatures.list')}}">Retour</a></span>
+                <h3 class="card-title"><span class="float-left">Détail</span></h3>
+                <span class="float-right"><a href="{{route('admin.rendezvous.index')}}">Retour</a></span>
                 </div>
-                <form action="{{route('admin.rendezvous.store')}}" method="POST">
-                @csrf
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="objet">Objet</label>
-                                <input type="text" name="objet" class="form-control @error('objet') is-invalid @enderror"  placeholder="Nouveau Objet" value="{{old('objet')}}">
+                                <input type="text" name="objet" class="form-control @error('objet') is-invalid @enderror"  placeholder="Nouveau Objet" value="{{$rendezvous->objet}}" readonly>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="label">Label</label>
-                                <input type="text" name="label" class="form-control @error('label') is-invalid @enderror" placeholder="Entrez label" value="{{old('label')}}">
-                                </div>
+                                <input type="text" name="label" class="form-control @error('label') is-invalid @enderror" placeholder="Entrez label" value="{{$rendezvous->label}}" readonly>
+                            </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <div class="form-group">
                                 <label for="date_rendez_vous ">Date de Rendez Vous </label>
-                                <input type="date" name="date_rendez_vous" class="form-control @error('date_rendez_vous') is-invalid @enderror " value="{{old('date_rendez_vous')}}">
-                                </div>
+                                <input type="date" name="date_rendez_vous" class="form-control @error('date_rendez_vous') is-invalid @enderror " value="{{$rendezvous->date_rendez_vous}}" readonly>
+                            </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label for="candidats">Offres</label>
-                                <select name="offres" id="" class="form-control @error('offres') is-invalid @enderror">
+                                <select name="offres" id="" class="form-control @error('offres') is-invalid @enderror" readonly>
                                         <option value="0">Sélectionner</option>
                                         @foreach ($offres as $offre)
                                         {{-- <option value="{{$offre->id}}" {{(in_array($offre->id,$allOffreCandidatId)) ? "selected":""}}>{{$offre->titre}}</option> --}}
-                                        <option value="{{$offre->id}}">{{$offre->titre}}</option>
+                                        <option value="{{$offre->id}}" {{$offre->id==$rendezvous->offre_id ? 'selected':''}}>{{$offre->titre}}</option>
                                         @endforeach
                                 </select>
                             </div>
@@ -49,10 +49,10 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="candidats">Candidats</label>
-                                <select name="candidats[]" id="candidats" class="form-control @error('candidats') is-invalid @enderror " multiple>
+                                <select name="candidats[]" id="candidats" class="form-control @error('candidats') is-invalid @enderror " multiple readonly>
                                         <option value=""></option>
                                         @foreach ($candidats as $candidat)
-                                        <option value="{{$candidat->user_id}}" selected>{{$candidat->name.' '.$candidat->firstname}}</option>
+                                        <option value="{{$candidat->user_id}}" {{(in_array($candidat->user_id,$candidatureIds)) ? 'selected':''}}>{{$candidat->name.' '.$candidat->firstname}}</option>
                                         @endforeach
                                 </select>
                             </div>
@@ -60,15 +60,14 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="contenu">Contenu</label>
-                                <textarea  cols="25" rows="10" name="contenu" class="form-control @error('contenu') is-invalid @enderror"  placeholder="Nouveau le Contenu" value="{{old('contenu')}}"></textarea>
+                                <textarea  cols="25" rows="10" name="contenu" class="form-control @error('contenu') is-invalid @enderror"  placeholder="Nouveau le Contenu" readonly>{{$rendezvous->contenu}}</textarea>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="card-footer">
-                    <button type="submit" class="btn btn-primary">Envoyer Rendez-Vous</button>
                 </div>
-                </form>
+                
             </div>
             </div>
     </div>

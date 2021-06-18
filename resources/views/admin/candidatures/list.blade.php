@@ -13,7 +13,7 @@
                     {{session('success')}}
                 </div>
             @endif
-            <h3 class="card-title">Liste </h3> <span class="float-right"><button type="button" data-url="{{route('candidatures.verify')}}" id="btnRendezVous" class="btn btn-primary btn-block">Rendez-Vous</button></span>
+            <h3 class="card-title">Liste </h3> <span class="float-right"><button type="button" data-url="{{route('admin.candidatures.verify')}}" id="btnRendezVous" class="btn btn-primary btn-block">Rendez-Vous</button></span>
         </div>
         <!-- /.card-header -->
         <div class="p-2 card-body table-responsive">
@@ -58,7 +58,7 @@
                                 </td> --}}
                                 <td>
                                     {{-- <a href="{{route('candidatures.rendezvous.create',encrypt($candidature->id))}}">Rendez-Vous</a> --}}
-                                    <a href="{{route('admin.candidatures.delete',encrypt($candidature->id))}}" onclick="return confirm('Voulez-vous supprimer cette Candidature');"><i class="fas fa-trash"></i></a>
+                                    <a href="{{route('admin.candidatures.delete',$candidature->id)}}" onclick="return confirm('Voulez-vous supprimer cette Candidature');"><i class="fas fa-trash"></i></a>
                                 </td>
                             </tr>
                             @endforeach
@@ -113,7 +113,7 @@ $(function (e) {
             success:function(data){
                 if(data['status']==200){
                     let param = data['candidats'];
-                    window.location.href='/candidatures/'+param+'/rendez-vous/create';
+                    window.location.href='/admin/rendez-vous/'+param+'/create';
 
                 }
             },

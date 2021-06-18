@@ -73,7 +73,7 @@
                 <p>Offres récentes</p>
             </h3>
             <div class="card-tools">
-                <span class="text-xs text-muted font-italic "><i class="mr-1 fas fa-calendar-day"></i>Il y a 1 Semaine</span>
+                <span class="text-xs text-muted font-italic "><i class="mr-1 fas fa-calendar-day"></i>{{Carbon\Carbon::createFromFormat('Y-m-d H:i:s', now()->subDay(10))->diffForHumans()}}</span>
             </div>
             </div>
             <div class="card-body">

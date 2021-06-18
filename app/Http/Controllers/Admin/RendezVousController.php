@@ -1,14 +1,16 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
+use App\Models\CandidatureRendezVous;
 use App\Http\Controllers\Controller;
 use App\Models\Candidature;
 use App\Models\Offre;
 use App\Models\User;
 use App\Models\RendezVous;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
+use App\Notifications\MessagesNotification;
 class RendezVousController extends Controller
 {
     /**
@@ -30,20 +32,61 @@ class RendezVousController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        return view('admin.rendezvous.create');
-    }
-
+    
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function create(Request $request,$candidat){
+
+        $candidats=Candidature::whereIn("id",explode(",",$candidat))->get();
+        $allOffreCandidatId = [];
+        foreach ($candidats as $key => $value) {
+            array_push($allOffreCandidatId,$value->offre_id);
+        }
+
+        $offres=Offre::all();
+        $messages= RendezVous::all();
+        return view('admin.rendezvous.create-rendezvous', compact('messages', 'candidats', 'offres','allOffreCandidatId'));
+    }
+    public function store(Request $request){
+        $request->validate(
+            [
+                "label"=>"required|string|min:3",
+                "objet"=>"required|string|min:3",
+                "contenu"=>"required|string|min:3",
+                "date_rendez_vous"=>"required|date",
+                "candidats"=>"required",
+                "offres"=>"required"
+            ]
+        );
+        $rendezvous = new RendezVous;
+        $rendezvous->label = $request->label;
+        $rendezvous->objet = $request->objet;
+        $rendezvous->contenu = $request->contenu;
+        $rendezvous->date_rendez_vous = date('Y-m-d H:i:s',strtotime($request->date_rendez_vous));
+        $rendezvous->slug = Str::slug($request->label);
+        $rendezvous->user_id = Auth::id();
+        $rendezvous->offre_id = $request->offres;
+        $rendezvous->save();
+
+        foreach ($request->candidats as $key => $candidat) {
+
+            $candidates= User::where('id',$candidat)->first();
+            CandidatureRendezVous::create(
+                [
+                    'candidature_id'=>$candidat,
+                    'rendez_vous_id'=>$rendezvous->id
+                ]
+            );
+            //Envoyer la notification aux candidats
+            $candidates->notify(new MessagesNotification($rendezvous->id,$request->label,$request->contenu));
+        }
+
+        return redirect('admin/rendez-vous')->with("success","Le Rendez-Vous a été envoyé à tous les Candidats");
+
     }
 
     /**
@@ -54,7 +97,15 @@ class RendezVousController extends Controller
      */
     public function show($id)
     {
-        //
+        $rendezvous = RendezVous::find($id);
+        $candidatures = CandidatureRendezVous::where('rendez_vous_id',$rendezvous->id)->get();
+        $candidatureIds = [];
+        foreach($candidatures as $candidature){
+            array_push($candidatureIds,$candidature->candidature_id);
+        }
+        $candidats = Candidature::all();
+        $offres=Offre::all();
+        return view('admin.rendezvous.show',compact('offres','rendezvous','candidats','candidatureIds'));
     }
 
     /**
@@ -65,7 +116,15 @@ class RendezVousController extends Controller
      */
     public function edit($id)
     {
-        //
+        $rendezvous = RendezVous::find($id);
+        $candidatures = CandidatureRendezVous::where('rendez_vous_id',$rendezvous->id)->get();
+        $candidatureIds = [];
+        foreach($candidatures as $candidature){
+            array_push($candidatureIds,$candidature->candidature_id);
+        }
+        $candidats = Candidature::all();
+        $offres=Offre::all();
+        return view('admin.rendezvous.edit-rendezvous',compact('offres','rendezvous','candidats','candidatureIds'));
     }
 
     /**
@@ -77,7 +136,53 @@ class RendezVousController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate(
+            [
+                "label"=>"required|string|min:3",
+                "objet"=>"required|string|min:3",
+                "contenu"=>"required|string|min:3",
+                "date_rendez_vous"=>"required|date",
+                "candidats"=>"required",
+                "offres"=>"required"
+            ]
+        );
+       
+        
+        $data = [
+            "label" => $request->label,
+            "objet" => $request->objet,
+            "contenu" => $request->contenu,
+            "date_rendez_vous" => date('Y-m-d H:i:s',strtotime($request->date_rendez_vous)),
+            "slug" => Str::slug($request->label),
+            "user_id" => Auth::id(),
+            "offre_id" => $request->offres
+        ];
+        RendezVous::where("id",$id)->update($data);
+
+        foreach ($request->candidats as $key => $candidat) {
+
+            $candidates= User::where('id',$candidat)->first();
+            $isExist = CandidatureRendezVous::where("rendez_vous_id",$id)
+            ->where("candidature_id",$candidat)->first();
+            if($isExist){
+                CandidatureRendezVous::where("id",$id)->update([
+                    'candidature_id'=>$candidat,
+                    'rendez_vous_id'=>$id
+                ]);
+            }else{
+                CandidatureRendezVous::create(
+                    [
+                        'candidature_id'=>$candidat,
+                        'rendez_vous_id'=>$id
+                    ]
+                );
+            }
+            
+            //Envoyer la notification aux candidats
+            $candidates->notify(new MessagesNotification($id,$request->label,$request->contenu));
+        }
+
+        return redirect('admin/rendez-vous')->with("success","Le Rendez-Vous a été envoyé à tous les Candidats");
     }
 
     /**
@@ -91,4 +196,10 @@ class RendezVousController extends Controller
         RendezVous::find($candidat)->delete();
         return back()->with("success","Le Rendez-Vous a été supprimé");
     }
+
+    public function verifyCandidatesExists(Request $request){
+        $candidature=Candidature::whereIn("id",explode(",",$request->ids))->get();
+        return response()->json(['status'=>200,'candidats'=>$request->ids]);
+    }
+    
 }

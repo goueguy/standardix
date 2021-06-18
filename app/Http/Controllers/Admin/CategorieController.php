@@ -47,10 +47,10 @@ class CategorieController extends Controller
         );
 
         $new_categorie_offre = new CategoryOffre;
-        $new_categorie_offre->categorie_offre_title = $request->categorie_offre_title;
-        $new_categorie_offre->categorie_offre_desc = $request->categorie_offre_desc;
+        $new_categorie_offre->category_offre_title = $request->categorie_offre_title;
+        $new_categorie_offre->category_offre_desc = $request->categorie_offre_desc;
         $new_categorie_offre->user_id = Auth::id();
-        $new_categorie_offre->categorie_offre_slug = Str::slug($request->categorie_offre_title);
+        $new_categorie_offre->category_offre_slug = Str::slug($request->categorie_offre_title);
         $new_categorie_offre->save();
         return redirect()->back()->with("success","Catégorie Ajoutée!");
     }
@@ -109,17 +109,17 @@ class CategorieController extends Controller
     {
         $request->validate(
             [
-                "categorie_offre_title"=>"required|string",
-                "categorie_offre_desc"=>"required|string",
+                "category_offre_title"=>"required|string",
+                "category_offre_desc"=>"required|string",
             ]
         ,[
-            'categorie_offre_title.required' => 'Champ requis',
-            'categorie_offre_desc.string' => 'Chaine de caractère uniquement',
+            'category_offre_title.required' => 'Champ requis',
+            'category_offre_desc.string' => 'Chaine de caractère uniquement',
         ]
         );
         $data = [
-            "categorie_offre_title"=>$request->categorie_offre_title,
-            "categorie_offre_desc"=> $request->categorie_offre_desc
+            "category_offre_title"=>$request->category_offre_title,
+            "category_offre_desc"=> $request->category_offre_desc
         ];
         CategoryOffre::where("id",$id)->update($data);
         return redirect("admin/offres/categories/add")->with("success","Catégorie Modifiée!");

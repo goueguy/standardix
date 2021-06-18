@@ -20,14 +20,14 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="categorie_offre_title">Titre</label>
-                                    <input type="text" name="categorie_offre_title" class="form-control @error('categorie_offre_title') is-invalid @enderror"  value="{{$categorie->categorie_offre_title}}">
+                                    <label for="category_offre_title">Titre</label>
+                                    <input type="text" name="category_offre_title" class="form-control @error('category_offre_title') is-invalid @enderror"  value="{{$categorie->category_offre_title}}">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="categorie_offre_desc">Description</label>
-                                    <input type="text" name="categorie_offre_desc" class="form-control" value="{{$categorie->categorie_offre_desc}}">
+                                    <input type="text" name="category_offre_desc" class="form-control" value="{{$categorie->category_offre_desc}}">
                                     </div>
                             </div>
                         </div>
