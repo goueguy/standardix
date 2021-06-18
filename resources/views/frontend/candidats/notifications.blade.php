@@ -4,7 +4,7 @@
 <h2 class="p-2 mb-5 mt-8 font-bold bg-green-100 border-l-4 border-green-600"> <span class="pl-2">MES MESSAGES</span></h2>
 
     @if(session('success'))
-        <div class="bg-green-300 text-center p-2 text-white">
+        <div class="bg-green-300 text-center p-2 text-white mb-3">
             {{session('success')}}
         </div>
     @endif

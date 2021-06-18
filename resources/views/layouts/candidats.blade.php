@@ -7,6 +7,7 @@
         <link href="{{ asset('/assets/css/app.css') }}" rel="stylesheet">
         <link href="{{ asset('/assets/css/candidats.css') }}" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
+        <meta name="csrf-token" content="{{ csrf_token() }}">
     </head>
     <body>
 
@@ -20,6 +21,12 @@
         </div>
     </div>
     @stack('js')
+    <script>
+        window.User = {
+            id:{{optional(auth()->user())->id}}
+        }
+    </script>
+    <script src="{{asset('js/app.js')}}"></script>
 </body>
 </html>
 
