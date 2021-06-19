@@ -10,7 +10,8 @@ class HomeController extends Controller
 
     public function index()
     {
-        $offres=Offre::all();
+        $currentDate = date('Y-m-d h:i:s');
+        $offres=Offre::where('date_limite','>=',$currentDate)->orderBy('id','desc')->get();
         //dd($offres->category->category_offre_title);
         return view("frontend.home", compact('offres'));
     }
