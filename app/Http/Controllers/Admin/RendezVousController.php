@@ -32,7 +32,7 @@ class RendezVousController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    
+
     /**
      * Store a newly created resource in storage.
      *
@@ -146,42 +146,54 @@ class RendezVousController extends Controller
                 "offres"=>"required"
             ]
         );
-       
-        
-        $data = [
-            "label" => $request->label,
-            "objet" => $request->objet,
-            "contenu" => $request->contenu,
-            "date_rendez_vous" => date('Y-m-d H:i:s',strtotime($request->date_rendez_vous)),
-            "slug" => Str::slug($request->label),
-            "user_id" => Auth::id(),
-            "offre_id" => $request->offres
-        ];
-        RendezVous::where("id",$id)->update($data);
 
-        foreach ($request->candidats as $key => $candidat) {
-
-            $candidates= User::where('id',$candidat)->first();
-            $isExist = CandidatureRendezVous::where("rendez_vous_id",$id)
-            ->where("candidature_id",$candidat)->first();
-            if($isExist){
-                CandidatureRendezVous::where("id",$id)->update([
-                    'candidature_id'=>$candidat,
-                    'rendez_vous_id'=>$id
-                ]);
-            }else{
-                CandidatureRendezVous::create(
-                    [
-                        'candidature_id'=>$candidat,
-                        'rendez_vous_id'=>$id
-                    ]
-                );
-            }
-            
-            //Envoyer la notification aux candidats
-            $candidates->notify(new MessagesNotification($id,$request->label,$request->contenu));
+        $candidatData = CandidatureRendezVous::where("rendez_vous_id",$id)->get();
+        $old_candidat_ids = [];
+        $new_candidat_ids = $request->candidats;
+        foreach($candidatData as $data){
+            array_push($old_candidat_ids,$data->candidature_id);
         }
 
+        $idsIntersect = array_intersect($old_candidat_ids,$new_candidat_ids);
+        $idsToRemove = array_diff($old_candidat_ids,$idsIntersect);
+        $idsAdd = array_diff($new_candidat_ids,$idsIntersect);
+        //dd("New",$request->candidats,"Old",$old_candidat_ids,"not changed",$idsIntersect,"to delete",$idsToRemove,"to add",$idsAdd);
+        if(count($idsToRemove)>0){
+            foreach ($idsToRemove as $candidat) {
+                CandidatureRendezVous::where("rendez_vous_id",$id)
+                ->where("candidature_id",$candidat)->delete();
+            }
+        }
+
+        if(count($idsAdd)>0){
+            //dd("ADDED");
+            foreach ($idsAdd as $candidat) {
+                $candidates = User::where('id',$candidat)->first();
+                CandidatureRendezVous::create(
+                    [
+                        "candidature_id"=>$candidat,
+                        "rendez_vous_id"=>$id
+                    ]
+                );
+                //Envoyer la notification aux candidats
+                $candidates->notify(new MessagesNotification($id,$request->label,$request->contenu));
+            }
+        }else{
+            $data = [
+                "label" => $request->label,
+                "objet" => $request->objet,
+                "contenu" => $request->contenu,
+                "date_rendez_vous" => date('Y-m-d H:i:s',strtotime($request->date_rendez_vous)),
+                "slug" => Str::slug($request->label),
+                "user_id" => Auth::id(),
+                "offre_id" => $request->offres
+            ];
+            RendezVous::where("id",$id)->update($data);
+            foreach ($request->candidats as $candidat) {
+                $candidates = User::where('id',$candidat)->first();
+                $candidates->notify(new MessagesNotification($id,$request->label,$request->contenu));
+            }
+        }
         return redirect('admin/rendez-vous')->with("success","Le Rendez-Vous a été envoyé à tous les Candidats");
     }
 
@@ -201,5 +213,5 @@ class RendezVousController extends Controller
         $candidature=Candidature::whereIn("id",explode(",",$request->ids))->get();
         return response()->json(['status'=>200,'candidats'=>$request->ids]);
     }
-    
+
 }

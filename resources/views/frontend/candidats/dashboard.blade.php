@@ -33,7 +33,7 @@
 <h2 class="p-2 mb-5 mt-8 font-bold bg-green-100 border-l-4 border-green-600"> <span class="pl-2">CINQ DERNIÈRES OFFRES LANCÉES</span></h2>
 
 <div class="flex justify-center mt-3">
-    <table class="w-1/2 mb-4 text-sm bg-white rounded shadow-md">
+    <table class="mb-4 text-sm bg-white rounded shadow-md">
         <tbody>
             <tr class="border">
                 <th class="p-3 text-left">N°</th>
@@ -91,5 +91,4 @@
         </tbody>
     </table>
 </div>
-
 @endsection

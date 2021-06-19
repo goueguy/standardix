@@ -39,7 +39,8 @@ class CandidatController extends Controller
     public function rendezVous()
     {
         //$this->RendezVousDataId();
-        $rendezvous = RendezVous::whereIn("id",$this->RendezVousDataId())->get();
+        $rendezvous = RendezVous::whereIn("id",$this->RendezVousDataId())
+        ->orderBy('id','desc')->paginate(10);
         return view("frontend.candidats.rendez-vous",compact('rendezvous'));
     }
 
@@ -51,7 +52,7 @@ class CandidatController extends Controller
         foreach ($candidatures as $key => $value) {
             array_push($idOffre,$value->offre_id);
         }
-        $offres = Offre::whereIn("id",$idOffre)->get();
+        $offres = Offre::whereIn("id",$idOffre)->orderBy('id','desc')->paginate(10);
         return view("frontend.candidats.subscribes",compact('offres'));
     }
     public function offers()

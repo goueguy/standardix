@@ -30,7 +30,7 @@
                                 <input type="text" name="label" class="form-control @error('label') is-invalid @enderror" placeholder="Entrez label" value="{{$rendezvous->label}}">
                                 </div>
                         </div>
-                        
+
                         <div class="col-md-2">
                             <div class="form-group">
                                 <label for="date_rendez_vous ">Date de Rendez Vous </label>
@@ -53,7 +53,6 @@
                             <div class="form-group">
                                 <label for="candidats">Candidats</label>
                                 <select name="candidats[]" id="candidats" class="form-control @error('candidats') is-invalid @enderror " multiple>
-                                        <option value=""></option>
                                         @foreach ($candidats as $candidat)
                                         <option value="{{$candidat->user_id}}" {{(in_array($candidat->user_id,$candidatureIds)) ? 'selected':''}}>{{$candidat->name.' '.$candidat->firstname}}</option>
                                         @endforeach

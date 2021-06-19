@@ -9,7 +9,7 @@
         </div>
     @endif
     <div class="flex flex-col">
-        @foreach ($user->unreadNotifications as $notification)
+        @foreach ($user->unreadNotifications()->paginate(10) as $notification)
             <div class="shadow p-3 mb-4 bg-gray-200">
                 <div class="flex justify-between">
                     <div>
@@ -25,5 +25,5 @@
         @endforeach
     </div>
 
-
+{{$user->unreadNotifications()->paginate(10)->links()}}
 @endsection

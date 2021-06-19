@@ -28,7 +28,7 @@
                 </div>
             @endforeach
         @endif
-
+{{$rendezvous->links()}}
 @endsection
 
 @push('js')
