@@ -28,7 +28,7 @@
                             <th>Métiers</th>
                             <th>Offre</th>
                             <th>Cv</th>
-                            {{-- <th>Sélectionné</th> --}}
+                            <th>a reçu Rdv</th>
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -41,21 +41,17 @@
                                 <td>{{$candidature->metier->nom_metier}}</td>
                                 <td>{{$candidature->offre->titre}}</td>
                                 <td><a href="{{asset('cv_uploads/'.$candidature->cv)}}" target="_blank">Télécharger</a></td>
-                                {{-- <td>
-                                    @if($candidature->status==0)
-                                        <span class="badge badge-danger">NON</span>
-                                        <form action="{{route('candidatures.selected',encrypt($candidature->id))}}" method="POST">
-                                            @csrf
-                                            <button type="submit" class="btn btn-success btn-xs">Sélectionner Candidat</button>
-                                        </form>
+                                <td>
+                                    @if($candidature->status!=0)
+                                        <span class="badge badge-success">
+                                            OUI
+                                        </span>
                                     @else
-                                        <span class="badge badge-success">OUI</span>
-                                        <form action="{{route('candidatures.selected',encrypt($candidature->id))}}" method="POST">
-                                            @csrf
-                                            <button type="submit" class="btn btn-danger btn-xs">Retirer Candidat</button>
-                                        </form>
+                                        <span class="badge badge-danger">
+                                            NON
+                                        </span>
                                     @endif
-                                </td> --}}
+                                </td>
                                 <td>
                                     {{-- <a href="{{route('candidatures.rendezvous.create',encrypt($candidature->id))}}">Rendez-Vous</a> --}}
                                     <a href="{{route('admin.candidatures.delete',$candidature->id)}}" onclick="return confirm('Voulez-vous supprimer cette Candidature');"><i class="fas fa-trash"></i></a>

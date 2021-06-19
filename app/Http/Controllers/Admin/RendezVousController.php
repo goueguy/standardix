@@ -81,6 +81,8 @@ class RendezVousController extends Controller
                     'rendez_vous_id'=>$rendezvous->id
                 ]
             );
+            //si status = 1, le candidat  a reçu un message(rendez vous)
+            Candidature::where('user_id',$candidat)->where('offre_id',$request->offres)->update(['status'=>1]);
             //Envoyer la notification aux candidats
             $candidates->notify(new MessagesNotification($rendezvous->id,$request->label,$request->contenu));
         }
