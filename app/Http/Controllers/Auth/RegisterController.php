@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
@@ -49,11 +49,13 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+
         return Validator::make($data, [
             'nom' => 'required|string|max:100',
             'prenoms' => 'required|string|max:200',
             'email' => 'required|string|unique:users,email',
             'password' => 'required|string|min:8|confirmed',
+            'nom_entreprise' => 'required|string|max:100',
             // 'contact',
             // 'lieu_habitation',
             // 'domaine_emploi_id',
@@ -77,6 +79,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'role_id'=>1,
             'password' => Hash::make($data['password']),
+            'iscompany'=>$data['iscompany']
         ]);
     }
 }

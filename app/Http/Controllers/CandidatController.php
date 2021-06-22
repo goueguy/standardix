@@ -28,6 +28,9 @@ class CandidatController extends Controller
         $totalCandidature = Candidature::where('user_id',Auth::id())->count();
         return view("frontend.candidats.dashboard",compact('totalCandidature','offres','totalOffre','totalRendezVous'));
     }
+    public function clients(){
+        return view("auth.register");
+    }
     public function parameters($user)
     {
         //dd($user);
