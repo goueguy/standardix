@@ -8,8 +8,8 @@
             </div>
             <span class="flex items-center justify-center my-2 text-center text-white cursor-pointer text-md hover:opacity-75">
         <span class="uppercase">
-            @if(Auth::user()->iscompany===1)
-            {{Auth::user()->nom}}
+            @if(Auth::user()->nom_entreprise)
+            {{Auth::user()->nom_entreprise}}
             @else
                 {{Str::substr(Auth::user()->nom,0,1)}}{{Str::substr(Auth::user()->prenoms,0,1)}}
             @endif

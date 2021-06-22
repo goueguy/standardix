@@ -9,75 +9,8 @@
         <div class="mx-auto text-center pt-36">
             <form action="{{ route('register') }}" method="POST">
                 @csrf
-                @if (Request::is('candidats/clients'))
-                <label class="hidden font-bold lg:mt-12">Nom de l'Entreprise</label>
-                    <div class="hidden p-4 mb-4 bg-white  @error('nom') border border-red-600 @enderror rounded-lg shadow w-90">
-                        <input type="hidden" name="nom" class="border-0 focus:outline-none md:focus:placeholder-green-600"  placeholder="Votre nom" value="{{old('nom_entreprise')}}"/>
-                        @error('nom')
-                        <span class="text-red-600" title="{{$message}}">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                        </span>
-                    @enderror
-                    </div>
-                    <label class="hidden font-bold lg:mt-12">Prénoms</label>
-                    <div class="hidden justify-between p-4 mb-4 bg-white  @error('prenoms') border border-red-600 @enderror rounded-lg shadow w-90">
-                        <input type="hidden" name="prenoms" class="border-0 focus:outline-none md:focus:placeholder-green-600"  placeholder="Votre prénoms" value="{{old('nom_entreprise')}}"/>
-                        @error('prenoms')
-                        <span class="text-red-600" title="{{$message}}">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                        </span>
-                    @enderror
-                    </div>
-                <label class="font-bold lg:mt-12">Nom de l'Entreprise</label>
-                    <div class="flex flex-row justify-between p-4 mb-4 bg-white  @error('nom_entreprise') border border-red-600 @enderror rounded-lg shadow w-90">
-                        <input type="text" name="nom_entreprise" class="border-0 focus:outline-none md:focus:placeholder-green-600"  placeholder="Nom" value="{{old('nom_entreprise')}}"/>
-                        @error('nom_entreprise')
-                        <span class="text-red-600" title="{{$message}}">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                        </span>
-                    @enderror
-                    </div>
-                <label class="font-bold lg:mt-12">Email</label>
-                <div class="flex flex-row justify-between p-4 mb-4 bg-white  @error('email') border border-red-600 @enderror rounded-lg shadow w-90">
-                    <input type="email" name="email" class="border-0 focus:outline-none md:focus:placeholder-green-600"  placeholder="votre@email.com" value="{{old('email')}}"/>
-                    @error('email')
-                    <span class="text-red-600" title="{{$message}}">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                    </span>
-                @enderror
-                </div>
-                <label class="font-bold lg:mt-12">Mot de passe</label>
-                <div class="flex flex-row justify-between p-4 bg-white @error('password') border border-red-600 @enderror rounded-lg shadow w-90">
-                    <input type="password" name="password" class="border-0 focus:outline-none md:focus:placeholder-green-600"  placeholder="*************************" value="{{old('password')}}"/>
-                    @error('password')
-                        <span class="text-red-600" title="{{$message}}">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                        </span>
-                    @enderror
-                </div>
-                <input type="hidden" value="1" name="iscompany">
-                <label class="font-bold lg:mt-12">Confirmer mot de passe</label>
-                <div class="flex flex-row justify-between p-4 mb-8 bg-white @error('password_confirmation') border border-red-600 @enderror rounded-lg shadow w-90">
-                    <input type="password" name="password_confirmation" class="border-0 focus:outline-none md:focus:placeholder-green-600"  placeholder="*************************" value="{{old('password')}}"/>
-                    @error('password')
-                        <span class="text-red-600" title="{{$message}}">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                        </span>
-                    @enderror
-                </div>
-                @else
+
+
                     <label class="font-bold lg:mt-12">Nom</label>
                     <div class="flex flex-row justify-between p-4 mb-4 bg-white  @error('nom') border border-red-600 @enderror rounded-lg shadow w-90">
                         <input type="text" name="nom" class="border-0 focus:outline-none md:focus:placeholder-green-600"  placeholder="Votre nom" value="{{old('nom')}}"/>
@@ -133,8 +66,7 @@
                             </span>
                         @enderror
                     </div>
-                @endif
-
+            
                 <a href="{{route('register.client')}}" class="mt-12 mb-12">Si vous êtes une entreprise, cliquer ici</a>
                 <button type="submit" class="w-full p-3 font-bold bg-yellow-400 rounded-full shadow-lg lg:mt-8">S'inscrire</button>
             </form>

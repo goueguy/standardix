@@ -34,6 +34,7 @@ Route::get('/nos-metiers',[HomeController::class, 'showPageNosMetiers']
 )->name('nos-metiers');
 
 Route::get('/candidats/clients',[CandidatController::class, 'clients'])->name('register.client');
+Route::post('/candidats/clients',[CandidatController::class, 'saveCandidateClient'])->name('candidats.client.save');
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -123,8 +124,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/candidats/offres-lancees',[CandidatController::class, 'offers'])->name('candidats.offres');
     Route::get('/candidature-spontanee',[HomeController::class, 'showPageCandidatureSpontanee'])->name('candidature-spontanee');
     Route::get('/candidatures/{slug}',[CandidatController::class, 'detailOffre'])->name('candidatures.detail.offre');
-    
-    
+
+
 
 });
 Auth::routes();

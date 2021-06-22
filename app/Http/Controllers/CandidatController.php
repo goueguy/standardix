@@ -12,6 +12,7 @@ use App\Models\Offre;
 use App\Models\RendezVous;
 use App\Notifications\MessagesNotification;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
 class CandidatController extends Controller
 {
     /**
@@ -29,7 +30,7 @@ class CandidatController extends Controller
         return view("frontend.candidats.dashboard",compact('totalCandidature','offres','totalOffre','totalRendezVous'));
     }
     public function clients(){
-        return view("auth.register");
+        return view("auth.clients");
     }
     public function parameters($user)
     {
@@ -98,5 +99,24 @@ class CandidatController extends Controller
             array_push($rendezVousIds,$value->rendez_vous_id);
         }
         return $rendezVousIds;
+    }
+    public  function saveCandidateClient(Request $request){
+        $request->validate([
+
+            'email' => 'required|string|unique:users,email',
+            'password' => 'required|string|min:8|confirmed',
+            'nom_entreprise' => 'required|string|max:100'
+        ]);
+
+        $user = new User;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->nom_entreprise = $request->nom_entreprise;
+        $user->save();
+        $credentials = $request->only('email', 'password');
+        if (Auth::attempt($credentials)) {
+            return redirect()->intended('candidats/dashboard');
+        }
+
     }
 }

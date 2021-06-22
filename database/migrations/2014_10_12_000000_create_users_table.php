@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('nom')->nullable();
             $table->string('prenoms')->nullable();
-            $table->boolean('iscompany')->default(0);
+            $table->string('nom_entreprise')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

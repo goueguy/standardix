@@ -9,7 +9,14 @@
             <span>{{session('danger')}}</span>
         </div>
     @endif
-    <h1 class="text-opacity-100 capitalize text-medium">HELLO, {{Auth::user()->nom.' '.Auth::user()->prenoms}}</h1>
+    <h1 class="text-opacity-100 capitalize text-medium">HELLO,
+        @if(Auth::user()->nom_entreprise)
+            {{Auth::user()->nom_entreprise}}
+        @else
+            {{Auth::user()->nom.' '.Auth::user()->prenoms}}
+        @endif
+
+    </h1>
     <p class="font-light text-opacity-100 text-medium">Nous vous souhaitons plein de succès avec nous !</p>
 </div>
 <h2 class="p-2 mb-5 mt-8 font-bold bg-green-100 border-l-4 border-green-600"> <span class="pl-2">STATISTIQUES</span></h2>
