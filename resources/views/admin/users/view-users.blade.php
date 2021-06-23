@@ -16,13 +16,13 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="name">Nom</label>
-                                <input type="text" name="name" class="form-control" placeholder="Nom" value="{{$user->nom}}">
+                                <input type="text" name="name" class="form-control" placeholder="Nom" value="{{old('nom') ?? $user->nom}}">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="firstname">Prénoms</label>
-                                <input type="text" name="firstname" class="form-control" placeholder="Prénoms" value="{{$user->prenoms}}">
+                                <input type="text" name="firstname" class="form-control" placeholder="Prénoms" value="{{old('prenoms') ?? $user->prenoms}}">
                             </div>
                         </div>
                     </div>
@@ -31,7 +31,7 @@
                                 <label class="pr-2"> Rôles Disponibles</label>
                                 @foreach ($roles as $role)
                                     <div class="form-group form-check">
-                                        <input type="checkbox" class="form-check-input" value="{{$role->id}}" id="{{$role->id}}" @foreach ($user->roles as $userRole) @if($userRole->id===$role->id) checked @endif @endforeach>
+                                        <input type="checkbox" class="form-check-input" value="{{$role->id}}" id="{{$role->id}}" @if($user->roles->pluck('id')->contains($role->id)) checked @endif>
                                         <label for="{{$role->id}}" class="form-check-label pr-2">{{$role->nom}}</label>
                                     </div>
                                 @endforeach
@@ -39,13 +39,13 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="email" name="email" class="form-control" placeholder="Adresse Email" value="{{$user->email}}">
+                                <input type="email" name="email" class="form-control" placeholder="Adresse Email" value="{{old('email') ?? $user->email}}">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="contact">Contact</label>
-                                <input type="text" name="contact" class="form-control" value="{{$user->contact}}">
+                                <input type="text" name="contact" class="form-control" value="{{old('contact') ?? $user->contact}}">
                             </div>
                         </div>
                     </div>

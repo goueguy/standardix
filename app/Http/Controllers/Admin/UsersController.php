@@ -165,6 +165,7 @@ class UsersController extends Controller
             "nom"=>$request->name,
             "prenoms"=>$request->firstname,
             "email"=>$request->email,
+            "contact"=>$request->contact
         ];
 
         User::where("id",$user->id)->update($data);

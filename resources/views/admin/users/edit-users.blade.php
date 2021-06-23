@@ -39,7 +39,7 @@
                             <label for="roles" class="pr-2">Rôles Disponibles:</label>
                                 @foreach ($roles as $role)
                                     <div class="form-group form-check">
-                                        <input type="checkbox" class="form-check-input" name="roles[]" value="{{$role->id}}" id="{{$role->id}}" @foreach ($user->roles as $userRole) @if($userRole->id===$role->id) checked @endif @endforeach>
+                                        <input type="checkbox" class="form-check-input" name="roles[]" value="{{$role->id}}" id="{{$role->id}}" @if($user->roles->pluck('id')->contains($role->id)) checked @endif>
                                         <label for="{{$role->id}}" class="pr-2 form-check-label">{{$role->nom}}</label>
                                     </div>
                                 @endforeach
