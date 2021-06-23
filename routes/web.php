@@ -48,34 +48,42 @@ Route::group(["as"=>"admin.","prefix"=>"admin"],function () {
     Route::group(["middleware"=>"isAdmin"],function () {
         #===========================DASHBOARD======================
         Route::get('/dashboard',[AdminController::class, 'dashboard'])->name('dashboard');
-        #===========================USERS==========================
-        Route::get('/users',[UsersController::class, 'usersList'])->name('users.list');
-        Route::get('/users/{user}/edit',[UsersController::class, 'edit'])->name('users.edit');
-        Route::post('/users/{user}/update',[UsersController::class, 'update'])->name('users.update.info');
-        Route::get('/users/{user}/passsword',[UsersController::class, 'editPassword'])->name('users.edit.password');
-        Route::post('/users/{user}/password',[UsersController::class, 'updateUserListPassword'])->name('users.update.password');
-        Route::get('/users/view',[UsersController::class, 'view'])->name('users.view');
-        Route::get('/users/add',[UsersController::class, 'add'])->name('users.add');
-        Route::post('/users/store',[UsersController::class, 'store'])->name('users.store');
-        Route::get('/users/{user}/delete',[UsersController::class, 'deleteUser'])->name('users.delete');
-        Route::get('/users/roles',[CategorieController::class,'createRole'])->name('roles.create');
-        Route::get('/users/roles/{id}/edit',[CategorieController::class,'editRole'])->name('roles.edit');
-        Route::post('/users/roles/{id}/update',[CategorieController::class,'updateRole'])->name('roles.update');
-        Route::get('/users/roles/{id}/delete',[CategorieController::class,'deleteRole'])->name('roles.delete');
-        Route::post('/users/roles/add',[CategorieController::class,'storeRole'])->name('roles.store');
+
+        Route::middleware('can:manage-users')->group(function () {
+            #===========================USERS==========================
+            Route::get('/users',[UsersController::class, 'usersList'])->name('users.list');
+            Route::get('/users/{user}/edit',[UsersController::class, 'edit'])->name('users.edit');
+            Route::post('/users/{user}/update',[UsersController::class, 'update'])->name('users.update.info');
+            Route::get('/users/{user}/passsword',[UsersController::class, 'editPassword'])->name('users.edit.password');
+            Route::post('/users/{user}/password',[UsersController::class, 'updateUserListPassword'])->name('users.update.password');
+            Route::get('/users/view',[UsersController::class, 'view'])->name('users.view');
+            Route::get('/users/add',[UsersController::class, 'add'])->name('users.add');
+            Route::post('/users/store',[UsersController::class, 'store'])->name('users.store');
+            Route::get('/users/{user}/delete',[UsersController::class, 'deleteUser'])->name('users.delete');
+            Route::get('/users/roles',[CategorieController::class,'createRole'])->name('roles.create');
+            Route::get('/users/roles/{id}/edit',[CategorieController::class,'editRole'])->name('roles.edit');
+            Route::post('/users/roles/{id}/update',[CategorieController::class,'updateRole'])->name('roles.update');
+            Route::get('/users/roles/{id}/delete',[CategorieController::class,'deleteRole'])->name('roles.delete');
+            Route::post('/users/roles/add',[CategorieController::class,'storeRole'])->name('roles.store');
+
+        });
         Route::get('/users/parametres/password',[UsersController::class,'createPassword'])->name('users.password');
         Route::get('/users/parametres/profil',[UsersController::class,'createProfil'])->name('users.profil');
         Route::post('/users/parametres/{user}/profil',[UsersController::class,'updateProfil'])->name('users.profil.update');
         Route::post('/users/parametres/{user}/password',[UsersController::class,'updatePassword'])->name('users.password.update');
+
         #===========================OFFRES==========================
-        Route::get('/offres',[OffresController::class, 'index'])->name('offres.list');
-        Route::get('/offres/lancees',[OffresController::class, 'lancees'])->name('offres.lancees');
-        Route::get('/offres/{id}/edit',[OffresController::class, 'edit'])->name('offres.edit');
-        Route::get('/offres/{slug}/view',[OffresController::class, 'view'])->name('offres.view');
-        Route::get('/offres/{slug}/delete',[OffresController::class, 'destroy'])->name('offres.delete');
-        Route::post('/offres/{slug}/update',[OffresController::class, 'update'])->name('offres.update');
-        Route::get('/offres/add',[OffresController::class, 'add'])->name('offres.add');
-        Route::post('/offres/add',[OffresController::class, 'store'])->name('offres.store');
+        Route::middleware('can:manage-offers')->group(function () {
+            Route::get('/offres',[OffresController::class, 'index'])->name('offres.list');
+            Route::get('/offres/lancees',[OffresController::class, 'lancees'])->name('offres.lancees');
+            Route::get('/offres/{id}/edit',[OffresController::class, 'edit'])->name('offres.edit');
+            Route::get('/offres/{slug}/view',[OffresController::class, 'view'])->name('offres.view');
+            Route::get('/offres/{slug}/delete',[OffresController::class, 'destroy'])->name('offres.delete');
+            Route::post('/offres/{slug}/update',[OffresController::class, 'update'])->name('offres.update');
+            Route::get('/offres/add',[OffresController::class, 'add'])->name('offres.add');
+            Route::post('/offres/add',[OffresController::class, 'store'])->name('offres.store');
+        });
+
         #===========================CANDIDATURES==========================
         Route::get('/candidatures',[UsersController::class, 'index'])->name('candidatures.list');
         Route::get('/candidatures/view',[UsersController::class, 'view'])->name('candidatures.view');

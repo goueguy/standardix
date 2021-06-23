@@ -1,13 +1,14 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
+use App\Models\Role;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
-use App\Models\User;
-use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
 {
@@ -55,7 +56,6 @@ class RegisterController extends Controller
             'prenoms' => 'required|string|max:200',
             'email' => 'required|string|unique:users,email',
             'password' => 'required|string|min:8|confirmed',
-            'nom_entreprise' => 'required|string|max:100',
             // 'contact',
             // 'lieu_habitation',
             // 'domaine_emploi_id',
@@ -73,12 +73,15 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $memberRole = Role::where('nom','MEMBER')->first();
+        $member = User::create([
             'nom' => $data['nom'],
             'prenoms' => $data['prenoms'],
             'email' => $data['email'],
             'role_id'=>1,
             'password' => Hash::make($data['password']),
         ]);
+        $member->roles()->attach($memberRole);
+        return $member;
     }
 }

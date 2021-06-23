@@ -34,7 +34,7 @@
                 <th>Prénoms</th>
                 <th>Email</th>
                 <th>Contact</th>
-                <th>Niveau Accès</th>
+                <th>Roles</th>
                 <th>Action</th>
                 </tr>
             </thead>
@@ -46,7 +46,7 @@
                 <td>{{$user->prenoms}}</td>
                 <td>{{$user->email}}</td>
                 <td>{{$user->contact}}</td>
-                <td>{{$user->roles->first()->nom}}</td>
+                <td>{{implode(",",$user->roles()->pluck('nom')->toArray())}}</td>
                 <td>
                     {{-- <a href="{{route('admin.users.view')}}"><i class="fas fa-eye"></i></a> --}}
                     <a href="{{route('admin.users.edit.password',$user->id)}}"><i class="fas fa-key"></i></a>

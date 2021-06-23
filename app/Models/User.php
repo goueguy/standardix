@@ -64,4 +64,11 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\PasswordSecurity');
     }
+
+    // public function isAdmin(){
+    //     return $this->roles()->where('nom','SUPERADMIN')->first();
+    // }
+    public   function hasAnyRole(array $roles){
+        return $this->roles()->whereIn('nom',$roles)->first();
+    }
 }

@@ -17,8 +17,9 @@ class isAdmin
      */
     public function handle(Request $request, Closure $next)
     {
+        //dd(Auth::user()->roles->pluck('nom'));
         if(Auth::check()){
-            if(Auth::user()->role_id==3 || Auth::user()->role_id==2){
+            if(Auth::user()->roles->pluck('nom')->contains("SUPERADMIN") || Auth::user()->roles->pluck('nom')->contains("ADMIN")){
                 return $next($request);
             }else{
                 return redirect()->route('candidats.dashboard')->with('danger','Attention vous n\'avez pas accès à ce menu');

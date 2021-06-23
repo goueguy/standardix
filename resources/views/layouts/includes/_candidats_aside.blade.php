@@ -19,7 +19,7 @@
         </svg>
             </span>
         </div>
-        @if (Auth::user()->role_id==3 || Auth::user()->role_id==2)
+        @if (Auth::user()->roles->pluck('nom')->contains('SUPERADMIN') || Auth::user()->roles->pluck('nom')->contains('ADMIN'))
         <div class="flex flex-col p-10 mt-10 mb-0 text-white text-md">
             <a href="{{route('admin.dashboard')}}" class="flex flex-row px-2 my-2 hover:opacity-75">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">

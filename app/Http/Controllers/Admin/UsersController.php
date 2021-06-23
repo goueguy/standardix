@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Models\Candidature;
-use App\Models\DomaineEmploi;
-use App\Models\Metier;
 use App\Models\Role;
-use Illuminate\Http\Request;
 use App\Models\User;
-use Illuminate\Support\Facades\Hash;
+use App\Models\Metier;
+use App\Models\Candidature;
+use Illuminate\Http\Request;
+use App\Models\DomaineEmploi;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Hash;
+
 class UsersController extends Controller
 {
     /**
@@ -23,6 +25,7 @@ class UsersController extends Controller
         $candidatures = Candidature::orderBy("id","desc")->get();
         return view('admin.candidatures.list', compact('candidatures'));
     }
+
     public function usersList()
     {
         //$users = User::whereIn('role_id',[2,3])->orderBy("id","desc")->get();
@@ -141,25 +144,27 @@ class UsersController extends Controller
         return redirect('admin/users')->with('success','Utilisateur crée');
     }
 
-    public function deleteUser($user){
-        User::find($user)->delete();
+    public function deleteUser(User $user){
+        $user->roles()->detach();
+        $user->delete();
         return redirect('admin/users')->with('success','Utilisateur supprimé');
     }
-    public function update(Request $request,$user){
+    public function update(Request $request,User $user){
+        //dd($request->all());
         $this->validate($request,[
             "name"=>"required|string|min:3",
             "firstname"=>"required|string|min:3",
             "email"=>"required|email",
-            "role"=>"required|integer"
         ]);
 
+        $user->roles()->sync($request->roles);
         $data = [
             "nom"=>$request->name,
             "prenoms"=>$request->firstname,
             "email"=>$request->email,
-            "role_id"=>$request->role,
         ];
-        User::where("id",$user)->update($data);
+
+        User::where("id",$user->id)->update($data);
         return redirect('admin/users')->with('success','Utilisateur modifié');
     }
 
