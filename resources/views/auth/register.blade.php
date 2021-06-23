@@ -66,13 +66,13 @@
                             </span>
                         @enderror
                     </div>
-            
+
                 <a href="{{route('register.client')}}" class="mt-12 mb-12">Si vous êtes une entreprise, cliquer ici</a>
                 <button type="submit" class="w-full p-3 font-bold bg-yellow-400 rounded-full shadow-lg lg:mt-8">S'inscrire</button>
             </form>
             <div class="lg:mt-6">
                 <p class="font-bold"><a href="{{route('register')}}"> Avez-vous déjà un compte ?</a> <a href="{{route('login')}}">Connectez-vous</a></p>
-                <p class="font-bold"><a href="#">Oops? J'ai oublié mon mot de passe</a> </p>
+                <p class="font-bold"><a href="{{route('candidatures.forget-password')}}">Oops? J'ai oublié mon mot de passe</a> </p>
             </div>
         </div>
 </div>

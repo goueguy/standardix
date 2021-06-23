@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Role;
 use App\Models\DomaineEmploi;
+use App\Models\PasswordSecurity;
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
@@ -55,4 +56,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function passwordSecurity()
+    {
+        return $this->hasMany('App\PasswordSecurity');
+    }
 }

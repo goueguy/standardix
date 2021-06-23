@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ResetPassword;
 use App\Models\Candidature;
 use App\Models\CandidatureRendezVous;
 use Illuminate\Support\Facades\Auth;
@@ -9,10 +10,13 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\DomaineEmploi;
 use App\Models\Offre;
+use App\Models\PasswordSecurity;
 use App\Models\RendezVous;
 use App\Notifications\MessagesNotification;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use Carbon\Carbon;
 class CandidatController extends Controller
 {
     /**
@@ -118,5 +122,74 @@ class CandidatController extends Controller
             return redirect()->intended('candidats/dashboard');
         }
 
+    }
+    public function showPasswordForm(){
+        return view("auth.passwords.candidat-password");
+    }
+    public function sendPasswordLink(Request $request){
+        $request->validate([
+            'email' => 'required|email',
+        ]);
+        $isUserExist = User::where('email',$request->email)->first();
+        if($isUserExist){
+            $data = [
+                "token"=>Str::random(60),
+                "nom"=>$isUserExist->nom,
+                "prenoms"=>$isUserExist->prenoms,
+                "entreprise"=>$isUserExist->nom_entreprise
+            ];
+            User::where('email',$request->email)->update(["remember_token"=>$data['token']]);
+            PasswordSecurity::create([
+                'user_id' =>$isUserExist->id,
+                'password_expiry_days' => 1,
+                'password_updated_at' => Carbon::now(),
+            ]);
+            Mail::to($isUserExist->email)->send(new ResetPassword($data));
+            return back()->with('success','Le lien de réinitialisation a été envoyé à cette adresse');
+
+        }else{
+
+            return back()->with('success','Cet adresse Email est inexistante');
+        }
+    }
+
+    public  function resetPasswordForm($token){
+
+        $tokenStatus = $this->verifyIfTokenIsValid($token);
+        if($tokenStatus){
+            return view("auth.passwords.reset-password-candidat",compact('token'));
+        }else{
+            abort(403,"Le lien a expiré");
+        }
+
+    }
+
+    public function verifyIfTokenIsValid($token){
+
+        $tokenIsExist = User::where("remember_token",$token)->first();
+        if(is_null($tokenIsExist)){
+            abort(403,"Ce token a expiré ou n existe pas");
+        }else{
+            $tokenData = PasswordSecurity::where('user_id',$tokenIsExist->id)->orderBy('id','desc')->first();
+            $expiration_date_token = Carbon::parse($tokenData->password_updated_at)->addDays($tokenData->password_expiry_days);
+            if($expiration_date_token->lessThan(Carbon::now())){
+                return false;
+            }else{
+                return true;
+            }
+        }
+    }
+
+    public function updatePassword(Request $request,$token){
+
+        $request->validate([
+            'password' => 'required|string|min:8|confirmed',
+        ]);
+        $tokenIsExist = User::where("remember_token",$token)->first();
+
+        if($tokenIsExist){
+            User::where("remember_token",$token)->update(['password'=>Hash::make($request->password)]);
+            return redirect('login')->with('success','Votre mot de passe a été réinitialisé !');
+        }
     }
 }

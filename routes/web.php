@@ -35,6 +35,10 @@ Route::get('/nos-metiers',[HomeController::class, 'showPageNosMetiers']
 
 Route::get('/candidats/clients',[CandidatController::class, 'clients'])->name('register.client');
 Route::post('/candidats/clients',[CandidatController::class, 'saveCandidateClient'])->name('candidats.client.save');
+Route::get('/candidatures/forget-password',[CandidatController::class, 'showPasswordForm'])->name('candidatures.forget-password');
+Route::post('/candidats/password',[CandidatController::class, 'sendPasswordLink'])->name('candidatures.send-password-link');
+Route::get('/candidats/password/reset-link/{token}',[CandidatController::class, 'resetPasswordForm'])->name('candidatures.password-reset-form');
+Route::post('/candidats/password/reset-link/{token}',[CandidatController::class, 'updatePassword'])->name('candidatures.password.update');
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -124,8 +128,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/candidats/offres-lancees',[CandidatController::class, 'offers'])->name('candidats.offres');
     Route::get('/candidature-spontanee',[HomeController::class, 'showPageCandidatureSpontanee'])->name('candidature-spontanee');
     Route::get('/candidatures/{slug}',[CandidatController::class, 'detailOffre'])->name('candidatures.detail.offre');
-
-
 
 });
 Auth::routes();
