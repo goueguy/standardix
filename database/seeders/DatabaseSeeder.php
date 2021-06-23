@@ -16,11 +16,11 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
 
-    
+
         DB::table('users')->insert([
             'nom' => "David",
             'prenoms'=>'beckham',
-            'email' => 'david.beckham@gmail.com',
+            'email' => 'jlagoueguy@gmail.com',
             'role_id'=>1,
             'password'=>Hash::make("david0000"),
         ]);
