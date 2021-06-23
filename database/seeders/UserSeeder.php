@@ -24,7 +24,6 @@ class UserSeeder extends Seeder
             'nom' => "yao",
             'prenoms'=>'martial',
             'email' => 'martial.yao@gmail.com',
-            'role_id'=>1,
             'password'=>Hash::make("martial0000")
         ]);
 
@@ -32,7 +31,6 @@ class UserSeeder extends Seeder
             'nom' => "aboke",
             'prenoms'=>'benjamin',
             'email' => 'benjamin.aboke@gmail.com',
-            'role_id'=>2,
             'password'=>Hash::make("benjamin0000")
         ]);
 
@@ -40,7 +38,6 @@ class UserSeeder extends Seeder
             'nom' => "goueguy",
             'prenoms'=>'jean-louis',
             'email' => 'jlagoueguy@gmail.com',
-            'role_id'=>3,
             'password'=>Hash::make("jean0000")
         ]);
 
