@@ -31,8 +31,11 @@ class User extends Authenticatable
         'metier_id',
         'nom_entreprise'
     ];
+    // public function roles(){
+    //     return $this->hasMany(Role::class, 'id', 'role_id');
+    // }
     public function roles(){
-        return $this->hasMany(Role::class, 'id', 'role_id');
+        return $this->belongsToMany(Role::class);
     }
     public function domaine(){
         return $this->hasOne(DomaineEmploi::class,'id','domaine_emploi_id');

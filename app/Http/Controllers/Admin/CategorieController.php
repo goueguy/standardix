@@ -136,4 +136,22 @@ class CategorieController extends Controller
         CategoryOffre::find($id)->delete();
         return back()->with('success','Catégorie supprimée');
     }
+    public function editRole($id){
+        $categorie = Role::find($id);
+        return view("admin.roles.edit",compact('categorie'));
+    }
+    public function deleteRole($id){
+        Role::find($id)->delete();
+        return back()->with('success','Role supprimé');
+    }
+    public function updateRole(Request $request,$id){
+
+        $request->validate([
+
+            'nom'=>'required|string|min:2',
+            'description'=>'required|string|min:4'
+        ]);
+        Role::find($id)->update(['nom'=>$request->nom,'description'=>$request->description]);
+        return redirect('admin/users/roles')->with('success','Role modifié');
+    }
 }

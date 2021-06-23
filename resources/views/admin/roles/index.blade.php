@@ -64,9 +64,8 @@
                         <td>{{$cat->id}}</td>
                         <td>{{$cat->nom}}</td>
                         <td>
-                            <a href="#"><i class="fas fa-eye"></i></a>
-                            <a href="#"><i class="fas fa-trash"></i></a>
-                            <a href="#"><i class="fas fa-edit"></i></a>
+                            <a href="{{route('admin.roles.delete',$cat->id)}}" onclick="return confirm('Voulez-vous supprimer ce rôle');"><i class="fas fa-trash"></i></a>
+                            <a href="{{route('admin.roles.edit',$cat->id)}}"><i class="fas fa-edit"></i></a>
                         </td>
                     </tr>
                     @endforeach

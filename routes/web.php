@@ -59,6 +59,9 @@ Route::group(["as"=>"admin.","prefix"=>"admin"],function () {
         Route::post('/users/store',[UsersController::class, 'store'])->name('users.store');
         Route::get('/users/{user}/delete',[UsersController::class, 'deleteUser'])->name('users.delete');
         Route::get('/users/roles',[CategorieController::class,'createRole'])->name('roles.create');
+        Route::get('/users/roles/{id}/edit',[CategorieController::class,'editRole'])->name('roles.edit');
+        Route::post('/users/roles/{id}/update',[CategorieController::class,'updateRole'])->name('roles.update');
+        Route::get('/users/roles/{id}/delete',[CategorieController::class,'deleteRole'])->name('roles.delete');
         Route::post('/users/roles/add',[CategorieController::class,'storeRole'])->name('roles.store');
         Route::get('/users/parametres/password',[UsersController::class,'createPassword'])->name('users.password');
         Route::get('/users/parametres/profil',[UsersController::class,'createProfil'])->name('users.profil');
