@@ -33,7 +33,6 @@
                 <th>Nom</th>
                 <th>Prénoms</th>
                 <th>Email</th>
-                <th>Contact</th>
                 <th>Roles</th>
                 <th>Action</th>
                 </tr>
@@ -45,10 +44,9 @@
                 <td>{{$user->nom}}</td>
                 <td>{{$user->prenoms}}</td>
                 <td>{{$user->email}}</td>
-                <td>{{$user->contact}}</td>
                 <td>{{implode(",",$user->roles()->pluck('nom')->toArray())}}</td>
                 <td>
-                    {{-- <a href="{{route('admin.users.view')}}"><i class="fas fa-eye"></i></a> --}}
+                    <a href="{{route('admin.users.view',$user->id)}}"><i class="fas fa-eye"></i></a>
                     <a href="{{route('admin.users.edit.password',$user->id)}}"><i class="fas fa-key"></i></a>
                     <a href="{{route('admin.users.delete',$user->id)}}" onclick="return confirm('Voulez-vous supprimer cet Utilisateur');"><i class="fas fa-trash"></i></a>
                     <a href="{{route('admin.users.edit',$user->id)}}"><i class="fas fa-edit"></i></a>

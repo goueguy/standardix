@@ -5,7 +5,6 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use App\Models\DomaineEmploi;
 use App\Models\Metier;
-use App\Models\Role;
 
 class CreateUsersTable extends Migration
 {
@@ -25,7 +24,6 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('contact')->nullable();
-            $table->foreignIdFor(Role::class)->default(1);
             $table->string('lieu_habitation')->nullable();
             $table->foreignIdFor(DomaineEmploi::class)->nullable();
             $table->foreignIdFor(Metier::class)->nullable();

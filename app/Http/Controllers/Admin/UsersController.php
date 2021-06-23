@@ -66,9 +66,11 @@ class UsersController extends Controller
         $roles = Role::all();
         return view('admin.users.edit-users',compact('user','roles'));
     }
-    public function view()
+    public function view($user)
     {
-        return view('admin.users.view-users');
+        $user = User::find($user);
+        $roles = Role::all();
+        return view('admin.users.view-users',compact('user','roles'));
     }
 
     public function updateProfil(Request $request,$user_id){
@@ -77,7 +79,6 @@ class UsersController extends Controller
             "nom"=>"required|string|min:3",
             "prenoms"=>"required|string|min:3",
             "contact"=>"required",
-            "role"=>"required|integer",
             "lieu_habitation"=>"required|string|min:3",
             "domaine_emploi"=>"required",
             "metier"=>"required",
@@ -131,16 +132,18 @@ class UsersController extends Controller
             "firstname"=>"required|string|min:3",
             "email"=>"required|email|unique:users",
             "password"=>"required|string|min:8",
-            "role"=>"required|integer"
+            "roles"=>"required|array",
+            "contact"=>"required|string|min:10",
         ]);
 
         $newUser = new User;
         $newUser->nom=$request->name;
         $newUser->prenoms=$request->firstname;
         $newUser->email=$request->email;
+        $newUser->contact=$request->contact;
         $newUser->password=Hash::make($request->password);
-        $newUser->role_id=$request->role;
         $newUser->save();
+        $newUser->roles()->attach($request->roles);
         return redirect('admin/users')->with('success','Utilisateur crée');
     }
 

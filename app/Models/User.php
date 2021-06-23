@@ -29,7 +29,6 @@ class User extends Authenticatable
         'cv',
         'motivation',
         'metier_id',
-        'nom_entreprise'
     ];
     // public function roles(){
     //     return $this->hasMany(Role::class, 'id', 'role_id');

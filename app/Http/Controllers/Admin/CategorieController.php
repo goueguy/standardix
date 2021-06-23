@@ -69,7 +69,7 @@ class CategorieController extends Controller
         ]
         );
         $new_role = new Role;
-        $new_role->nom= $request->nom;
+        $new_role->nom= strtoupper($request->nom);
         $new_role->description= $request->description;
         $new_role->save();
         return redirect()->back()->with("success","Role Ajouté!");
@@ -151,7 +151,7 @@ class CategorieController extends Controller
             'nom'=>'required|string|min:2',
             'description'=>'required|string|min:4'
         ]);
-        Role::find($id)->update(['nom'=>$request->nom,'description'=>$request->description]);
+        Role::find($id)->update(['nom'=>strtoupper($request->nom),'description'=>$request->description]);
         return redirect('admin/users/roles')->with('success','Role modifié');
     }
 }

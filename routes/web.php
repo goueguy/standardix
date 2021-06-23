@@ -56,7 +56,7 @@ Route::group(["as"=>"admin.","prefix"=>"admin"],function () {
             Route::post('/users/{user}/update',[UsersController::class, 'update'])->name('users.update.info');
             Route::get('/users/{user}/passsword',[UsersController::class, 'editPassword'])->name('users.edit.password');
             Route::post('/users/{user}/password',[UsersController::class, 'updateUserListPassword'])->name('users.update.password');
-            Route::get('/users/view',[UsersController::class, 'view'])->name('users.view');
+            Route::get('/users/view/{user}',[UsersController::class, 'view'])->name('users.view');
             Route::get('/users/add',[UsersController::class, 'add'])->name('users.add');
             Route::post('/users/store',[UsersController::class, 'store'])->name('users.store');
             Route::get('/users/{user}/delete',[UsersController::class, 'deleteUser'])->name('users.delete');
@@ -82,35 +82,48 @@ Route::group(["as"=>"admin.","prefix"=>"admin"],function () {
             Route::post('/offres/{slug}/update',[OffresController::class, 'update'])->name('offres.update');
             Route::get('/offres/add',[OffresController::class, 'add'])->name('offres.add');
             Route::post('/offres/add',[OffresController::class, 'store'])->name('offres.store');
+            Route::get('/offres/categories/add',[CategorieController::class,'index'])->name('categorie.create');
+            Route::get('/offres/categories/{id}/edit',[CategorieController::class,'edit'])->name('categorie.edit');
+            Route::post('/offres/categories/{id}/update',[CategorieController::class,'update'])->name('categorie.update');
+            Route::get('/offres/categories/{id}/delete',[CategorieController::class,'destroy'])->name('categorie.delete');
+            Route::post('/offres/categories/add',[CategorieController::class,'store'])->name('categorie.store');
         });
 
         #===========================CANDIDATURES==========================
-        Route::get('/candidatures',[UsersController::class, 'index'])->name('candidatures.list');
-        Route::get('/candidatures/view',[UsersController::class, 'view'])->name('candidatures.view');
-        Route::get('/candidatures/{candidat}/delete',[UsersController::class, 'delete'])->name('candidatures.delete');
-        Route::get('/offres/categories/add',[CategorieController::class,'index'])->name('categorie.create');
-        Route::get('/offres/categories/{id}/edit',[CategorieController::class,'edit'])->name('categorie.edit');
-        Route::post('/offres/categories/{id}/update',[CategorieController::class,'update'])->name('categorie.update');
-        Route::get('/offres/categories/{id}/delete',[CategorieController::class,'destroy'])->name('categorie.delete');
-        Route::post('/offres/categories/add',[CategorieController::class,'store'])->name('categorie.store');
-        Route::get('/domaines',[DomaineController::class,'index'])->name('domaine.create');
-        Route::get('/domaines/{domaine}/edit',[DomaineController::class,'edit'])->name('domaine.edit');
-        Route::get('/domaines/{domaine}/delete',[DomaineController::class,'destroy'])->name('domaine.delete');
-        Route::post('/domaines/{domaine}/update',[DomaineController::class,'update'])->name('domaine.update');
-        Route::post('/domaines/categories/add',[DomaineController::class,'storeDomaine'])->name('domaine.store');
-        Route::get('/metiers',[MetierController::class,'index'])->name('metier.create');
-        Route::get('/metiers/{metier}/edit',[MetierController::class,'edit'])->name('metier.edit');
-        Route::post('/metiers/{metier}/update',[MetierController::class,'update'])->name('metier.update');
-        Route::get('/metiers/{metier}/delete',[MetierController::class,'destroy'])->name('metier.delete');
-        Route::post('/metier/add',[MetierController::class,'storeMetier'])->name('metier.store');
-        Route::get('/rendez-vous',[RendezVousController::class,'index'])->name('rendezvous.index');
-        Route::get('/rendez-vous/{id}/edit',[RendezVousController::class,'edit'])->name('rendezvous.edit');
-        Route::get('/rendez-vous/{id}/show',[RendezVousController::class,'show'])->name('rendezvous.show');
-        Route::post('/rendez-vous/{id}/update',[RendezVousController::class,'update'])->name('rendezvous.update');
-        Route::get('/rendez-vous/{id}/delete',[RendezVousController::class,'destroy'])->name('rendezvous.delete');
-        Route::post('/rendez-vous/store',[RendezVousController::class, 'store'])->name('rendezvous.store');
-        Route::get('/rendez-vous/{candidat}/create',[RendezVousController::class, 'create'])->name('rendezvous.create');
-        Route::post('/candidature/verify',[RendezVousController::class, 'verifyCandidatesExists'])->name('candidatures.verify');
+        Route::middleware('can:manage-candidatures')->group(function () {
+            Route::get('/candidatures',[UsersController::class, 'index'])->name('candidatures.list');
+            Route::get('/candidatures/view',[UsersController::class, 'view'])->name('candidatures.view');
+            Route::get('/candidatures/{candidat}/delete',[UsersController::class, 'delete'])->name('candidatures.delete');
+        });
+
+        Route::middleware('can:manage-domaines')->group(function () {
+            Route::get('/domaines',[DomaineController::class,'index'])->name('domaine.create');
+            Route::get('/domaines/{domaine}/edit',[DomaineController::class,'edit'])->name('domaine.edit');
+            Route::get('/domaines/{domaine}/delete',[DomaineController::class,'destroy'])->name('domaine.delete');
+            Route::post('/domaines/{domaine}/update',[DomaineController::class,'update'])->name('domaine.update');
+            Route::post('/domaines/categories/add',[DomaineController::class,'storeDomaine'])->name('domaine.store');
+        });
+
+        Route::middleware('can:manage-metiers')->group(function () {
+            Route::get('/metiers',[MetierController::class,'index'])->name('metier.create');
+            Route::get('/metiers/{metier}/edit',[MetierController::class,'edit'])->name('metier.edit');
+            Route::post('/metiers/{metier}/update',[MetierController::class,'update'])->name('metier.update');
+            Route::get('/metiers/{metier}/delete',[MetierController::class,'destroy'])->name('metier.delete');
+            Route::post('/metier/add',[MetierController::class,'storeMetier'])->name('metier.store');
+        });
+        
+        Route::middleware('can:manage-messages')->group(function () {
+            Route::get('/rendez-vous',[RendezVousController::class,'index'])->name('rendezvous.index');
+            Route::get('/rendez-vous/{id}/edit',[RendezVousController::class,'edit'])->name('rendezvous.edit');
+            Route::get('/rendez-vous/{id}/show',[RendezVousController::class,'show'])->name('rendezvous.show');
+            Route::post('/rendez-vous/{id}/update',[RendezVousController::class,'update'])->name('rendezvous.update');
+            Route::get('/rendez-vous/{id}/delete',[RendezVousController::class,'destroy'])->name('rendezvous.delete');
+            Route::post('/rendez-vous/store',[RendezVousController::class, 'store'])->name('rendezvous.store');
+            Route::get('/rendez-vous/{candidat}/create',[RendezVousController::class, 'create'])->name('rendezvous.create');
+            Route::post('/candidature/verify',[RendezVousController::class, 'verifyCandidatesExists'])->name('candidatures.verify');
+        });
+        
+        
     });
     #=========================AUTH=================================
     // Route::get('auth',[AdminController::class, 'login'])->name('auth');

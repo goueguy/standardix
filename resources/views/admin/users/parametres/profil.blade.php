@@ -57,21 +57,7 @@
                             </div>
 
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="role_id">Role</label>
-                                    <select name="role" id="role" class="form-control">
-                                        <option value="">Sélectionner un Rôle</option>
-                                        @foreach ($roles as $role)
-                                            <option value="{{$role->id}}" {{$role->id == Auth::user()->role_id ? "selected":""}}>{{$role->nom}}</option>
-                                        @endforeach
-                                    </select>
-                                    @error('role')
-                                        <div class="text-danger">{{ $message }}</div>
-                                    @enderror
-                            </div>
-                        </div>
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <label for="lieu_habitation">Lieu Habitation</label>
                                 <input type="text" name="lieu_habitation" class="form-control" value="{{Auth::user()->lieu_habitation}}">
@@ -80,7 +66,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <label for="domaine_emploi_id">Domaine Emploi</label>
                                     <select name="domaine_emploi" id="domaine_emploi" class="form-control">

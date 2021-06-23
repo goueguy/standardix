@@ -26,43 +26,53 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="firstname">Prénoms</label>
-                                <input type="text" name="firstname" class="form-control @error('firstname') is-invalid @enderror" placeholder="Prénoms">
-                                @error('firstname')
+                                <label for="contact">Prénoms</label>
+                                <input type="text" name="contact" class="form-control @error('contact') is-invalid @enderror" placeholder="Contact">
+                                @error('contact')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>
                     </div>
                     <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group d-flex">
+                                <label for="password" class="pr-2">Rôles Disponibles</label>
+                                @foreach ($roles as $role)
+                                    <div class="form-group form-check">
+                                        <input type="checkbox" class="form-check-input" name="roles[]" value="{{$role->id}}" id="{{$role->id}}">
+                                        <label for="{{$role->id}}" class="form-check-label pr-2 pl-2">{{$role->nom}}</label>
+                                    </div>
+                                @endforeach
+                                @error('roles')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                        
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="password">Niveau d'accès</label>
-                                <select name="role" class="form-control @error('role') is-invalid @enderror">
-                                    <option value="">Sélectionner</option>
-                                    @foreach ($roles as $role)
-                                        <option value="{{$role->id}}">{{$role->nom}}</option>
-                                    @endforeach
-                                </select>
-                                @error('role')
+                                <label for="password">Mot de passe</label>
+                                <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Mot de passe">
+                                @error('password')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="Adresse Email">
-                                @error('email')
+                                <label for="contact">Contact</label>
+                                <input type="text" name="firstname" class="form-control @error('firstname') is-invalid @enderror" placeholder="Prénoms">
+                                @error('contact')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="password">Mot de passe</label>
-                                <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Mot de passe">
-                                @error('password')
+                                <label for="email">Email</label>
+                                <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="Adresse Email">
+                                @error('email')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>

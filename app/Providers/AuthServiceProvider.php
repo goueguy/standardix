@@ -34,7 +34,25 @@ class AuthServiceProvider extends ServiceProvider
 
         //droit de gestion des offres
         Gate::define('manage-offers', function (User $user) {
-            return $user->hasAnyRole(['SUPERADMIN','ADMIN']);
+            return $user->hasAnyRole(['SUPERADMIN','OFFERS']);
+        });
+
+        //droit de gestion des candidatures
+        Gate::define('manage-candidatures', function (User $user) {
+            return $user->hasAnyRole(['SUPERADMIN','CANDIDATURES']);
+        });
+
+        //droit de gestion des domaines emploi
+        Gate::define('manage-domaines', function (User $user) {
+            return $user->hasAnyRole(['SUPERADMIN','EMPLOIS']);
+        });
+         //droit de gestion des métiers
+        Gate::define('manage-metiers', function (User $user) {
+            return $user->hasAnyRole(['SUPERADMIN','METIERS']);
+        });
+          //droit de gestion des métiers
+        Gate::define('manage-messages', function (User $user) {
+            return $user->hasAnyRole(['SUPERADMIN','MESSAGES']);
         });
 
     }
