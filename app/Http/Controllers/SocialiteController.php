@@ -30,6 +30,11 @@ class SocialiteController extends Controller
             $request->session()->put('state',Str::random(40));
             
             $user = Socialite::driver($request->provider)->user();
+            $state = $request->get('state');
+            $request->session()->put('state',$state);
+            if(Auth::check()==false){
+            session()->regenerate();
+            }
             $email =$user->getEmail();//email de l'utilisateur
             $nom = $user->getName();//nom  de l'utilisateur
             $token = $user->token;
