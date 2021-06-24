@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -26,6 +27,7 @@ class SocialiteController extends Controller
         $provider = $request->provider;
         if(in_array($provider,$this->providers)){
             //on récupère les informations provenant du provider
+            $request->session()->put('state',Str::random(40));
             $data = Socialite::driver($request->provider)->user();
             $token = $data->token;
             $email =$data->getEmail();//email de l'utilisateur
