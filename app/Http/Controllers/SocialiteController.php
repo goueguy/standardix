@@ -24,49 +24,46 @@ class SocialiteController extends Controller
         abort(404);//si le provider n'est pas autorisé on retourne erreur 404 
     }
     public function callback(Request $request){
-        $provider = $request->provider;
-        if(in_array($provider,$this->providers)){
-            //on récupère les informations provenant du provider
-            $request->session()->put('state',Str::random(40));
+        try {
+            $provider = $request->provider;
             
-            $user = Socialite::driver($request->provider)->user();
-            $state = $request->get('state');
-            $request->session()->put('state',$state);
-            if(Auth::check()==false){
-            session()->regenerate();
-            }
-            $email =$user->getEmail();//email de l'utilisateur
-            $nom = $user->getName();//nom  de l'utilisateur
-            $token = $user->token;
-            $refreshToken = $user->refreshToken;
-            $expiresIn = $user->expiresIn;
-
-            // OAuth 1.0 providers...
-            $token = $user->token;
-            $tokenSecret = $user->tokenSecret;
-            //on vérifie si l  utilisateur existe déja
-            $user = User::where("email",$email)->first();
-            if(isset($user)){
-                //on met à jour les informations
-                $user->nom  = $nom;
-                $user->save();
-            }else{
-                $user = User::create(
-                    [
-                        "nom"=>$nom,
-                        "email"=>$email,
-                        "password"=>Hash::make("#123Tes?t@!")//on attribue un mot de passe
-                    ]
-                );
-            }
-            
-            //on connecte l'utilisateur
-            $credentials = $request->only($email, Hash::make("#123Tes?t@!"));
-            if (Auth::attempt($credentials)) {
-                //on le redirige sur l espace  candidats
-                return redirect()->intended('candidats/dashboard');
-            }
+            if(in_array($provider,$this->providers)){
+                //on récupère les informations provenant du provider
         
+                $user = Socialite::driver($request->provider)->user();
+                //dd($user->getId());
+                $token = $user->token;
+                $refreshToken = $user->refreshToken;
+                $expiresIn = $user->expiresIn;
+
+                // OAuth 1.0 providers...
+                $token = $user->token;
+
+                $email =$user->getEmail();//email de l'utilisateur
+                $nom = $user->getName();//nom  de l'utilisateur
+                //dd($user->name);
+                $findUser = User::where("google_id",$user->getId())->first();
+                //dd($findUser);
+                if(isset($findUser)){
+
+                    Auth::login($findUser);
+                    return redirect()->intended('candidats/dashboard');
+                }else{
+                    $newUser = User::create(
+                        [
+                            "email"=>$user->email,
+                            "google_id"=>$user->getId(),
+                            "password"=>Hash::make("#123Tes?t@!")//on attribue un mot de passe
+                        ]
+                    );
+                }
+                    Auth::login($newUser);
+                    return redirect()->intended('candidats/dashboard');
+                }
+            
+        } catch (\Exception $ex) {
+            dd($ex->getMessage());
         }
+    
     }
 }

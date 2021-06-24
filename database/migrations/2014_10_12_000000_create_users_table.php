@@ -29,6 +29,8 @@ class CreateUsersTable extends Migration
             $table->foreignIdFor(Metier::class)->nullable();
             $table->string('cv')->nullable();
             $table->text('motivation')->nullable();
+            $table->string('google_id')->nullable();
+
             $table->rememberToken();
             $table->timestamps();
         });

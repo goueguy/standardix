@@ -42,12 +42,11 @@ Route::get('/candidats/password/reset-link/{token}',[CandidatController::class, 
 Route::post('/candidats/password/reset-link/{token}',[CandidatController::class, 'updatePassword'])->name('candidatures.password.update');
 
 //SOCIALITE ROUTE
-Route::get("login-register", [SocialiteController::class,'loginRegister'])->name('social.login');
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 // La redirection vers le provider
-Route::get("redirect/{provider}", [SocialiteController::class,'redirect'])->name('social.redirect');
+Route::get("auth/{provider}", [SocialiteController::class,'redirect'])->name('social.redirect');
 // Le callback du provider
-Route::get("callback/{provider}", [SocialiteController::class,'callback'])->name('social.callback');
+Route::get("auth/{provider}/callback", [SocialiteController::class,'callback'])->name('social.callback');
 #-===========================ESPACE ADMIN=====================
 Route::group(["as"=>"admin.","prefix"=>"admin"],function () {
 
