@@ -28,10 +28,17 @@ class SocialiteController extends Controller
         if(in_array($provider,$this->providers)){
             //on récupère les informations provenant du provider
             $request->session()->put('state',Str::random(40));
-            $data = Socialite::driver($request->provider)->user();
-            $token = $data->token;
-            $email =$data->getEmail();//email de l'utilisateur
-            $nom = $data->getName();//nom  de l'utilisateur
+            
+            $user = Socialite::driver($request->provider)->user();
+            $email =$user->getEmail();//email de l'utilisateur
+            $nom = $user->getName();//nom  de l'utilisateur
+            $token = $user->token;
+            $refreshToken = $user->refreshToken;
+            $expiresIn = $user->expiresIn;
+
+            // OAuth 1.0 providers...
+            $token = $user->token;
+            $tokenSecret = $user->tokenSecret;
             //on vérifie si l  utilisateur existe déja
             $user = User::where("email",$email)->first();
             if(isset($user)){
