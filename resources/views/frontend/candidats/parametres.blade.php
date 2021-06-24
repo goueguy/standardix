@@ -39,8 +39,10 @@
             </div>
 
             <div class="flex flex-row space-x-2">
+                @if(isset(Auth::user()->nom_entreprise))
                 <input type="text" name="nom_entreprise" class="@error('nom_entreprise')  border-red-500 @enderror w-1/4 p-2 mb-2 bg-white border rounded-full focus:outline-none" placeholder="Nom Entreprise"  value="{{Auth::user()->nom_entreprise}}" readonly/>
-                <input type="text" name="lieu_habitation" class="@error('lieu_habitation')  border-red-500 @enderror w-1/4 p-2 mb-2 bg-white border rounded-full focus:outline-none" placeholder="Lieu d'Habitation"  value="{{Auth::user()->lieu_habitation}}"/>
+                @endif
+                <input type="text" name="lieu_habitation" class="@error('lieu_habitation')  border-red-500 @enderror  {{isset(Auth::user()->nom_entreprise) ? 'w-1/4':'w-2/4'}} p-2 mb-2 bg-white border rounded-full focus:outline-none" placeholder="Lieu d'Habitation"  value="{{Auth::user()->lieu_habitation}}"/>
                 <select name="domaine" class="@error('domaine') border-red-500 @enderror w-1/2 p-2 mb-2 bg-white border rounded-full focus:outline-none">
                     @if(Auth::user()->domaine_emploi_id)
                         @foreach($domaines as $domaine)
