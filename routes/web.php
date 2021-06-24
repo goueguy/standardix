@@ -1,19 +1,20 @@
 <?php
 
-use App\Http\Controllers\Admin\CategorieController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\Admin\UsersController;
-use App\Http\Controllers\Admin\RendezVousController;
-use App\Http\Controllers\Admin\OffresController;
-use App\Http\Controllers\PostulateController;
-use App\Http\Controllers\CandidatController;
-use App\Http\Controllers\Admin\DomaineController;
-use App\Http\Controllers\Admin\MetierController;
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\NotificationController;
 use App\Http\Middleware\isAdmin;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CandidatController;
+use App\Http\Controllers\PostulateController;
+use App\Http\Controllers\SocialiteController;
+use App\Http\Controllers\Admin\UsersController;
+use App\Http\Controllers\Admin\MetierController;
+use App\Http\Controllers\Admin\OffresController;
+use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\Admin\DomaineController;
+use App\Http\Controllers\Admin\CategorieController;
+use App\Http\Controllers\Admin\RendezVousController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,8 +41,13 @@ Route::post('/candidats/password',[CandidatController::class, 'sendPasswordLink'
 Route::get('/candidats/password/reset-link/{token}',[CandidatController::class, 'resetPasswordForm'])->name('candidatures.password-reset-form');
 Route::post('/candidats/password/reset-link/{token}',[CandidatController::class, 'updatePassword'])->name('candidatures.password.update');
 
+//SOCIALITE ROUTE
+Route::get("login-register", [SocialiteController::class,'loginRegister'])->name('social.login');
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
+// La redirection vers le provider
+Route::get("redirect/{provider}", [SocialiteController::class,'redirect'])->name('social.redirect');
+// Le callback du provider
+Route::get("callback/{provider}", [SocialiteController::class,'callback'])->name('social.callback');
 #-===========================ESPACE ADMIN=====================
 Route::group(["as"=>"admin.","prefix"=>"admin"],function () {
 
