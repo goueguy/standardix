@@ -46,6 +46,7 @@
                             </span>
                         @enderror
                     </div>
+                    <input type="hidden" name="action" value="login"/>
                     <button type="submit" class="w-full p-3 font-bold bg-yellow-400 rounded-full shadow-lg lg:mt-8">Connecter</button>
                 </form>
                 <div class="lg:mt-6">

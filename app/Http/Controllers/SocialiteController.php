@@ -26,7 +26,6 @@ class SocialiteController extends Controller
     public function callback(Request $request){
         try {
             $provider = $request->provider;
-            
             if(in_array($provider,$this->providers)){
                 //on récupère les informations provenant du provider
         
@@ -62,7 +61,7 @@ class SocialiteController extends Controller
                 }
             
         } catch (\Exception $ex) {
-            dd($ex->getMessage());
+            echo $ex->getMessage();
         }
     
     }

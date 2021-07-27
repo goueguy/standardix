@@ -9,8 +9,10 @@
         <div class="mx-auto text-center pt-36">
             <form action="{{ route('register') }}" method="POST">
                 @csrf
-
-
+                    <div class="flex flex-row items-center p-4 mb-4 bg-white border border-transparent rounded-lg shadow cursor-pointer w-90">
+                        <img src="{{asset('/assets/images/google.svg')}}" class="w-6">
+                        <span class="pl-4 font-bold"><a href="{{route('social.redirect','google')}}">Inscrivez-vous avec Google</a></span>
+                    </div>
                     <label class="font-bold lg:mt-12">Nom</label>
                     <div class="flex flex-row justify-between p-4 mb-4 bg-white  @error('nom') border border-red-600 @enderror rounded-lg shadow w-90">
                         <input type="text" name="nom" class="border-0 focus:outline-none md:focus:placeholder-green-600"  placeholder="Votre nom" value="{{old('nom')}}"/>
@@ -66,7 +68,7 @@
                             </span>
                         @enderror
                     </div>
-
+                    <input type="hidden" name="action" value="register"/>
                 <a href="{{route('register.client')}}" class="mt-12 mb-12">Si vous êtes une entreprise, cliquer ici</a>
                 <button type="submit" class="w-full p-3 font-bold bg-yellow-400 rounded-full shadow-lg lg:mt-8">S'inscrire</button>
             </form>
