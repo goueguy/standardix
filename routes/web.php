@@ -44,7 +44,7 @@ Route::post('/candidats/password/reset-link/{token}',[CandidatController::class,
 //SOCIALITE ROUTE
 
 // La redirection vers le provider
-Route::get("auth/{provider}", [SocialiteController::class,'redirect'])->name('social.redirect');
+Route::get("auth/{provider}/{action}", [SocialiteController::class,'redirect'])->name('social.redirect');
 // Le callback du provider
 Route::get("auth/{provider}/callback/", [SocialiteController::class,'callback'])->name('social.callback');
 #-===========================ESPACE ADMIN=====================
