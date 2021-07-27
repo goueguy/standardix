@@ -27,6 +27,7 @@ class SocialiteController extends Controller
         try {
             $provider = $request->provider;
             dd($request->action);
+            
             if(in_array($provider,$this->providers)){
                 //on récupère les informations provenant du provider
         
