@@ -14,9 +14,9 @@ class SocialiteController extends Controller
     protected $providers = ["google","github","facebook"];
 
     
-    public function redirect(Request $request){
+    public function redirect(Request $request,$action){
         $provider = $request->provider;
-        dd($request->action);
+        dd($action);
         // On vérifie si le provider est autorisé
         if(in_array($provider,$this->providers)){
             //dd('ok');

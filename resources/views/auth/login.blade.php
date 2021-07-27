@@ -16,7 +16,7 @@
                 </div>
                 <div class="flex flex-row items-center p-4 bg-white border border-transparent rounded-lg shadow cursor-pointer w-90">
                     <img src="{{asset('/assets/images/google.svg')}}" class="w-6">
-                    <span class="pl-4 font-bold"><a href="{{route('social.redirect','google','login')}}">Connectez-vous avec Google</a></span>
+                    <span class="pl-4 font-bold"><a href="{{route('social.redirect','google')}}">Connectez-vous avec Google</a></span>
                 </div>
                 <form action="{{route('login')}}" method="POST">
 
