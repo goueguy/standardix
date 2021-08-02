@@ -1,5 +1,5 @@
-@section('header')
-    <header>
+
+    {{-- <header>
         <!-- LOGO -->
         <div class="flex flex-row justify-between w-full">
             <div class="ml-12">
@@ -47,12 +47,41 @@
                 </a>
             </li>
         </ul>
-    </header>
-@endsection
+    </header> --}}
+
+    <nav class="flex flex-wrap items-center p-3 text-white bg-green-700  lg:bg-transparent">
+        <a href="{{url("/")}}"><img src="{{asset("assets/images/logo.png")}}" class="h-24 inline-flex items-center p-3" alt="Standardix Logo"/></a>
+        <button id="btnMenu" data-target="#navigation" class="ml-auto text-white font-bold text-xl hover:bg-green-500 hover:text-white lg:hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
+        <div class="hidden w-full lg:inline-flex lg:flex-grow lg:w-auto mt-6" id="navigation">
+            <div class="lg:inline-flex lg:flex-row lg:ml-auto flex flex-col">
+                <a href="{{route('offres')}}" class="pr-8 font-bold uppercase lg:text-black"><span>Accueil</span></a>
+                <a href="#" class="pr-8 font-bold uppercase lg:text-black"><span>Standardix</span></a>
+                <a href="{{route('register')}}" class="pr-8 font-bold uppercase lg:text-black"><span>Candidature spontanée</span></a>
+                <a href="#" class="pr-8 font-bold uppercase lg:text-black"><span>Nos métiers</span></a>
+                <a href="{{route('login')}}" class="pr-8 font-bold uppercase lg:text-black"><span>Connexion</span></a>
+                <a href="#" class="pr-8 font-bold uppercase lg:text-black"><span>Contact</span></a>
+            </div>
+        </div>
+    </nav>
+
 @push('dropdown')
 <script>
-    let btn = document.getElementById("dropdown");
-    let dropdownMenu = document.getElementById("dropdown-menu");
-    btn.addEventListener("click",()=>dropdownMenu.classList.toggle("hidden"));
+
+    const btn = document.getElementById("dropdown");
+    const dropdownMenu = document.getElementById("dropdown-menu");
+    const navigation = document.getElementById("navigation");
+    const btnMenu = document.getElementById("btnMenu");
+    if((btn) && (dropdownMenu)){
+        btn.addEventListener("click",()=>dropdownMenu.classList.toggle("hidden"));
+    }
+    if(navigation){
+        btnMenu.addEventListener('click',()=>navigation.classList.toggle('hidden'));
+    }
+
+
 </script>
 @endpush

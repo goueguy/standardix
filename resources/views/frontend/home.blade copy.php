@@ -3,8 +3,8 @@
 @section('content')
 
 <h1 class="py-10 text-4xl font-bold text-center text-green-700 ">NOS OFFRES</h1>
-<div class="lg:flex sm:flex-col lg:flex-row w-full lg:space-x-4 lg:px-14 lg:py-14">
-    <div class="lg:flex lg:flex-col lg:w-3/4 sm:w-full">
+<div class="inline-flex space-x-4 px-14 py-14">
+    <div class="flex flex-col w-3/4">
         <!-- OFFRE 1 -->
     @if(count($offres)>0)
         @foreach ($offres as $offre)
@@ -30,8 +30,8 @@
             </div>
         @endforeach
         @else
-        <div class="flex xs:flex-row xs:w-full flex-col w-auto">
-            <div class="inline-flex px-8 py-6 mb-4 h-auto bg-white border rounded-lg shadow-lg">
+        <div class="flex flex-col w-auto">
+            <div class="inline-flex px-8 py-6 mb-4 bg-white border rounded-lg shadow-lg">
                 <div class="font-light">
                     <p class="font-bold text-center text-red-500">! Pas d'Offre Disponible Actuellement !</p>
                     <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Itaque, ratione aperiam repellendus minima totam rem optio placeat numquam unde eligendi voluptatum. Suscipit id quisquam cum autem tempora ducimus ea exercitationem?</p>
@@ -43,7 +43,7 @@
         </div>
         @endif
     </div>
-    <div class="flex flex-col lg:w-1/4 lg:h-40 sm:h-auto text-center bg-white border rounded-lg shadow-lg">
+    <div class="flex flex-col w-1/4 h-40 text-center bg-white border rounded-lg shadow-lg">
         <div class="p-3">
             <p class="font-light"><a href="{{route('register')}}">Vous n'avez pas de compte ?</a></p>
             <p class="mb-4 font-light"> <a href="#">Oops? J'ai oublié mon mot de passe</a></p>

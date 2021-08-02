@@ -7,16 +7,12 @@
         <title>@yield('title')</title>
         <link href="{{ asset('/assets/css/app.css') }}" rel="stylesheet">
     </head>
-    <body class="font-display bodygray">
+    <body class="font-display bodygray h-screen">
         @include("layouts.includes.header")
-        @section('header')
-        @show
-        <div class="">
-            @yield('content')
-        </div>
+       
+        @yield('content')
+
         @include("layouts.includes.footer")
-        @section('footer')
-        @show
         @stack("header-style")
         @stack("metier")
         @stack('dropdown')
